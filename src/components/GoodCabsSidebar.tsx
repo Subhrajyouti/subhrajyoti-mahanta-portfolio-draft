@@ -44,14 +44,14 @@ const GoodCabsSidebar = () => {
   }, []);
 
   return (
-    <div className="sticky top-0 z-40 w-full bg-background/95 backdrop-blur-md shadow-md border-b border-border/50">
+    <div className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur-md shadow-md border-b border-border/50">
       <div className="container max-w-5xl mx-auto px-4 py-2">
         <div 
           className="flex items-center justify-between cursor-pointer mb-1"
           onClick={() => setIsVisible(!isVisible)}
         >
           <h3 className="font-medium text-sm">
-            GoodCabs Navigation
+            Jump to Section
           </h3>
           {isVisible ? (
             <ChevronUp size={18} className="text-primary" />
@@ -158,8 +158,8 @@ const NavToggleItem = ({
   const handleClick = () => {
     const element = document.getElementById(value);
     if (element) {
-      // Offset for the sticky header
-      const yOffset = -80;
+      // Offset for the sticky header - increased to ensure section headers are visible
+      const yOffset = -120;
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
