@@ -52,7 +52,7 @@ const GoodCabsProject = () => {
     };
   }, []);
 
-  // Navigation items
+  // Navigation items for the project page
   const navItems = [
     { id: "overview", label: "Overview", icon: <Eye className="w-4 h-4" /> },
     { id: "data-setup", label: "Data Setup", icon: <Database className="w-4 h-4" /> },
@@ -65,7 +65,9 @@ const GoodCabsProject = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      {/* Keep the main Navbar component */}
       <Navbar />
+      
       <main className="flex-grow">
         {/* Hero Section with Cover Image */}
         <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
@@ -94,8 +96,8 @@ const GoodCabsProject = () => {
           </div>
         </div>
 
-        {/* Horizontal Navigation Bar - Fixed on scroll */}
-        <div className={`w-full bg-background border-b border-border/50 z-50 ${isNavFixed ? 'fixed top-0 left-0 shadow-md' : ''}`}>
+        {/* Project-specific Horizontal Navigation Bar - Fixed on scroll */}
+        <div className={`w-full bg-background border-b border-border/50 z-40 ${isNavFixed ? 'fixed top-16 left-0 shadow-md' : ''}`}>
           <div className="container max-w-5xl mx-auto px-4">
             <div className="flex items-center justify-between overflow-x-auto py-2 no-scrollbar">
               <div className="flex items-center space-x-4">
@@ -299,3 +301,5 @@ ORDER BY avg_spend_per_customer DESC;`}
               </CardContent>
             </Card>
           </section>
+          
+         
