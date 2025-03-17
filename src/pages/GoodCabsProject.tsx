@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { 
@@ -60,7 +61,7 @@ const GoodCabsProject = () => {
           </div>
         </div>
 
-        {/* Horizontal Navigation Bar - positioned after the cover photo */}
+        {/* Horizontal Navigation Bar - positioned after the cover photo and fixed while scrolling */}
         <GoodCabsSidebar />
 
         {/* Main Content */}

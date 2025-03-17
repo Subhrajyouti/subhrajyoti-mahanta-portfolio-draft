@@ -16,25 +16,9 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 const GoodCabsSidebar = () => {
   const [isVisible, setIsVisible] = useState(true);
-  const [isFloating, setIsFloating] = useState(false);
   const [activeSection, setActiveSection] = useState("overview");
 
   useEffect(() => {
-    // Determine when to make the navigation bar float
-    const handleScroll = () => {
-      // Cover photo height + some additional pixels to start floating after 
-      // we've scrolled past the initial position of the bar
-      const triggerHeight = window.innerHeight * 0.6 + 100; 
-      
-      if (window.scrollY > triggerHeight) {
-        setIsFloating(true);
-      } else {
-        setIsFloating(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    
     // Observe which section is currently in view to update active state
     const observer = new IntersectionObserver(
       (entries) => {
@@ -52,26 +36,19 @@ const GoodCabsSidebar = () => {
     sections.forEach((section) => observer.observe(section));
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
       sections.forEach((section) => observer.unobserve(section));
     };
   }, []);
 
   return (
-    <div 
-      className={`w-full z-40 transition-all duration-300 ${
-        isFloating 
-          ? "fixed top-0 left-0 bg-background/95 backdrop-blur-md shadow-md border-b border-border/50" 
-          : "relative"
-      }`}
-    >
-      <div className={`container max-w-5xl mx-auto px-4 ${isFloating ? "py-2" : "py-4"}`}>
+    <div className="sticky top-0 z-40 w-full bg-background/95 backdrop-blur-md shadow-md border-b border-border/50">
+      <div className="container max-w-5xl mx-auto px-4 py-2">
         <div 
           className="flex items-center justify-between cursor-pointer mb-1"
           onClick={() => setIsVisible(!isVisible)}
         >
           <h3 className="font-medium text-sm">
-            {isFloating ? "GoodCabs Navigation" : "Jump to Section"}
+            GoodCabs Navigation
           </h3>
           {isVisible ? (
             <ChevronUp size={18} className="text-primary" />
@@ -154,7 +131,7 @@ const NavToggleItem = ({
   const handleClick = () => {
     const element = document.getElementById(value);
     if (element) {
-      // Offset for the floating header
+      // Offset for the sticky header
       const yOffset = -80;
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
