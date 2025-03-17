@@ -10,7 +10,10 @@ import {
   FileText, 
   Rocket,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Target,
+  ListChecks,
+  BarChart
 } from "lucide-react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
@@ -74,16 +77,40 @@ const GoodCabsSidebar = () => {
                 isActive={activeSection === "overview"} 
               />
               <NavToggleItem 
+                value="objective" 
+                icon={<Target size={16} />} 
+                label="Objective" 
+                isActive={activeSection === "objective"} 
+              />
+              <NavToggleItem 
                 value="data-setup" 
                 icon={<Database size={16} />} 
-                label="Data Setup" 
+                label="Data Model" 
                 isActive={activeSection === "data-setup"} 
+              />
+              <NavToggleItem 
+                value="methodology" 
+                icon={<ListChecks size={16} />} 
+                label="Methodology" 
+                isActive={activeSection === "methodology"} 
               />
               <NavToggleItem 
                 value="dashboard" 
                 icon={<Monitor size={16} />} 
                 label="Dashboard" 
                 isActive={activeSection === "dashboard"} 
+              />
+              <NavToggleItem 
+                value="sql-queries" 
+                icon={<Database size={16} />} 
+                label="SQL Queries" 
+                isActive={activeSection === "sql-queries"} 
+              />
+              <NavToggleItem 
+                value="adhoc-reports" 
+                icon={<BarChart size={16} />} 
+                label="Ad Hoc Reports" 
+                isActive={activeSection === "adhoc-reports"} 
               />
               <NavToggleItem 
                 value="insights" 
