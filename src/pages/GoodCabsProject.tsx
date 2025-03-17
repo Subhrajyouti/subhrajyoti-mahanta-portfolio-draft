@@ -60,7 +60,7 @@ const GoodCabsProject = () => {
           </div>
         </div>
 
-        {/* Floating Sidebar Navigation */}
+        {/* Horizontal Navigation Bar - positioned after the cover photo */}
         <GoodCabsSidebar />
 
         {/* Main Content */}
