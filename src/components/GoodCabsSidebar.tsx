@@ -6,6 +6,7 @@ import {
   Monitor, 
   Lightbulb, 
   GraduationCap, 
+  Link2, 
   FileText, 
   Rocket,
   ChevronDown,
@@ -43,7 +44,7 @@ const GoodCabsSidebar = () => {
   }, []);
 
   return (
-    <div className="fixed top-0 z-50 w-full bg-background/95 backdrop-blur-md shadow-md border-b border-border/50">
+    <div className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur-md shadow-md border-b border-border/50">
       <div className="container max-w-5xl mx-auto px-4 py-2">
         <div 
           className="flex items-center justify-between cursor-pointer mb-1"
@@ -157,8 +158,8 @@ const NavToggleItem = ({
   const handleClick = () => {
     const element = document.getElementById(value);
     if (element) {
-      // Offset for the sticky header - adjusted to ensure section headers are visible
-      const yOffset = -80;
+      // Offset for the sticky header - increased to ensure section headers are visible
+      const yOffset = -120;
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
