@@ -45,7 +45,7 @@ const GoodCabsSidebar = () => {
 
   return (
     <div className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur-md shadow-md border-b border-border/50">
-      <div className="container max-w-5xl mx-auto px-4 py-2">
+      <div className="container max-w-7xl mx-auto px-4 py-2">
         <div 
           className="flex items-center justify-between cursor-pointer mb-1"
           onClick={() => setIsVisible(!isVisible)}
@@ -61,7 +61,7 @@ const GoodCabsSidebar = () => {
         </div>
         
         {isVisible && (
-          <div className="overflow-x-auto pb-2">
+          <div className="overflow-x-auto pb-2 -ml-2">
             <ToggleGroup 
               type="single" 
               value={activeSection}
