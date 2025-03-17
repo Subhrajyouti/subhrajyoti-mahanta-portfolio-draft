@@ -312,7 +312,7 @@ const GoodCabsProject = () => {
                 <Accordion type="single" collapsible className="w-full">
                   <AccordionItem value="monthly-revenue">
                     <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
-                      1. Retrieve Monthly Revenue Trends
+                      1. Retrieve Monthly  Revenue Trends
                     </AccordionTrigger>
                     <AccordionContent>
                       <div className="bg-card/20 p-4 rounded-md overflow-x-auto relative">
