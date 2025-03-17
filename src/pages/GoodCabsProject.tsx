@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { 
   ArrowLeft, 
@@ -12,7 +13,12 @@ import {
   GraduationCap, 
   Link2, 
   FileText, 
-  Eye
+  Eye,
+  Target,
+  ListChecks,
+  BarChart,
+  Copy,
+  CheckCircle2
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -22,52 +28,24 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import GoodCabsSidebar from "@/components/GoodCabsSidebar";
+import { toast } from "sonner";
 
 const GoodCabsProject = () => {
-  // State to track if the navigation bar should be fixed
-  const [isNavFixed, setIsNavFixed] = useState(false);
-
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    
-    // Add scroll event listener to toggle fixed navigation
-    const handleScroll = () => {
-      // Get the hero section height - adjust this value as needed
-      const heroHeight = window.innerHeight * 0.6; // 60vh
-      
-      // Check if we've scrolled past the hero section
-      if (window.scrollY > heroHeight) {
-        setIsNavFixed(true);
-      } else {
-        setIsNavFixed(false);
-      }
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    
-    // Clean up the event listener
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
   }, []);
 
-  // Navigation items for the project page
-  const navItems = [
-    { id: "overview", label: "Overview", icon: <Eye className="w-4 h-4" /> },
-    { id: "data-setup", label: "Data Setup", icon: <Database className="w-4 h-4" /> },
-    { id: "dashboard", label: "Dashboard", icon: <Monitor className="w-4 h-4" /> },
-    { id: "insights", label: "Insights", icon: <Lightbulb className="w-4 h-4" /> },
-    { id: "challenges", label: "Challenges", icon: <GraduationCap className="w-4 h-4" /> },
-    { id: "files", label: "Files", icon: <Link2 className="w-4 h-4" /> },
-    { id: "conclusion", label: "Conclusion", icon: <Rocket className="w-4 h-4" /> },
-  ];
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    toast.success("Code copied to clipboard", {
+      description: "You can now paste it anywhere you need",
+    });
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      {/* Keep the main Navbar component */}
       <Navbar />
-      
       <main className="flex-grow">
         {/* Hero Section with Cover Image */}
         <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
@@ -96,28 +74,8 @@ const GoodCabsProject = () => {
           </div>
         </div>
 
-        {/* Project-specific Horizontal Navigation Bar - Fixed on scroll */}
-        <div className={`w-full bg-background border-b border-border/50 z-40 ${isNavFixed ? 'fixed top-16 left-0 shadow-md' : ''}`}>
-          <div className="container max-w-5xl mx-auto px-4">
-            <div className="flex items-center justify-between overflow-x-auto py-2 no-scrollbar">
-              <div className="flex items-center space-x-4">
-                {navItems.map((item) => (
-                  <a 
-                    key={item.id}
-                    href={`#${item.id}`}
-                    className="flex items-center space-x-1 py-2 px-3 text-sm font-medium hover:text-primary transition-colors whitespace-nowrap"
-                  >
-                    {item.icon}
-                    <span>{item.label}</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Add padding when the navigation is fixed to prevent content jump */}
-        {isNavFixed && <div className="h-12"></div>}
+        {/* Horizontal Navigation Bar */}
+        <GoodCabsSidebar />
 
         {/* Main Content */}
         <div className="container max-w-5xl mx-auto px-4 py-8">
@@ -129,46 +87,150 @@ const GoodCabsProject = () => {
             <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-border/50 hover:border-primary/30 shadow-md">
               <CardContent className="p-6">
                 <p className="mb-4">
-                  This project is an in-depth analysis of GoodCabs' operations, focusing on:
+                  This project was developed as part of the Resume Project Challenge by Codebasics, where I analyzed operational data from GoodCabs, a cab service operating in Tier 2 cities. The goal was to derive business insights from ride and revenue data, helping GoodCabs' Chief of Operations optimize strategies.
                 </p>
-                <ul className="list-disc pl-6 space-y-2 mb-6">
-                  <li>Trip volume & revenue trends</li>
-                  <li>New vs repeat passenger behavior</li>
-                  <li>City-wise performance & customer satisfaction</li>
-                  <li>Target vs actual business performance</li>
-                </ul>
-                
-                <p className="mb-4">To achieve this, I:</p>
+                <p className="mb-4">
+                  The project covers trip volume analysis, passenger behavior, city-wise performance, and revenue trends. I built a PostgreSQL database, wrote SQL queries, created an interactive Power BI dashboard, and provided ad hoc reporting capabilities for data-driven decision-making.
+                </p>
+              </CardContent>
+            </Card>
+          </section>
+            
+          {/* Objective Section */}
+          <section id="objective" className="scroll-mt-24 mb-16">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+              <Target className="text-primary" /> Objective
+            </h2>
+            <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-border/50 hover:border-primary/30 shadow-md">
+              <CardContent className="p-6">
                 <ul className="list-none space-y-2">
                   <li className="flex items-start">
                     <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
-                    Designed a Power BI dashboard for interactive reporting
+                    Analyze GoodCabs' business performance through data-driven insights.
                   </li>
                   <li className="flex items-start">
                     <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
-                    Structured a PostgreSQL database and imported data
+                    Identify revenue trends, passenger behavior, and city-wise performance.
                   </li>
                   <li className="flex items-start">
                     <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
-                    Wrote SQL queries to extract key insights
+                    Provide actionable recommendations for improving ride frequency and customer retention.
                   </li>
                   <li className="flex items-start">
                     <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
-                    Created data models to optimize Power BI relationships
+                    Enable Ad Hoc Reporting for on-demand insights using SQL.
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </section>
+          
+          {/* Data Description Section */}
+          <section id="data-setup" className="scroll-mt-24 mb-16">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+              <Database className="text-primary" /> Data Description & Data Model
+            </h2>
+            <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-border/50 hover:border-primary/30 shadow-md">
+              <CardContent className="p-6">
+                <p className="mb-4">
+                  The dataset contains trip data, passenger details, and revenue metrics.
+                  Modeled using a Star Schema with fact and dimension tables.
+                </p>
+                <h3 className="text-lg font-medium mb-3">Key Data Relationships:</h3>
+                <ul className="list-disc pl-6 space-y-2 mb-6">
+                  <li>Fact tables: fact_trips, fact_passenger_summary</li>
+                  <li>Dimension tables: dim_city, dim_date, dim_repeat_trip_distribution</li>
+                  <li>Target tables: monthly_target_trips, city_target_passenger_rating</li>
+                </ul>
+                
+                <div className="bg-card/20 p-4 rounded-md text-center text-muted-foreground">
+                  <p>[Data Model Image would be displayed here]</p>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+            
+          {/* Methodology Section */}
+          <section id="methodology" className="scroll-mt-24 mb-16">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+              <ListChecks className="text-primary" /> Methodology
+            </h2>
+            <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-border/50 hover:border-primary/30 shadow-md">
+              <CardContent className="p-6">
+                <ul className="list-none space-y-2">
+                  <li className="flex items-start">
+                    <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
+                    <strong>Data Extraction & Storage:</strong> Imported datasets into PostgreSQL.
                   </li>
                   <li className="flex items-start">
                     <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
-                    Provided strategic recommendations for business growth
+                    <strong>Data Cleaning:</strong> Removed missing values and formatted dates.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
+                    <strong>SQL Queries:</strong> Performed aggregation and segmentation for trend analysis.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
+                    <strong>Data Modeling:</strong> Optimized table relationships using Star Schema.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
+                    <strong>Power BI Visualization:</strong> Designed interactive reports with KPIs, trends, and insights.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
+                    <strong>Ad Hoc Reporting:</strong> Designed SQL queries to generate dynamic insights on demand.
                   </li>
                 </ul>
               </CardContent>
             </Card>
           </section>
             
-          {/* Data Setup & SQL Queries Section */}
-          <section id="data-setup" className="scroll-mt-24 mb-16">
+          {/* Power BI Dashboard Section */}
+          <section id="dashboard" className="scroll-mt-24 mb-16">
             <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
-              <Database className="text-primary" /> Data Setup & SQL Queries
+              <Monitor className="text-primary" /> Power BI Dashboard
+            </h2>
+            <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-border/50 hover:border-primary/30 shadow-md">
+              <CardContent className="p-0">
+                <div className="aspect-video w-full">
+                  <iframe 
+                    title="GoodCabs Dashboard" 
+                    src="https://app.powerbi.com/reportEmbed?reportId=9e0825b7-06b5-4209-ae7d-df25d95de537&autoAuth=true&ctid=7c917c3d-4a50-4092-a77b-171388bb6f94" 
+                    className="w-full h-full border-none"
+                    allowFullScreen 
+                  />
+                </div>
+              </CardContent>
+            </Card>
+            
+            <div className="mt-6">
+              <h3 className="text-xl font-medium mb-4">Dashboard Highlights</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <FeatureCard title="Trip volume analysis">
+                  Understand demand fluctuations
+                </FeatureCard>
+                <FeatureCard title="New vs Repeat Passengers">
+                  Analyze retention trends
+                </FeatureCard>
+                <FeatureCard title="City-Wise Revenue Performance">
+                  Identify high-profit locations
+                </FeatureCard>
+                <FeatureCard title="Target vs Actual Performance">
+                  Compare company goals vs real data
+                </FeatureCard>
+                <FeatureCard title="Custom Filters & Drilldowns">
+                  Dynamic exploration by City, Month, Passenger Type
+                </FeatureCard>
+              </div>
+            </div>
+          </section>
+            
+          {/* SQL Queries Section */}
+          <section id="sql-queries" className="scroll-mt-24 mb-16">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+              <Database className="text-primary" /> SQL Queries & Database Setup
             </h2>
             <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-border/50 hover:border-primary/30 shadow-md">
               <CardContent className="p-6">
@@ -178,7 +240,14 @@ const GoodCabsProject = () => {
                       Database Creation in PostgreSQL
                     </AccordionTrigger>
                     <AccordionContent>
-                      <div className="bg-card/20 p-4 rounded-md overflow-x-auto">
+                      <div className="bg-card/20 p-4 rounded-md overflow-x-auto relative">
+                        <button 
+                          onClick={() => copyToClipboard("CREATE DATABASE GoodCabs;")}
+                          className="absolute right-2 top-2 p-1 rounded hover:bg-primary/10"
+                          aria-label="Copy code"
+                        >
+                          <Copy size={16} />
+                        </button>
                         <pre className="text-sm">
                           {`CREATE DATABASE GoodCabs;`}
                         </pre>
@@ -191,16 +260,19 @@ const GoodCabsProject = () => {
                       Creating Tables (Example Snippet)
                     </AccordionTrigger>
                     <AccordionContent>
-                      <div className="bg-card/20 p-4 rounded-md overflow-x-auto">
+                      <div className="bg-card/20 p-4 rounded-md overflow-x-auto relative">
+                        <button 
+                          onClick={() => copyToClipboard("CREATE TABLE IF NOT EXISTS dim_city (\n    city_id VARCHAR(10) PRIMARY KEY,\n    city_name VARCHAR(50) NOT NULL\n);")}
+                          className="absolute right-2 top-2 p-1 rounded hover:bg-primary/10"
+                          aria-label="Copy code"
+                        >
+                          <Copy size={16} />
+                        </button>
                         <pre className="text-sm">
                           {`CREATE TABLE IF NOT EXISTS dim_city (
     city_id VARCHAR(10) PRIMARY KEY,
     city_name VARCHAR(50) NOT NULL
-);
-
--- Additional tables: dim_date, fact_passenger_summary, dim_repeat_trip_distribution,
--- fact_trips, city_target_passenger_rating, monthly_target_new_passengers,
--- monthly_target_trips, etc.`}
+);`}
                         </pre>
                       </div>
                     </AccordionContent>
@@ -211,88 +283,16 @@ const GoodCabsProject = () => {
                       Importing CSV Data
                     </AccordionTrigger>
                     <AccordionContent>
-                      <div className="bg-card/20 p-4 rounded-md overflow-x-auto">
+                      <div className="bg-card/20 p-4 rounded-md overflow-x-auto relative">
+                        <button 
+                          onClick={() => copyToClipboard("COPY dim_city FROM '/path/to/dim_city.csv' DELIMITER ',' CSV HEADER;")}
+                          className="absolute right-2 top-2 p-1 rounded hover:bg-primary/10"
+                          aria-label="Copy code"
+                        >
+                          <Copy size={16} />
+                        </button>
                         <pre className="text-sm">
-                          {`COPY dim_city FROM '/path/to/dim_city.csv' DELIMITER ',' CSV HEADER;
--- Continue for other tables in correct order`}
-                        </pre>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                  
-                  <AccordionItem value="trip-analysis">
-                    <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
-                      Trip Volume Analysis Query
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <div className="bg-card/20 p-4 rounded-md overflow-x-auto">
-                        <pre className="text-sm">
-                          {`-- Trip Volume Analysis by City
-WITH trip_data AS (
-  SELECT 
-    city_name,
-    trip_date,
-    COUNT(*) as trip_count,
-    SUM(fare_amount) as total_revenue,
-    AVG(rating) as avg_rating
-  FROM trips t
-  JOIN cities c ON t.city_id = c.city_id
-  WHERE trip_date BETWEEN '2022-01-01' AND '2022-12-31'
-  GROUP BY city_name, trip_date
-)
-SELECT 
-  city_name,
-  SUM(trip_count) as yearly_trips,
-  ROUND(SUM(total_revenue), 2) as yearly_revenue,
-  ROUND(AVG(avg_rating), 1) as average_rating
-FROM trip_data
-GROUP BY city_name
-ORDER BY yearly_revenue DESC;`}
-                        </pre>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                  
-                  <AccordionItem value="customer-retention">
-                    <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
-                      Customer Retention Analysis
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <div className="bg-card/20 p-4 rounded-md overflow-x-auto">
-                        <pre className="text-sm">
-                          {`-- New vs Repeat Customer Analysis
-WITH customer_trips AS (
-  SELECT 
-    customer_id,
-    MIN(trip_date) as first_trip_date,
-    COUNT(*) as total_trips,
-    SUM(fare_amount) as total_spent,
-    AVG(rating) as avg_rating
-  FROM trips
-  GROUP BY customer_id
-),
-classified_customers AS (
-  SELECT
-    customer_id,
-    CASE 
-      WHEN total_trips = 1 THEN 'New' 
-      WHEN total_trips BETWEEN 2 AND 5 THEN 'Occasional' 
-      ELSE 'Regular' 
-    END as customer_type,
-    total_trips,
-    total_spent,
-    avg_rating
-  FROM customer_trips
-)
-SELECT
-  customer_type,
-  COUNT(*) as customer_count,
-  ROUND(AVG(total_trips), 1) as avg_trips_per_customer,
-  ROUND(AVG(total_spent), 2) as avg_spend_per_customer,
-  ROUND(AVG(avg_rating), 1) as avg_rating
-FROM classified_customers
-GROUP BY customer_type
-ORDER BY avg_spend_per_customer DESC;`}
+                          {`COPY dim_city FROM '/path/to/dim_city.csv' DELIMITER ',' CSV HEADER;`}
                         </pre>
                       </div>
                     </AccordionContent>
@@ -302,4 +302,330 @@ ORDER BY avg_spend_per_customer DESC;`}
             </Card>
           </section>
           
-         
+          {/* Ad Hoc SQL Reports Section */}
+          <section id="adhoc-reports" className="scroll-mt-24 mb-16">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+              <BarChart className="text-primary" /> Ad Hoc SQL Reports
+            </h2>
+            <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-border/50 hover:border-primary/30 shadow-md">
+              <CardContent className="p-6">
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="monthly-revenue">
+                    <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
+                      1. Retrieve Monthly Revenue Trends
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <div className="bg-card/20 p-4 rounded-md overflow-x-auto relative">
+                        <button 
+                          onClick={() => copyToClipboard(`SELECT DATE_TRUNC('month', date) AS month, 
+       SUM(fare_amount) AS total_revenue
+FROM fact_trips
+GROUP BY month
+ORDER BY month;`)}
+                          className="absolute right-2 top-2 p-1 rounded hover:bg-primary/10"
+                          aria-label="Copy code"
+                        >
+                          <Copy size={16} />
+                        </button>
+                        <pre className="text-sm">
+                          {`SELECT DATE_TRUNC('month', date) AS month, 
+       SUM(fare_amount) AS total_revenue
+FROM fact_trips
+GROUP BY month
+ORDER BY month;`}
+                        </pre>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="top-cities">
+                    <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
+                      2. Identify Top 5 Cities by Revenue
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <div className="bg-card/20 p-4 rounded-md overflow-x-auto relative">
+                        <button 
+                          onClick={() => copyToClipboard(`SELECT city_name, SUM(fare_amount) AS total_revenue
+FROM fact_trips f
+JOIN dim_city c ON f.city_id = c.city_id
+GROUP BY city_name
+ORDER BY total_revenue DESC
+LIMIT 5;`)}
+                          className="absolute right-2 top-2 p-1 rounded hover:bg-primary/10"
+                          aria-label="Copy code"
+                        >
+                          <Copy size={16} />
+                        </button>
+                        <pre className="text-sm">
+                          {`SELECT city_name, SUM(fare_amount) AS total_revenue
+FROM fact_trips f
+JOIN dim_city c ON f.city_id = c.city_id
+GROUP BY city_name
+ORDER BY total_revenue DESC
+LIMIT 5;`}
+                        </pre>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="passenger-rating">
+                    <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
+                      3. Average Passenger Rating per City
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <div className="bg-card/20 p-4 rounded-md overflow-x-auto relative">
+                        <button 
+                          onClick={() => copyToClipboard(`SELECT city_name, AVG(passenger_rating) AS avg_rating
+FROM fact_trips f
+JOIN dim_city c ON f.city_id = c.city_id
+GROUP BY city_name
+ORDER BY avg_rating DESC;`)}
+                          className="absolute right-2 top-2 p-1 rounded hover:bg-primary/10"
+                          aria-label="Copy code"
+                        >
+                          <Copy size={16} />
+                        </button>
+                        <pre className="text-sm">
+                          {`SELECT city_name, AVG(passenger_rating) AS avg_rating
+FROM fact_trips f
+JOIN dim_city c ON f.city_id = c.city_id
+GROUP BY city_name
+ORDER BY avg_rating DESC;`}
+                        </pre>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="new-repeat">
+                    <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
+                      4. Monthly New vs Repeat Passenger Comparison
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <div className="bg-card/20 p-4 rounded-md overflow-x-auto relative">
+                        <button 
+                          onClick={() => copyToClipboard(`SELECT month, 
+       SUM(CASE WHEN passenger_type = 'New' THEN 1 ELSE 0 END) AS new_passengers,
+       SUM(CASE WHEN passenger_type = 'Repeat' THEN 1 ELSE 0 END) AS repeat_passengers
+FROM fact_trips
+GROUP BY month
+ORDER BY month;`)}
+                          className="absolute right-2 top-2 p-1 rounded hover:bg-primary/10"
+                          aria-label="Copy code"
+                        >
+                          <Copy size={16} />
+                        </button>
+                        <pre className="text-sm">
+                          {`SELECT month, 
+       SUM(CASE WHEN passenger_type = 'New' THEN 1 ELSE 0 END) AS new_passengers,
+       SUM(CASE WHEN passenger_type = 'Repeat' THEN 1 ELSE 0 END) AS repeat_passengers
+FROM fact_trips
+GROUP BY month
+ORDER BY month;`}
+                        </pre>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="retention-rate">
+                    <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
+                      5. Customer Retention Rate Analysis
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <div className="bg-card/20 p-4 rounded-md overflow-x-auto relative">
+                        <button 
+                          onClick={() => copyToClipboard(`SELECT month, 
+       (SUM(repeat_passengers)::FLOAT / SUM(total_passengers)) * 100 AS retention_rate
+FROM fact_passenger_summary
+GROUP BY month
+ORDER BY month;`)}
+                          className="absolute right-2 top-2 p-1 rounded hover:bg-primary/10"
+                          aria-label="Copy code"
+                        >
+                          <Copy size={16} />
+                        </button>
+                        <pre className="text-sm">
+                          {`SELECT month, 
+       (SUM(repeat_passengers)::FLOAT / SUM(total_passengers)) * 100 AS retention_rate
+FROM fact_passenger_summary
+GROUP BY month
+ORDER BY month;`}
+                        </pre>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </CardContent>
+            </Card>
+          </section>
+            
+          {/* Key Insights & Recommendations Section */}
+          <section id="insights" className="scroll-mt-24 mb-16">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+              <Lightbulb className="text-primary" /> Key Insights & Recommendations
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <InsightCard title="1. Repeat Customers Generate More Revenue, but Retention is Low">
+                <p className="mb-2">Repeat customers spend significantly more than new users, but the retention rate is concerning.</p>
+                <p className="font-medium text-primary">Solution: Introduce loyalty programs & targeted promotions.</p>
+              </InsightCard>
+              
+              <InsightCard title="2. Jaipur is the Most Profitable City">
+                <p className="mb-2">Jaipur consistently outperforms other cities in revenue generation and trip volume.</p>
+                <p className="font-medium text-primary">Solution: Expand Jaipur's successful strategies to underperforming cities.</p>
+              </InsightCard>
+              
+              <InsightCard title="3. Repeat Customers Give Lower Ratings">
+                <p className="mb-2">Analysis shows repeat customers tend to provide lower satisfaction ratings over time.</p>
+                <p className="font-medium text-primary">Solution: Improve service quality & driver training.</p>
+              </InsightCard>
+              
+              <InsightCard title="4. Declining Trip Trends">
+                <p className="mb-2">Trip volume has been on a downward trend for the past two quarters.</p>
+                <p className="font-medium text-primary">Solution: Implement discount offers & referral incentives.</p>
+              </InsightCard>
+            </div>
+          </section>
+            
+          {/* Challenges & Learnings Section */}
+          <section id="challenges" className="scroll-mt-24 mb-16">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+              <GraduationCap className="text-primary" /> Challenges & Learnings
+            </h2>
+            <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-border/50 hover:border-primary/30 shadow-md">
+              <CardContent className="p-6">
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="challenge-1">
+                    <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
+                      Foreign Key Constraint Issues in PostgreSQL
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <p className="text-muted-foreground mb-2">
+                        Initially encountered errors when importing data due to foreign key constraints.
+                      </p>
+                      <p className="text-muted-foreground">
+                        <span className="font-medium">Fix:</span> Imported tables in the correct order to resolve dependency issues.
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="challenge-2">
+                    <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
+                      Displaying City Names Above Bars in Power BI
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <p className="text-muted-foreground mb-2">
+                        Struggled with showing city names directly above bar charts in Power BI.
+                      </p>
+                      <p className="text-muted-foreground">
+                        <span className="font-medium">Fix:</span> Used custom DAX measures for label formatting.
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="challenge-3">
+                    <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
+                      Target vs Actual Comparisons in Power BI
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <p className="text-muted-foreground mb-2">
+                        Creating visualizations that effectively compared target metrics against actual performance was challenging.
+                      </p>
+                      <p className="text-muted-foreground">
+                        <span className="font-medium">Fix:</span> Created DAX formulas for benchmarking performance.
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </CardContent>
+            </Card>
+          </section>
+            
+          {/* Project Files & Links Section */}
+          <section id="files" className="scroll-mt-24 mb-16">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+              <Link2 className="text-primary" /> Project Files & Links
+            </h2>
+            <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-border/50 hover:border-primary/30 shadow-md">
+              <CardContent className="p-6 flex flex-col space-y-4">
+                <div className="flex items-center space-x-2">
+                  <Monitor className="text-primary h-5 w-5" />
+                  <a 
+                    href="https://shorturl.at/KKjrs" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline flex items-center"
+                  >
+                    Live Dashboard Link
+                    <ExternalLink className="h-4 w-4 ml-1" />
+                  </a>
+                </div>
+                
+                <div className="flex items-center space-x-2">
+                  <Github className="text-primary h-5 w-5" />
+                  <a 
+                    href="https://github.com/Subhrajyouti/GoodCabs-Analytics" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline flex items-center"
+                  >
+                    GitHub Repository
+                    <ExternalLink className="h-4 w-4 ml-1" />
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+            
+          {/* Conclusion Section */}
+          <section id="conclusion" className="scroll-mt-24 mb-16">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+              <Rocket className="text-primary" /> Conclusion & Next Steps
+            </h2>
+            <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-border/50 hover:border-primary/30 shadow-md">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-medium mb-3">Key Takeaways</h3>
+                <ul className="list-disc pl-6 space-y-2 mb-6 text-muted-foreground">
+                  <li>Repeat customers generate higher revenue but retention strategies need improvement</li>
+                  <li>Jaipur's high-profit model can be expanded to other cities</li>
+                  <li>Enhancing customer service & engagement will improve ratings</li>
+                  <li>Strategic discounts and referral offers can boost ride volume</li>
+                </ul>
+                
+                <h3 className="text-lg font-medium mb-3">Next Steps</h3>
+                <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+                  <li>Enhance dashboard with predictive analytics for ride demand forecasting</li>
+                  <li>Automate reporting with scheduled SQL queries</li>
+                  <li>Track impact of loyalty & retention strategies over time</li>
+                  <li>Develop driver performance metrics to improve customer satisfaction</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </section>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+// Feature Card Component
+const FeatureCard = ({ title, children }: { title: string; children: React.ReactNode }) => (
+  <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-border/50 hover:border-primary/30 shadow-md">
+    <CardContent className="p-6">
+      <h3 className="font-medium mb-2">{title}</h3>
+      <p className="text-sm text-muted-foreground">{children}</p>
+    </CardContent>
+  </Card>
+);
+
+// Insight Card Component
+const InsightCard = ({ title, children }: { title: string; children: React.ReactNode }) => (
+  <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-border/50 hover:border-primary/30 shadow-md">
+    <CardContent className="p-6">
+      <h3 className="font-medium mb-2">{title}</h3>
+      <div className="text-sm text-muted-foreground">{children}</div>
+    </CardContent>
+  </Card>
+);
+
+export default GoodCabsProject;
