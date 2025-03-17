@@ -41,7 +41,7 @@ const GoodCabsSidebar = () => {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 w-full bg-background/95 backdrop-blur-md shadow-md border-b border-border/50">
+    <div className="sticky top-0 z-40 w-full bg-background/95 backdrop-blur-md shadow-md border-b border-border/50">
       <div className="container max-w-5xl mx-auto px-4 py-2">
         <div 
           className="flex items-center justify-between cursor-pointer mb-1"

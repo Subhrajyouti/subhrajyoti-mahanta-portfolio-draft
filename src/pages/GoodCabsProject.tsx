@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { 
   ArrowLeft, 
@@ -24,50 +25,14 @@ import Navbar from "@/components/Navbar";
 import GoodCabsSidebar from "@/components/GoodCabsSidebar";
 
 const GoodCabsProject = () => {
-  // State to track if the navigation bar should be fixed
-  const [isNavFixed, setIsNavFixed] = useState(false);
-
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    
-    // Add scroll event listener to toggle fixed navigation
-    const handleScroll = () => {
-      // Get the hero section height - adjust this value as needed
-      const heroHeight = window.innerHeight * 0.6; // 60vh
-      
-      // Check if we've scrolled past the hero section
-      if (window.scrollY > heroHeight) {
-        setIsNavFixed(true);
-      } else {
-        setIsNavFixed(false);
-      }
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    
-    // Clean up the event listener
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
   }, []);
-
-  // Navigation items for the project page
-  const navItems = [
-    { id: "overview", label: "Overview", icon: <Eye className="w-4 h-4" /> },
-    { id: "data-setup", label: "Data Setup", icon: <Database className="w-4 h-4" /> },
-    { id: "dashboard", label: "Dashboard", icon: <Monitor className="w-4 h-4" /> },
-    { id: "insights", label: "Insights", icon: <Lightbulb className="w-4 h-4" /> },
-    { id: "challenges", label: "Challenges", icon: <GraduationCap className="w-4 h-4" /> },
-    { id: "files", label: "Files", icon: <Link2 className="w-4 h-4" /> },
-    { id: "conclusion", label: "Conclusion", icon: <Rocket className="w-4 h-4" /> },
-  ];
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      {/* Keep the main Navbar component */}
       <Navbar />
-      
       <main className="flex-grow">
         {/* Hero Section with Cover Image */}
         <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
@@ -96,28 +61,8 @@ const GoodCabsProject = () => {
           </div>
         </div>
 
-        {/* Project-specific Horizontal Navigation Bar - Fixed on scroll */}
-        <div className={`w-full bg-background border-b border-border/50 z-40 ${isNavFixed ? 'fixed top-16 left-0 shadow-md' : ''}`}>
-          <div className="container max-w-5xl mx-auto px-4">
-            <div className="flex items-center justify-between overflow-x-auto py-2 no-scrollbar">
-              <div className="flex items-center space-x-4">
-                {navItems.map((item) => (
-                  <a 
-                    key={item.id}
-                    href={`#${item.id}`}
-                    className="flex items-center space-x-1 py-2 px-3 text-sm font-medium hover:text-primary transition-colors whitespace-nowrap"
-                  >
-                    {item.icon}
-                    <span>{item.label}</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Add padding when the navigation is fixed to prevent content jump */}
-        {isNavFixed && <div className="h-12"></div>}
+        {/* Horizontal Navigation Bar - positioned after the cover photo and fixed while scrolling */}
+        <GoodCabsSidebar />
 
         {/* Main Content */}
         <div className="container max-w-5xl mx-auto px-4 py-8">
@@ -301,5 +246,218 @@ ORDER BY avg_spend_per_customer DESC;`}
               </CardContent>
             </Card>
           </section>
-          
-         
+            
+          {/* Power BI Dashboard Section */}
+          <section id="dashboard" className="scroll-mt-24 mb-16">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+              <Monitor className="text-primary" /> Power BI Dashboard
+            </h2>
+            <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-border/50 hover:border-primary/30 shadow-md">
+              <CardContent className="p-0">
+                <div className="aspect-video w-full">
+                  <iframe 
+                    title="GoodCabs Dashboard" 
+                    src="https://app.powerbi.com/reportEmbed?reportId=9e0825b7-06b5-4209-ae7d-df25d95de537&autoAuth=true&ctid=7c917c3d-4a50-4092-a77b-171388bb6f94" 
+                    className="w-full h-full border-none"
+                    allowFullScreen 
+                  />
+                </div>
+              </CardContent>
+            </Card>
+            
+            <div className="mt-6">
+              <h3 className="text-xl font-medium mb-4">Dashboard Highlights</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <FeatureCard title="KPI Cards">
+                  Total trips, revenue, passenger ratings
+                </FeatureCard>
+                <FeatureCard title="City-Wise Performance">
+                  Compare revenue, trip volume, satisfaction
+                </FeatureCard>
+                <FeatureCard title="New vs Repeat Passengers">
+                  Retention trends and customer behavior
+                </FeatureCard>
+                <FeatureCard title="Trip Volume Trends">
+                  Demand changes over time
+                </FeatureCard>
+                <FeatureCard title="Target vs Actual Metrics">
+                  Company goals vs real data
+                </FeatureCard>
+                <FeatureCard title="Filters & Drilldowns">
+                  City, Month, Passenger Type
+                </FeatureCard>
+              </div>
+            </div>
+          </section>
+            
+          {/* Key Insights & Recommendations Section */}
+          <section id="insights" className="scroll-mt-24 mb-16">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+              <Lightbulb className="text-primary" /> Key Insights & Recommendations
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <InsightCard title="Repeat Customers Generate More Revenue, but Retention is Low">
+                <p className="mb-2">Repeat customers spend significantly more than new users, but the retention rate is concerning.</p>
+                <p className="font-medium text-primary">Solution: Implement loyalty programs and targeted offers to increase customer retention.</p>
+              </InsightCard>
+              
+              <InsightCard title="Jaipur is the Most Profitable City">
+                <p className="mb-2">Jaipur consistently outperforms other cities in revenue generation and trip volume.</p>
+                <p className="font-medium text-primary">Solution: Analyze and replicate Jaipur's strategies in underperforming cities.</p>
+              </InsightCard>
+              
+              <InsightCard title="Repeat Customers Give Lower Ratings">
+                <p className="mb-2">Analysis shows repeat customers tend to provide lower satisfaction ratings over time.</p>
+                <p className="font-medium text-primary">Solution: Improve service quality and invest in driver training programs.</p>
+              </InsightCard>
+              
+              <InsightCard title="Declining Trip Trends">
+                <p className="mb-2">Trip volume has been on a downward trend for the past two quarters.</p>
+                <p className="font-medium text-primary">Solution: Introduce discounts during off-peak hours and develop referral programs.</p>
+              </InsightCard>
+            </div>
+          </section>
+            
+          {/* Challenges & Learnings Section */}
+          <section id="challenges" className="scroll-mt-24 mb-16">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+              <GraduationCap className="text-primary" /> Challenges & Learnings
+            </h2>
+            <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-border/50 hover:border-primary/30 shadow-md">
+              <CardContent className="p-6">
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="challenge-1">
+                    <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
+                      Foreign Key Constraint Issues in PostgreSQL
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <p className="text-muted-foreground mb-2">
+                        Initially encountered errors when importing data due to foreign key constraints.
+                      </p>
+                      <p className="text-muted-foreground">
+                        <span className="font-medium">Solution:</span> Resolved by carefully planning the import sequence, ensuring parent tables were populated before child tables.
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="challenge-2">
+                    <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
+                      Displaying City Names Above Bars in Power BI
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <p className="text-muted-foreground mb-2">
+                        Struggled with showing city names directly above bar charts in Power BI.
+                      </p>
+                      <p className="text-muted-foreground">
+                        <span className="font-medium">Solution:</span> Used custom DAX measures and formatting techniques to display city names as data labels above each bar.
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="challenge-3">
+                    <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
+                      Comparing Targets vs. Actuals
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <p className="text-muted-foreground mb-2">
+                        Creating visualizations that effectively compared target metrics against actual performance was challenging.
+                      </p>
+                      <p className="text-muted-foreground">
+                        <span className="font-medium">Solution:</span> Implemented custom DAX formulas and combination charts to show both metrics in a visually intuitive way.
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </CardContent>
+            </Card>
+          </section>
+            
+          {/* Project Files & Links Section */}
+          <section id="files" className="scroll-mt-24 mb-16">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+              <Link2 className="text-primary" /> Project Files & Links
+            </h2>
+            <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-border/50 hover:border-primary/30 shadow-md">
+              <CardContent className="p-6 flex flex-col space-y-4">
+                <div className="flex items-center space-x-2">
+                  <Monitor className="text-primary h-5 w-5" />
+                  <a 
+                    href="https://shorturl.at/KKjrs" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline flex items-center"
+                  >
+                    Live Dashboard Link
+                    <ExternalLink className="h-4 w-4 ml-1" />
+                  </a>
+                </div>
+                
+                <div className="flex items-center space-x-2">
+                  <Github className="text-primary h-5 w-5" />
+                  <a 
+                    href="https://github.com/Subhrajyouti/GoodCabs-Analytics" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline flex items-center"
+                  >
+                    GitHub Repository
+                    <ExternalLink className="h-4 w-4 ml-1" />
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+            
+          {/* Conclusion Section */}
+          <section id="conclusion" className="scroll-mt-24 mb-16">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+              <Rocket className="text-primary" /> Conclusion & Next Steps
+            </h2>
+            <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-border/50 hover:border-primary/30 shadow-md">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-medium mb-3">Key Takeaways</h3>
+                <ul className="list-disc pl-6 space-y-2 mb-6 text-muted-foreground">
+                  <li>Repeat customers drive revenue, but retention is low</li>
+                  <li>Jaipur is outperforming other cities—replicate its success</li>
+                  <li>Customer satisfaction needs improvement for repeat users</li>
+                  <li>Declining trip trends require new marketing strategies</li>
+                </ul>
+                
+                <h3 className="text-lg font-medium mb-3">Next Steps</h3>
+                <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+                  <li>Expand the dashboard with predictive analytics</li>
+                  <li>Automate reporting with scheduled SQL queries</li>
+                  <li>Monitor the impact of new retention strategies</li>
+                  <li>Develop driver performance metrics to improve customer satisfaction</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </section>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+// Feature Card Component
+const FeatureCard = ({ title, children }: { title: string; children: React.ReactNode }) => (
+  <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-border/50 hover:border-primary/30 shadow-md">
+    <CardContent className="p-6">
+      <h3 className="font-medium mb-2">{title}</h3>
+      <p className="text-sm text-muted-foreground">{children}</p>
+    </CardContent>
+  </Card>
+);
+
+// Insight Card Component
+const InsightCard = ({ title, children }: { title: string; children: React.ReactNode }) => (
+  <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-border/50 hover:border-primary/30 shadow-md">
+    <CardContent className="p-6">
+      <h3 className="font-medium mb-2">{title}</h3>
+      <div className="text-sm text-muted-foreground">{children}</div>
+    </CardContent>
+  </Card>
+);
+
+export default GoodCabsProject;
