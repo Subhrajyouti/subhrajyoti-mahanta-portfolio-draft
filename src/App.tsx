@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import ProjectPage from "./pages/ProjectPage";
 import NotFound from "./pages/NotFound";
 import GoodCabsProject from "./pages/GoodCabsProject";
+import DataJobMarketAnalysis from "./pages/DataJobMarketAnalysis";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import "./styles/global.css";
 
@@ -24,6 +25,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/project/:slug" element={<ProjectPage />} />
             <Route path="/goodcabs-analysis" element={<GoodCabsProject />} />
+            <Route path="/data-job-market-analysis" element={<DataJobMarketAnalysis />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
