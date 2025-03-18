@@ -244,7 +244,7 @@ plt.show()`}
                           <code>
 {`sns.boxplot(data=df_US_top6, x='salary_year_avg', y='job_title_short', order=job_order)
 
-ticks_x = plt.FuncFormatter(lambda y, pos: f'${int(y/1000)}K')
+ticks_x = plt.FuncFormatter(lambda y, pos: f'${Math.floor(y/1000)}K')
 plt.gca().xaxis.set_major_formatter(ticks_x)
 plt.show()`}
                           </code>
@@ -452,3 +452,4 @@ plt.show()`}
 };
 
 export default DataJobMarketAnalysis;
+
