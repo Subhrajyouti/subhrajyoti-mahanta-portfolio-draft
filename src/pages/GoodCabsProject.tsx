@@ -438,7 +438,7 @@ ORDER BY month;`}
                       
                       <AccordionItem value="retention-rate">
                         <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
-                          5. Customer Retention Rate Analysis
+                          5. Customer Retention Rate Analysiss
                         </AccordionTrigger>
                         <AccordionContent>
                           <div className="bg-card/20 p-4 rounded-md overflow-x-auto relative">
