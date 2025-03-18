@@ -44,7 +44,7 @@ const DataJobMarketAnalysis = () => {
         <div className="relative h-96">
           <div className="absolute inset-0">
             <img 
-              src="/data-science.jpg" 
+              src="/data_science.jpg" 
               alt="Data Job Market Analysis" 
               className="h-full w-full object-cover"
             />
@@ -244,7 +244,7 @@ plt.show()`}
                           <code>
 {`sns.boxplot(data=df_US_top6, x='salary_year_avg', y='job_title_short', order=job_order)
 
-ticks_x = plt.FuncFormatter(lambda x, pos: f'${Math.floor(x/1000)}K')
+ticks_x = plt.FuncFormatter(lambda y, pos: f'${Math.floor(y/1000)}K')
 plt.gca().xaxis.set_major_formatter(ticks_x)
 plt.show()`}
                           </code>
