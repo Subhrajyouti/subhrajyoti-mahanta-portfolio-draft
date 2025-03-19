@@ -145,7 +145,7 @@ const ProjectsSection = () => {
             <Card className="overflow-hidden border border-border/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
               <div className="p-5">
                 <h3 className="text-lg font-medium mb-4 flex items-center gap-2">
-                  <Link className="h-4 w-4 text-primary" /> Related Projects
+                  <Link to="/" className="h-4 w-4 text-primary" /> Related Projects
                 </h3>
                 <ul className="space-y-4">
                   <li>
