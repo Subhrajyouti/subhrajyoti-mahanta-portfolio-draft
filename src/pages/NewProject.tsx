@@ -38,31 +38,31 @@ const MondayCoffeeSidebar = () => {
       <div className="container max-w-7xl mx-auto px-4">
         <div className="flex overflow-x-auto py-2 gap-4 no-scrollbar">
           <a href="#overview" className="whitespace-nowrap text-sm font-bold hover:text-primary transition-colors px-2 py-2 flex items-center gap-1.5">
-            <Eye className="h-4 w-4" />
+            <Eye className="h-4 w-4 text-blue-500" />
             Overview
           </a>
           <a href="#objective" className="whitespace-nowrap text-sm font-bold hover:text-primary transition-colors px-2 py-2 flex items-center gap-1.5">
-            <Target className="h-4 w-4" />
+            <Target className="h-4 w-4 text-blue-500" />
             Objective
           </a>
           <a href="#data-setup" className="whitespace-nowrap text-sm font-bold hover:text-primary transition-colors px-2 py-2 flex items-center gap-1.5">
-            <Database className="h-4 w-4" />
+            <Database className="h-4 w-4 text-blue-500" />
             Data Description
           </a>
           <a href="#methodology" className="whitespace-nowrap text-sm font-bold hover:text-primary transition-colors px-2 py-2 flex items-center gap-1.5">
-            <ListChecks className="h-4 w-4" />
+            <ListChecks className="h-4 w-4 text-blue-500" />
             Methodology
           </a>
           <a href="#top-cities" className="whitespace-nowrap text-sm font-bold hover:text-primary transition-colors px-2 py-2 flex items-center gap-1.5">
-            <Rocket className="h-4 w-4" />
+            <Rocket className="h-4 w-4 text-blue-500" />
             Top Cities
           </a>
           <a href="#ad-hoc-requests" className="whitespace-nowrap text-sm font-bold hover:text-primary transition-colors px-2 py-2 flex items-center gap-1.5">
-            <Database className="h-4 w-4" />
+            <Database className="h-4 w-4 text-blue-500" />
             Ad Hoc Requests
           </a>
           <a href="#conclusion" className="whitespace-nowrap text-sm font-bold hover:text-primary transition-colors px-2 py-2 flex items-center gap-1.5">
-            <CheckCircle2 className="h-4 w-4" />
+            <CheckCircle2 className="h-4 w-4 text-blue-500" />
             Conclusion
           </a>
         </div>
@@ -1247,30 +1247,95 @@ ORDER BY 2 DESC;`}
               </section>
             </div>
             
-            {/* Sidebar Column */}
-            <div className="hidden lg:block">
-              {/* Project Info Card */}
-              <div className="sticky top-[120px]">
+            {/* Sidebar Column - Modified to scroll with the page (not sticky) */}
+            <div className="lg:col-span-1">
+              <div className="space-y-8">
+                {/* Coffee image */}
+                <Card className="overflow-hidden border border-border/50 shadow-md hover:shadow-xl transition-all">
+                  <img 
+                    src="/coffee2.jpg" 
+                    alt="Coffee shop" 
+                    className="w-full h-48 object-cover"
+                  />
+                </Card>
+                
+                {/* Key Insights */}
+                <Card className="overflow-hidden border border-border/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
+                  <div className="p-5">
+                    <h3 className="text-lg font-medium mb-4 flex items-center gap-2">
+                      <Coffee className="h-4 w-4 text-blue-500" /> Data-Driven Insights
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-2">
+                        <span className="inline-flex mt-1 justify-center items-center h-4 w-4 text-[8px] rounded-full bg-primary text-white font-bold">✓</span>
+                        <span className="text-sm">25% of city populations are coffee consumers</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="inline-flex mt-1 justify-center items-center h-4 w-4 text-[8px] rounded-full bg-primary text-white font-bold">✓</span>
+                        <span className="text-sm">Loyalty programs increase repeat visits by 18%</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="inline-flex mt-1 justify-center items-center h-4 w-4 text-[8px] rounded-full bg-primary text-white font-bold">✓</span>
+                        <span className="text-sm">Highest revenue potential in urban locations</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="inline-flex mt-1 justify-center items-center h-4 w-4 text-[8px] rounded-full bg-primary text-white font-bold">✓</span>
+                        <span className="text-sm">High rent areas require 35% more sales volume</span>
+                      </li>
+                    </ul>
+                  </div>
+                </Card>
+                
+                {/* Related Projects */}
+                <Card className="overflow-hidden border border-border/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
+                  <div className="p-5">
+                    <h3 className="text-lg font-medium mb-4 flex items-center gap-2">
+                      <Link2 className="h-4 w-4 text-blue-500" /> Related Projects
+                    </h3>
+                    <ul className="space-y-4">
+                      <li>
+                        <Link to="/goodcabs-analysis" className="group flex items-start gap-3 hover:bg-accent/50 p-2 rounded-md transition-colors">
+                          <LineChart className="h-5 w-5 text-blue-500 mt-0.5" />
+                          <div>
+                            <h4 className="text-sm font-medium group-hover:text-primary transition-colors">GoodCabs Performance Analysis</h4>
+                            <p className="text-xs text-muted-foreground">Data-driven insights for strategic decisions</p>
+                          </div>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/data-job-market-analysis" className="group flex items-start gap-3 hover:bg-accent/50 p-2 rounded-md transition-colors">
+                          <Database className="h-5 w-5 text-blue-500 mt-0.5" />
+                          <div>
+                            <h4 className="text-sm font-medium group-hover:text-primary transition-colors">Data Job Market Analysis</h4>
+                            <p className="text-xs text-muted-foreground">Exploring trends in data science careers</p>
+                          </div>
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </Card>
+
+                {/* Project Info Card */}
                 <Card className="border border-border/50 overflow-hidden mb-6">
                   <CardContent className="p-6">
                     <h3 className="font-medium text-lg mb-4">Project Details</h3>
                     <ul className="space-y-3 text-sm">
                       <li className="flex items-start">
-                        <Monitor className="h-4 w-4 text-primary mr-2 mt-0.5" />
+                        <Monitor className="h-4 w-4 text-blue-500 mr-2 mt-0.5" />
                         <div>
                           <span className="text-muted-foreground">Tools: </span>
                           <span>SQL, PostgreSQL, Excel</span>
                         </div>
                       </li>
                       <li className="flex items-start">
-                        <LineChart className="h-4 w-4 text-primary mr-2 mt-0.5" />
+                        <LineChart className="h-4 w-4 text-blue-500 mr-2 mt-0.5" />
                         <div>
                           <span className="text-muted-foreground">Visualization: </span>
                           <span>Tableau, Excel Charts</span>
                         </div>
                       </li>
                       <li className="flex items-start">
-                        <GraduationCap className="h-4 w-4 text-primary mr-2 mt-0.5" />
+                        <GraduationCap className="h-4 w-4 text-blue-500 mr-2 mt-0.5" />
                         <div>
                           <span className="text-muted-foreground">Skills: </span>
                           <span>Data Analysis, SQL, Business Intelligence</span>
