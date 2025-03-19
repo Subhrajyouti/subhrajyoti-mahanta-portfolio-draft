@@ -489,10 +489,7 @@ ORDER BY 2 DESC;`}
           />
         </div>
         
-        <div>
-          <h4 className="text-base font-medium mb-2">Insights:</h4>
-          <p className="text-muted-foreground">Insights will be added soon.</p>
-        </div>
+         
       </CollapsibleContent>
     </Collapsible>
     
@@ -571,10 +568,7 @@ ORDER BY 2 DESC;`}
           />
         </div>
         
-        <div>
-          <h4 className="text-base font-medium mb-2">Insights:</h4>
-          <p className="text-muted-foreground">Insights will be added soon.</p>
-        </div>
+         
       </CollapsibleContent>
     </Collapsible>
     
@@ -631,10 +625,7 @@ ORDER BY 2 DESC;`}
           />
         </div>
         
-        <div>
-          <h4 className="text-base font-medium mb-2">Insights:</h4>
-          <p className="text-muted-foreground">Insights will be added soon.</p>
-        </div>
+         
       </CollapsibleContent>
     </Collapsible>
     
@@ -697,10 +688,7 @@ ORDER BY 2 DESC;`}
           />
         </div>
         
-        <div>
-          <h4 className="text-base font-medium mb-2">Insights:</h4>
-          <p className="text-muted-foreground">Insights will be added soon.</p>
-        </div>
+         
       </CollapsibleContent>
     </Collapsible>
     <Collapsible className="border border-border/50 rounded-md">
@@ -790,10 +778,7 @@ ON city_table.city_name = customers_table.city_name;`}
           />
         </div>
         
-        <div>
-          <h4 className="text-base font-medium mb-2">Insights:</h4>
-          <p className="text-muted-foreground">Insights will be added soon.</p>
-        </div>
+         
       </CollapsibleContent>
     </Collapsible>
 
@@ -867,10 +852,7 @@ WHERE rank <= 3;`}
           />
         </div>
         
-        <div>
-          <h4 className="text-base font-medium mb-2">Insights:</h4>
-          <p className="text-muted-foreground">Insights will be added soon.</p>
-        </div>
+         
       </CollapsibleContent>
     </Collapsible>
 
@@ -930,10 +912,7 @@ GROUP BY 1;`}
           />
         </div>
         
-        <div>
-          <h4 className="text-base font-medium mb-2">Insights:</h4>
-          <p className="text-muted-foreground">Insights will be added soon.</p>
-        </div>
+        
       </CollapsibleContent>
     </Collapsible>
 
@@ -1033,10 +1012,7 @@ ORDER BY 4 DESC;`}
           />
         </div>
         
-        <div>
-          <h4 className="text-base font-medium mb-2">Insights:</h4>
-          <p className="text-muted-foreground">Insights will be added soon.</p>
-        </div>
+         
       </CollapsibleContent>
     </Collapsible>
     <Collapsible className="border border-border/50 rounded-md">
@@ -1142,10 +1118,7 @@ WHERE last_month_sale IS NOT NULL;`}
       />
     </div>
     
-    <div>
-      <h4 className="text-base font-medium mb-2">Insights:</h4>
-      <p className="text-muted-foreground">Insights will be added soon.</p>
-    </div>
+    
   </CollapsibleContent>
 </Collapsible>
 
@@ -1250,10 +1223,7 @@ ORDER BY 2 DESC;`}
       />
     </div>
     
-    <div>
-      <h4 className="text-base font-medium mb-2">Insights:</h4>
-      <p className="text-muted-foreground">Insights will be added soon.</p>
-    </div>
+    
   </CollapsibleContent>
 </Collapsible>
   </div>
