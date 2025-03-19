@@ -192,7 +192,7 @@ const GoodCabsProject = () => {
                   </li>
                   <li className="flex items-start">
                     <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
-                    <strong>Ad Hoc Reporting:</strong> Designed SQL queries to generate dynamic insights on demand.
+                    <strong>Ad Hoc Reporting:</strong> Designed SQL queries  to generate dynamic insights on demand.
                   </li>
                 </ul>
               </section>
@@ -438,7 +438,7 @@ ORDER BY month;`}
                       
                       <AccordionItem value="retention-rate">
                         <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
-                          5. Customer Retention Rate Analysiss
+                          5. Customer Retention Rate Analysis
                         </AccordionTrigger>
                         <AccordionContent>
                           <div className="bg-card/20 p-4 rounded-md overflow-x-auto relative">
