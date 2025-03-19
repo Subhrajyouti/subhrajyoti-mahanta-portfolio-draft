@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useTheme } from "@/hooks/useTheme";
 import { Link } from "react-router-dom";
+import { Coffee, LineChart, Database } from "lucide-react";
 
 interface Project {
   id: number;
@@ -95,10 +96,81 @@ const ProjectsSection = () => {
   return (
     <section id="projects" className="section-container">
       <h2 className="section-title">Featured Projects</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-        {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mt-12">
+        <div className="lg:col-span-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </div>
+        </div>
+        
+        {/* Right Sidebar */}
+        <div className="lg:col-span-1">
+          <div className="space-y-8">
+            <Card className="overflow-hidden border border-border/50 shadow-md hover:shadow-xl transition-all">
+              <img 
+                src="/coffee2.jpg" 
+                alt="Coffee shop" 
+                className="w-full h-48 object-cover"
+              />
+            </Card>
+            
+            <Card className="overflow-hidden border border-border/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
+              <div className="p-5">
+                <h3 className="text-lg font-medium mb-4 flex items-center gap-2">
+                  <Coffee className="h-4 w-4 text-primary" /> Data-Driven Insights
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-2">
+                    <span className="inline-flex mt-1 justify-center items-center h-4 w-4 text-[8px] rounded-full bg-primary text-white font-bold">✓</span>
+                    <span className="text-sm">25% of city populations are coffee consumers</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="inline-flex mt-1 justify-center items-center h-4 w-4 text-[8px] rounded-full bg-primary text-white font-bold">✓</span>
+                    <span className="text-sm">Loyalty programs increase repeat visits by 18%</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="inline-flex mt-1 justify-center items-center h-4 w-4 text-[8px] rounded-full bg-primary text-white font-bold">✓</span>
+                    <span className="text-sm">Highest revenue potential in urban locations</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="inline-flex mt-1 justify-center items-center h-4 w-4 text-[8px] rounded-full bg-primary text-white font-bold">✓</span>
+                    <span className="text-sm">High rent areas require 35% more sales volume</span>
+                  </li>
+                </ul>
+              </div>
+            </Card>
+            
+            <Card className="overflow-hidden border border-border/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
+              <div className="p-5">
+                <h3 className="text-lg font-medium mb-4 flex items-center gap-2">
+                  <Link className="h-4 w-4 text-primary" /> Related Projects
+                </h3>
+                <ul className="space-y-4">
+                  <li>
+                    <Link to="/goodcabs-analysis" className="group flex items-start gap-3 hover:bg-accent/50 p-2 rounded-md transition-colors">
+                      <LineChart className="h-5 w-5 text-primary mt-0.5" />
+                      <div>
+                        <h4 className="text-sm font-medium group-hover:text-primary transition-colors">GoodCabs Performance Analysis</h4>
+                        <p className="text-xs text-muted-foreground">Data-driven insights for strategic decisions</p>
+                      </div>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/data-job-market-analysis" className="group flex items-start gap-3 hover:bg-accent/50 p-2 rounded-md transition-colors">
+                      <Database className="h-5 w-5 text-primary mt-0.5" />
+                      <div>
+                        <h4 className="text-sm font-medium group-hover:text-primary transition-colors">Data Job Market Analysis</h4>
+                        <p className="text-xs text-muted-foreground">Exploring trends in data science careers</p>
+                      </div>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </Card>
+          </div>
+        </div>
       </div>
     </section>
   );
