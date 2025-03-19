@@ -1,3 +1,4 @@
+
 import { ExternalLink } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -37,54 +38,6 @@ const projects: Project[] = [
     image: "/alexander-red-S9qxkJN0f4Q-unsplash.jpg",
     tags: ["Power BI", "PostgreSQL", "SQL", "Data Analysis"],
     slug: "goodcabs-analysis"
-  },
-  {
-    id: 1,
-    title: "LIDAR Sensor Data Validation",
-    description: "Validation framework for LIDAR sensors in autonomous vehicle applications",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    tags: ["Python", "OpenCV", "Sensor Data", "Machine Learning"],
-    slug: "lidar-sensor-validation"
-  },
-  {
-    id: 2,
-    title: "EV Traffic Analysis Dashboard",
-    description: "Interactive visualization dashboard for electric vehicle traffic patterns",
-    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    tags: ["Tableau", "SQL", "Data Visualization", "Traffic Analysis"],
-    slug: "ev-traffic-analysis"
-  },
-  {
-    id: 3,
-    title: "PostgreSQL Database Optimization",
-    description: "Performance tuning and query optimization for large-scale sensor datasets",
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    tags: ["PostgreSQL", "Database Design", "Query Optimization"],
-    slug: "postgresql-optimization"
-  },
-  {
-    id: 4,
-    title: "Real-time Data Processing Pipeline",
-    description: "Scalable pipeline for processing and analyzing streaming sensor data",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    tags: ["Python", "Apache Kafka", "Data Pipeline", "Real-time Analytics"],
-    slug: "realtime-data-pipeline"
-  },
-  {
-    id: 5,
-    title: "Predictive Maintenance Model",
-    description: "ML model for predicting equipment failure based on sensor readings",
-    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    tags: ["Machine Learning", "Python", "Pandas", "Scikit-learn"],
-    slug: "predictive-maintenance"
-  },
-  {
-    id: 6,
-    title: "Data Quality Assessment Framework",
-    description: "Automated system for evaluating and ensuring data quality in sensor datasets",
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    tags: ["Python", "Data Quality", "Automation", "ETL"],
-    slug: "data-quality-framework"
   }
 ];
 
@@ -118,10 +71,8 @@ const ProjectCard = ({ project }: { project: Project }) => {
   // Determine if external link (opens in new tab) or internal navigation
   const renderProjectLink = () => {
     return (
-      <a 
-        href={projectUrl} 
-        target="_blank" 
-        rel="noopener noreferrer"
+      <Link 
+        to={projectUrl}
         className="group block h-full"
       >
         <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-500 bg-background border border-border/50 hover:border-primary/30 hover:-translate-y-2 shadow-md">
@@ -153,7 +104,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
             </div>
           </div>
         </Card>
-      </a>
+      </Link>
     );
   };
 
