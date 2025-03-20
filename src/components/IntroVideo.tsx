@@ -1,6 +1,6 @@
 
 import { Play } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 const IntroVideo = () => {
   const [videoPlaying, setVideoPlaying] = useState(false);
@@ -20,6 +20,7 @@ const IntroVideo = () => {
                 <div 
                   className="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center cursor-pointer group-hover:scale-110 transition-transform duration-300" 
                   onClick={handlePlay}
+                  aria-label="Play introduction video"
                 >
                   <Play className="h-8 w-8 text-white ml-1" />
                 </div>
@@ -33,7 +34,7 @@ const IntroVideo = () => {
           ) : (
             <div className="w-full h-full">
               <iframe
-                src="https://player.vimeo.com/video/76979871?h=8272103f6e&autoplay=1"
+                src="https://player.vimeo.com/video/1067891260?h=f783e00d39&autoplay=1&byline=0&portrait=0&title=0"
                 width="100%"
                 height="100%"
                 frameBorder="0"
@@ -41,6 +42,7 @@ const IntroVideo = () => {
                 allowFullScreen
                 title="Data Analytics Introduction"
                 className="absolute inset-0"
+                loading="lazy"
               ></iframe>
             </div>
           )}
