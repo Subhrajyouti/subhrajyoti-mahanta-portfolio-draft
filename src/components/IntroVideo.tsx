@@ -34,7 +34,7 @@ const IntroVideo = () => {
           ) : (
             <div className="w-full h-full">
               <iframe
-                src="https://player.vimeo.com/video/1067891260?h=f783e00d39&autoplay=1&byline=0&portrait=0&title=0"
+                src="<iframe src="https://player.vimeo.com/video/1067891260?h=f783e00d39" width="640" height="564" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>"
                 width="100%"
                 height="100%"
                 frameBorder="0"
