@@ -1,15 +1,12 @@
+
 import { Play } from "lucide-react";
 import { useState, useRef } from "react";
 
 const IntroVideo = () => {
   const [videoPlaying, setVideoPlaying] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
+  
   const handlePlay = () => {
     setVideoPlaying(true);
-    if (videoRef.current) {
-      videoRef.current.play();
-    }
   };
 
   return (
@@ -20,7 +17,10 @@ const IntroVideo = () => {
           {!videoPlaying ? (
             <>
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center cursor-pointer group-hover:scale-110 transition-transform duration-300" onClick={handlePlay}>
+                <div 
+                  className="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center cursor-pointer group-hover:scale-110 transition-transform duration-300" 
+                  onClick={handlePlay}
+                >
                   <Play className="h-8 w-8 text-white ml-1" />
                 </div>
               </div>
@@ -29,27 +29,20 @@ const IntroVideo = () => {
                 <p className="text-white text-lg font-medium">Watch my introduction video</p>
                 <p className="text-white/80 text-sm">Learn about my background and expertise in data analysis</p>
               </div>
-              {/* Hidden video element that will be displayed when play is clicked */}
-              <video 
-                ref={videoRef}
-                className="absolute inset-0 w-full h-full object-cover opacity-0"
-                src="/intro-video.mp4" // Place your video file in the public folder with this name
-                controls
-                onPlay={() => setVideoPlaying(true)}
-                onEnded={() => setVideoPlaying(false)}
-                onPause={() => setVideoPlaying(false)}
-              />
             </>
           ) : (
-            <video 
-              ref={videoRef}
-              className="absolute inset-0 w-full h-full object-cover"
-              src="/intro-video.mp4" // Place your video file in the public folder with this name
-              controls
-              autoPlay
-              onEnded={() => setVideoPlaying(false)}
-              onPause={() => setVideoPlaying(false)}
-            />
+            <div className="w-full h-full">
+              <iframe
+                src="https://player.vimeo.com/video/76979871?h=8272103f6e&autoplay=1"
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                title="Data Analytics Introduction"
+                className="absolute inset-0"
+              ></iframe>
+            </div>
           )}
         </div>
       </div>
