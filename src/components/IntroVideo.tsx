@@ -1,11 +1,13 @@
 
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { useState, useRef, useEffect } from "react";
+import { Play } from "lucide-react";
 
 const IntroVideo = () => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   // Handle intersection observer for lazy loading
   useEffect(() => {
@@ -35,6 +37,10 @@ const IntroVideo = () => {
     };
   }, [videoLoaded]);
 
+  const handlePlayClick = () => {
+    setIsPlaying(true);
+  };
+
   return (
     <section id="intro" className="section-container">
       <h2 className="section-title">Introduction</h2>
@@ -44,37 +50,34 @@ const IntroVideo = () => {
           className="relative rounded-2xl overflow-hidden group shadow-lg"
         >
           <AspectRatio ratio={16/9} className="bg-muted/30">
-            {videoLoaded ? (
+            {isPlaying ? (
               <iframe 
                 ref={iframeRef}
-                src="https://player.vimeo.com/video/1067891260?h=f783e00d39"
+                src="https://player.vimeo.com/video/1067891260?h=f783e00d39&autoplay=1"
                 className="w-full h-full absolute inset-0 rounded-2xl"
                 frameBorder="0"
-                allow="autoplay; fullscreen"
+                allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen
                 loading="lazy"
                 title="Introduction Video"
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center bg-muted/20">
-                <div className="text-center">
-                  <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center mx-auto animate-pulse">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white ml-1">
-                      <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                    </svg>
-                  </div>
-                  <p className="text-sm text-muted-foreground mt-3">Loading video...</p>
+                <div 
+                  className="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center cursor-pointer hover:scale-110 transition-transform duration-300"
+                  onClick={handlePlayClick}
+                  aria-label="Play introduction video"
+                >
+                  <Play className="h-8 w-8 text-white ml-1" />
+                </div>
+                <div className="absolute inset-0 bg-gray-900/20 backdrop-blur-[2px] group-hover:backdrop-blur-0 transition-all duration-300"></div>
+                <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/60 to-transparent">
+                  <p className="text-white text-lg font-medium">Watch my introduction video</p>
+                  <p className="text-white/80 text-sm">Learn about my background and expertise in data analysis</p>
                 </div>
               </div>
             )}
           </AspectRatio>
-          
-          {!videoLoaded && (
-            <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/60 to-transparent">
-              <p className="text-white text-lg font-medium">Watch my introduction video</p>
-              <p className="text-white/80 text-sm">Learn about my background and expertise in data analysis</p>
-            </div>
-          )}
         </div>
       </div>
     </section>
