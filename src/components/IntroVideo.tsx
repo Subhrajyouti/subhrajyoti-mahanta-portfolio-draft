@@ -53,10 +53,10 @@ const IntroVideo = () => {
             {isPlaying ? (
               <iframe 
                 ref={iframeRef}
-                src="https://player.vimeo.com/video/1067891260?h=f783e00d39&autoplay=1"
+                src="https://player.vimeo.com/video/1068016143?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&autoplay=1"
                 className="w-full h-full absolute inset-0 rounded-2xl"
                 frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
                 allowFullScreen
                 loading="lazy"
                 title="Introduction Video"
