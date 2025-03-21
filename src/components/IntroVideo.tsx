@@ -38,6 +38,41 @@ const IntroVideo = () => {
 
   const handlePlayClick = () => {
     setIsPlaying(true);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  // Handle intersection observer for lazy loading
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: "100px",
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !videoLoaded) {
+          setVideoLoaded(true);
+          observer.disconnect();
+        }
+      });
+    }, options);
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, [videoLoaded]);
+
+  const handlePlayClick = () => {
+    setIsPlaying(true);
   };
 
   return (
@@ -69,6 +104,15 @@ const IntroVideo = () => {
                   aria-label="Play introduction video"
                 >
                   <Play className="h-8 w-8 text-white ml-1" />
+                </div>
+                <div className="absolute inset-0 bg-gray-900/20 backdrop-blur-[2px] group-hover:backdrop-blur-0 transition-all duration-300"></div>
+                <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/60 to-transparent">
+                  <p className="text-white text-lg font-medium">Watch my introduction video</p>
+                  <p className="text-white/80 text-sm">Learn about my background and expertise in data analysis</p>
+                </div>
+              </div>
+            )}
+          </AspectRatio>
                 </div>
                 <div className="absolute inset-0 bg-gray-900/20 backdrop-blur-[2px] group-hover:backdrop-blur-0 transition-all duration-300"></div>
                 <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/60 to-transparent">
