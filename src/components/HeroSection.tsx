@@ -16,6 +16,13 @@ const HeroSection = () => {
     img.onload = () => setImageLoaded(true);
   }, []);
 
+  const scrollToProjects = () => {
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section 
       id="hero" 
@@ -50,10 +57,10 @@ const HeroSection = () => {
               
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
                 <Button
-                  asChild
                   className="rounded-md bg-primary text-white hover:bg-primary/90 transition-all"
+                  onClick={scrollToProjects}
                 >
-                  <a href="#projects">View Projects</a>
+                  View Projects
                 </Button>
                 <Button
                   asChild
