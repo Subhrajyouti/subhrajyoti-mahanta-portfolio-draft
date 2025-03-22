@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -28,10 +27,10 @@ const ContactSection = () => {
     
     // Send email using EmailJS
     emailjs.sendForm(
-      'service_id', // Replace with your EmailJS service ID
-      'template_id', // Replace with your EmailJS template ID
+      'service_xm4lzc4', // Your EmailJS service ID
+      'template_kyn8c97', // Your EmailJS template ID
       formRef.current as HTMLFormElement,
-      'public_key' // Replace with your EmailJS public key
+      'KlN_mLOb8qOn3RtDP' // Your EmailJS public key
     )
     .then((result) => {
       console.log('Email successfully sent!', result.text);
@@ -98,7 +97,7 @@ const ContactSection = () => {
               </label>
               <Input
                 id="name"
-                name="name"
+                name="from_name" // Make sure this matches your EmailJS template parameter name
                 placeholder="John Doe"
                 value={formData.name}
                 onChange={handleChange}
@@ -113,7 +112,7 @@ const ContactSection = () => {
               </label>
               <Input
                 id="email"
-                name="email"
+                name="from_email" // Make sure this matches your EmailJS template parameter name
                 type="email"
                 placeholder="john@example.com"
                 value={formData.email}
@@ -129,7 +128,7 @@ const ContactSection = () => {
               </label>
               <Textarea
                 id="message"
-                name="message"
+                name="message" // Make sure this matches your EmailJS template parameter name
                 placeholder="Your message here..."
                 rows={5}
                 value={formData.message}
