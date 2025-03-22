@@ -9,8 +9,8 @@ import emailjs from '@emailjs/browser';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+    from_name: "",
+    from_email: "",
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -35,7 +35,7 @@ const ContactSection = () => {
     .then((result) => {
       console.log('Email successfully sent!', result.text);
       toast.success("Message sent successfully!");
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ from_name: "", from_email: "", message: "" });
     })
     .catch((error) => {
       console.error('Failed to send email:', error.text);
@@ -97,9 +97,9 @@ const ContactSection = () => {
               </label>
               <Input
                 id="name"
-                name="from_name" // Make sure this matches your EmailJS template parameter name
+                name="from_name"
                 placeholder="John Doe"
-                value={formData.name}
+                value={formData.from_name}
                 onChange={handleChange}
                 required
                 className="rounded-md"
@@ -112,10 +112,10 @@ const ContactSection = () => {
               </label>
               <Input
                 id="email"
-                name="from_email" // Make sure this matches your EmailJS template parameter name
+                name="from_email"
                 type="email"
                 placeholder="john@example.com"
-                value={formData.email}
+                value={formData.from_email}
                 onChange={handleChange}
                 required
                 className="rounded-md"
@@ -128,7 +128,7 @@ const ContactSection = () => {
               </label>
               <Textarea
                 id="message"
-                name="message" // Make sure this matches your EmailJS template parameter name
+                name="message"
                 placeholder="Your message here..."
                 rows={5}
                 value={formData.message}
