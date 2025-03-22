@@ -1,4 +1,3 @@
-
 import { ExternalLink } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -62,18 +61,10 @@ const ProjectsSection = () => {
 const ProjectCard = ({ project }: { project: Project }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   
-  // Get the base URL of the site to create absolute URLs
-  const baseUrl = window.location.origin;
+  // For GitHub Pages with a custom domain, we need to use relative URLs instead of absolute URLs
+  // This ensures the URLs work correctly on GitHub Pages
+  const projectUrl = `/${project.slug}`;
   
-  // Special routing for specific projects with absolute URLs
-  const projectUrl = project.slug === "goodcabs-analysis" 
-    ? `${baseUrl}/goodcabs-analysis` 
-    : project.slug === "data-job-market-analysis"
-    ? `${baseUrl}/data-job-market-analysis`
-    : project.slug === "new-project"
-    ? `${baseUrl}/new-project`
-    : `${baseUrl}/project/${project.slug}`;
-
   // Preload images 
   const handleImageLoad = () => {
     setImageLoaded(true);
