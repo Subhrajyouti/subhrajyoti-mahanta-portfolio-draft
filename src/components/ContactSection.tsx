@@ -3,9 +3,14 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Github, Linkedin, Mail, Phone, Send } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { toast } from "sonner";
 import emailjs from '@emailjs/browser';
+
+// Store these in environment variables for security
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_xm4lzc4';
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_kyn8c97';
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'KlN_mLOb8qOn3RtDP';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -16,34 +21,47 @@ const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
+  // Initialize EmailJS once when component mounts
+  useEffect(() => {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Send email using EmailJS
-    emailjs.sendForm(
-      'service_xm4lzc4', // Your EmailJS service ID
-      'template_kyn8c97', // Your EmailJS template ID
-      formRef.current as HTMLFormElement,
-      'KlN_mLOb8qOn3RtDP' // Your EmailJS public key
-    )
-    .then((result) => {
+    try {
+      // Validate form data
+      if (!formData.from_name || !formData.from_email || !formData.message) {
+        throw new Error("Please fill all required fields");
+      }
+      
+      // Send email using EmailJS
+      const result = await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current as HTMLFormElement,
+        EMAILJS_PUBLIC_KEY
+      );
+      
       console.log('Email successfully sent!', result.text);
       toast.success("Message sent successfully!");
       setFormData({ from_name: "", from_email: "", message: "" });
-    })
-    .catch((error) => {
-      console.error('Failed to send email:', error.text);
-      toast.error("Failed to send message. Please try again later.");
-    })
-    .finally(() => {
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      toast.error(
+        typeof error === 'object' && error !== null && 'text' in error
+          ? `Failed to send message: ${(error as {text: string}).text}`
+          : "Failed to send message. Please try again later."
+      );
+    } finally {
       setIsSubmitting(false);
-    });
+    }
   };
 
   return (
