@@ -1,3 +1,4 @@
+
 import { ExternalLink } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -61,17 +62,24 @@ const ProjectsSection = () => {
 const ProjectCard = ({ project }: { project: Project }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   
-  // For React Router navigation within the SPA
-  // Use Link component instead of direct href to handle routing correctly
-  
+  // Special routing for specific projects
+  const projectUrl = project.slug === "goodcabs-analysis" 
+    ? "/goodcabs-analysis" 
+    : project.slug === "data-job-market-analysis"
+    ? "/data-job-market-analysis"
+    : project.slug === "new-project"
+    ? "/new-project"
+    : `/project/${project.slug}`;
+
   // Preload images 
   const handleImageLoad = () => {
     setImageLoaded(true);
   };
 
+  // Change from anchor tag to Link component
   return (
     <Link 
-      to={`/${project.slug}`}
+      to={projectUrl}
       className="group block h-full"
     >
       <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-500 bg-background border border-border/50 hover:border-primary/30 hover:-translate-y-2 shadow-md">
