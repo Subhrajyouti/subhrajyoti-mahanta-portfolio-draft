@@ -61,9 +61,8 @@ const ProjectsSection = () => {
 const ProjectCard = ({ project }: { project: Project }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   
-  // For GitHub Pages with a custom domain, we need to use relative URLs instead of absolute URLs
-  // This ensures the URLs work correctly on GitHub Pages
-  const projectUrl = `/${project.slug}`;
+  // For React Router navigation within the SPA
+  // Use Link component instead of direct href to handle routing correctly
   
   // Preload images 
   const handleImageLoad = () => {
@@ -71,11 +70,9 @@ const ProjectCard = ({ project }: { project: Project }) => {
   };
 
   return (
-    <a 
-      href={projectUrl}
+    <Link 
+      to={`/${project.slug}`}
       className="group block h-full"
-      target="_blank" 
-      rel="noopener noreferrer"
     >
       <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-500 bg-background border border-border/50 hover:border-primary/30 hover:-translate-y-2 shadow-md">
         <div className="relative overflow-hidden aspect-video">
@@ -117,7 +114,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
           </div>
         </div>
       </Card>
-    </a>
+    </Link>
   );
 };
 
