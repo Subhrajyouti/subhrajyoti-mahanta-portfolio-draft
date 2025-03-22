@@ -62,21 +62,23 @@ const ProjectsSection = () => {
 const ProjectCard = ({ project }: { project: Project }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   
-  // Special routing for specific projects
+  // Get the base URL of the site to create absolute URLs
+  const baseUrl = window.location.origin;
+  
+  // Special routing for specific projects with absolute URLs
   const projectUrl = project.slug === "goodcabs-analysis" 
-    ? "/goodcabs-analysis" 
+    ? `${baseUrl}/goodcabs-analysis` 
     : project.slug === "data-job-market-analysis"
-    ? "/data-job-market-analysis"
+    ? `${baseUrl}/data-job-market-analysis`
     : project.slug === "new-project"
-    ? "/new-project"
-    : `/project/${project.slug}`;
+    ? `${baseUrl}/new-project`
+    : `${baseUrl}/project/${project.slug}`;
 
   // Preload images 
   const handleImageLoad = () => {
     setImageLoaded(true);
   };
 
-  // Change from Link component to regular anchor tag with target="_blank"
   return (
     <a 
       href={projectUrl}
