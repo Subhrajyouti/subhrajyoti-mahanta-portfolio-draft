@@ -1,19 +1,20 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Github, Linkedin, Mail, Phone, Send } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { toast } from "sonner";
+import emailjs from '@emailjs/browser';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+    from_name: "",
+    from_email: "",
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -24,12 +25,25 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    // Send email using EmailJS
+    emailjs.sendForm(
+      'service_xm4lzc4', // Your EmailJS service ID
+      'template_kyn8c97', // Your EmailJS template ID
+      formRef.current as HTMLFormElement,
+      'KlN_mLOb8qOn3RtDP' // Your EmailJS public key
+    )
+    .then((result) => {
+      console.log('Email successfully sent!', result.text);
       toast.success("Message sent successfully!");
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ from_name: "", from_email: "", message: "" });
+    })
+    .catch((error) => {
+      console.error('Failed to send email:', error.text);
+      toast.error("Failed to send message. Please try again later.");
+    })
+    .finally(() => {
       setIsSubmitting(false);
-    }, 1500);
+    });
   };
 
   return (
@@ -76,16 +90,16 @@ const ContactSection = () => {
         
         <div>
           <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label htmlFor="name" className="block text-sm font-medium mb-1">
                 Your Name
               </label>
               <Input
                 id="name"
-                name="name"
+                name="from_name"
                 placeholder="John Doe"
-                value={formData.name}
+                value={formData.from_name}
                 onChange={handleChange}
                 required
                 className="rounded-md"
@@ -98,10 +112,10 @@ const ContactSection = () => {
               </label>
               <Input
                 id="email"
-                name="email"
+                name="from_email"
                 type="email"
                 placeholder="john@example.com"
-                value={formData.email}
+                value={formData.from_email}
                 onChange={handleChange}
                 required
                 className="rounded-md"
