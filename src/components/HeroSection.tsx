@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Download } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -90,18 +91,18 @@ const HeroSection = () => {
             </div>
           </div>
           
-          {/* Enhanced Profile Photo with advanced loading animations */}
+          {/* Enhanced Profile Photo with more dynamic pendulum-like animation */}
           <div className={`md:w-1/2 flex justify-center mt-12 md:mt-0 transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"
           }`}>
             <div className="relative group">
-              {/* Animated gradient background glow effect */}
+              {/* Enhanced animated gradient background glow effect */}
               <div className={`absolute -inset-1 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/10 rounded-full blur-xl 
                 ${imageLoading ? 'opacity-100 animate-pulse' : 'opacity-70 group-hover:opacity-100 animate-pulse-slow'} 
                 transition-all duration-1000`}></div>
               
-              {/* Image container with advanced loading strategy */}
-              <div className="relative h-64 w-64 md:h-80 md:w-80 overflow-hidden rounded-full">
+              {/* Image container with enhanced pendulum animation */}
+              <div className="relative h-64 w-64 md:h-80 md:w-80 overflow-hidden rounded-full animate-floating">
                 <div className="absolute inset-0 bg-gradient-to-tr from-background/80 to-transparent opacity-50 mix-blend-overlay z-10"></div>
                 
                 {/* Loading animation container */}
@@ -139,7 +140,7 @@ const HeroSection = () => {
                   </div>
                 )}
                 
-                {/* Image with fade-in and scale animation */}
+                {/* Image with enhanced animations */}
                 <img 
                   src="/profile-photo.jpg" 
                   alt="Subhrajyoti Mahanta" 
