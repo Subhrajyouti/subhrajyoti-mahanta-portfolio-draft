@@ -108,7 +108,7 @@ const HeroSection = () => {
                 {imageLoading && (
                   <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
                     {/* Circular loading indicator */}
-                    <div className="relative h-full w-full">
+                    <div className="relative group animate-floating">
                       {/* Circular progress indicator */}
                       <svg className="absolute inset-0 w-full h-full -rotate-90 transform" viewBox="0 0 100 100">
                         <circle 
