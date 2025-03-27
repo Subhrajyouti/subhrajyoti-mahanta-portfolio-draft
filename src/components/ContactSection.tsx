@@ -7,10 +7,10 @@ import { useState, useRef, useEffect } from "react";
 import { toast } from "sonner";
 import emailjs from '@emailjs/browser';
 
-// Store these in environment variables for security
-const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_xm4lzc4';
-const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_kyn8c97';
-const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'KlN_mLOb8qOn3RtDP';
+// Direct configuration for EmailJS
+const EMAILJS_SERVICE_ID = 'service_xm4lzc4';
+const EMAILJS_TEMPLATE_ID = 'template_kyn8c97';
+const EMAILJS_PUBLIC_KEY = 'KlN_mLOb8qOn3RtDP';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -33,20 +33,24 @@ const ContactSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate form data before setting isSubmitting to true
+    if (!formData.from_name || !formData.from_email || !formData.message) {
+      toast.error("Please fill all required fields");
+      return;
+    }
+    
     setIsSubmitting(true);
     
     try {
-      // Validate form data
-      if (!formData.from_name || !formData.from_email || !formData.message) {
-        throw new Error("Please fill all required fields");
-      }
+      console.log("Sending email with data:", formData);
+      console.log("Using form element:", formRef.current);
       
       // Send email using EmailJS
       const result = await emailjs.sendForm(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
-        formRef.current as HTMLFormElement,
-        EMAILJS_PUBLIC_KEY
+        formRef.current as HTMLFormElement
       );
       
       console.log('Email successfully sent!', result.text);
@@ -54,11 +58,19 @@ const ContactSection = () => {
       setFormData({ from_name: "", from_email: "", message: "" });
     } catch (error) {
       console.error('Failed to send email:', error);
-      toast.error(
-        typeof error === 'object' && error !== null && 'text' in error
-          ? `Failed to send message: ${(error as {text: string}).text}`
-          : "Failed to send message. Please try again later."
-      );
+      
+      // More detailed error handling
+      let errorMessage = "Failed to send message. Please try again later.";
+      
+      if (typeof error === 'object' && error !== null) {
+        if ('text' in error) {
+          errorMessage = `Failed to send message: ${(error as {text: string}).text}`;
+        } else if ('message' in error) {
+          errorMessage = `Failed to send message: ${(error as {message: string}).message}`;
+        }
+      }
+      
+      toast.error(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
@@ -110,11 +122,11 @@ const ContactSection = () => {
           <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
           <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium mb-1">
+              <label htmlFor="from_name" className="block text-sm font-medium mb-1">
                 Your Name
               </label>
               <Input
-                id="name"
+                id="from_name"
                 name="from_name"
                 placeholder="John Doe"
                 value={formData.from_name}
@@ -125,11 +137,11 @@ const ContactSection = () => {
             </div>
             
             <div>
-              <label htmlFor="email" className="block text-sm font-medium mb-1">
+              <label htmlFor="from_email" className="block text-sm font-medium mb-1">
                 Email Address
               </label>
               <Input
-                id="email"
+                id="from_email"
                 name="from_email"
                 type="email"
                 placeholder="john@example.com"
