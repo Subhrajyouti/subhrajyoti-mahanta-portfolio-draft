@@ -38,6 +38,16 @@ const HeroSection = () => {
     }
   };
 
+  const scrollToIntro = (e) => {
+    e.preventDefault(); // Prevent default behavior which might trigger navigation
+    const introSection = document.getElementById('intro');
+    if (introSection) {
+      introSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      console.error("Intro section not found in the DOM");
+    }
+  };
+
   return (
     <section 
       id="hero" 
@@ -163,12 +173,13 @@ const HeroSection = () => {
         </div>
       </div>
       
-      <a 
-        href="#intro"
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce"
+      <button 
+        onClick={scrollToIntro}
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer"
+        aria-label="Scroll to intro section"
       >
         <ChevronDown className="h-10 w-10 text-muted-foreground/50" />
-      </a>
+      </button>
     </section>
   );
 };
