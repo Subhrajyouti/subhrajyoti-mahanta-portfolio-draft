@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Download } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -34,13 +35,6 @@ const HeroSection = () => {
     const projectsSection = document.getElementById('projects');
     if (projectsSection) {
       projectsSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const scrollToIntro = () => {
-    const introSection = document.getElementById('intro');
-    if (introSection) {
-      introSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -169,13 +163,12 @@ const HeroSection = () => {
         </div>
       </div>
       
-      <button 
-        onClick={scrollToIntro}
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer"
-        aria-label="Scroll to intro section"
+      <a 
+        href="#intro"
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce"
       >
         <ChevronDown className="h-10 w-10 text-muted-foreground/50" />
-      </button>
+      </a>
     </section>
   );
 };
