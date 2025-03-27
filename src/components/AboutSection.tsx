@@ -13,7 +13,7 @@ const AboutSection = () => {
               <div className="absolute -inset-px border-2 border-primary/20 rounded-xl"></div>
               {/* Replace placeholder with actual image */}
               <img 
-                src="/image.jpg" 
+                src="/about.jpg" 
                 alt="Subhrajyoti Mahanta" 
                 className="w-full h-full object-cover"
               />
