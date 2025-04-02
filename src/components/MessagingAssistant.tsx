@@ -3,12 +3,12 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { MessageSquare, X, Send, ChevronDown, User, Bot } from "lucide-react";
+import { MessageSquare, X, Send, ChevronDown, User, Bot, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface Message {
   role: "user" | "assistant";
-  content: string;
+  content: string | React.ReactNode;
 }
 
 const MessagingAssistant = () => {
@@ -16,7 +16,7 @@ const MessagingAssistant = () => {
   const [messages, setMessages] = useState<Message[]>([
     { 
       role: "assistant", 
-      content: "Hi there! I'm Subhrajyoti's virtual assistant. Ask me anything about his skills, experience, or projects!" 
+      content: "Hi there! I'm Subhrajyoti's virtual assistant. Ask me anything about his skills, experience, projects, or how to connect with him!" 
     }
   ]);
   const [inputValue, setInputValue] = useState("");
@@ -55,37 +55,108 @@ const MessagingAssistant = () => {
     }, 800);
   };
 
-  const generateResponse = (question: string): string => {
+  const generateResponse = (question: string): React.ReactNode => {
     const lowerQuestion = question.toLowerCase();
     
     // Check for skills related questions
     if (lowerQuestion.includes("skills") || lowerQuestion.includes("technology") || lowerQuestion.includes("technologies")) {
-      return "Subhrajyoti is skilled in SQL (90%), Python (75%), R (35%), C (60%), and DAX (60%). His database skills include PostgreSQL (85%), SQLite (70%), and MySQL (65%). He's proficient with tools like Power BI (75%), MS Excel (95%), Tableau (60%), Pandas (80%), NumPy (75%), and data visualization libraries.";
+      return (
+        <div>
+          <p>Subhrajyoti's key technical skills include:</p>
+          <ul className="list-disc pl-5 mt-2 space-y-1">
+            <li>SQL (90%), Python (75%), R (35%), C (60%), DAX (60%)</li>
+            <li>Database: PostgreSQL (85%), SQLite (70%), MySQL (65%)</li>
+            <li>Tools: Power BI (75%), MS Excel (95%), Tableau (60%)</li>
+            <li>Libraries: Pandas (80%), NumPy (75%), data visualization libraries</li>
+          </ul>
+          <p className="mt-2">You can find more details in his <a href="/resume.pdf" download className="text-primary hover:underline inline-flex items-center gap-1">resume <ExternalLink size={14} /></a>.</p>
+        </div>
+      );
     }
     
     // Check for experience related questions
     if (lowerQuestion.includes("experience") || lowerQuestion.includes("work")) {
-      return "Subhrajyoti has experience as a Data Analyst, working with complex datasets to extract actionable insights. He has worked on various projects involving data cleaning, transformation, visualization, and analysis to drive business decisions.";
+      return (
+        <div>
+          <p>As a Data Analyst, Subhrajyoti has experience transforming complex datasets into actionable insights. His work includes:</p>
+          <ul className="list-disc pl-5 mt-2 space-y-1">
+            <li>Data cleaning and transformation</li>
+            <li>Statistical analysis and visualization</li>
+            <li>Building interactive dashboards</li>
+            <li>SQL querying and database management</li>
+          </ul>
+          <p className="mt-2">Check out his <a href="#projects" onClick={(e) => scrollToSection(e, "projects")} className="text-primary hover:underline">projects section</a> or <a href="/resume.pdf" download className="text-primary hover:underline inline-flex items-center gap-1">download his resume <ExternalLink size={14} /></a> for more details.</p>
+        </div>
+      );
     }
     
     // Check for education related questions
     if (lowerQuestion.includes("education") || lowerQuestion.includes("study") || lowerQuestion.includes("degree")) {
-      return "For details about Subhrajyoti's educational background, please check his resume which you can download from the Resume section of this website.";
+      return (
+        <div>
+          <p>For Subhrajyoti's educational background, please check his <a href="/resume.pdf" download className="text-primary hover:underline inline-flex items-center gap-1">resume <ExternalLink size={14} /></a>.</p>
+          <p className="mt-2">You can also navigate to the <a href="#resume" onClick={(e) => scrollToSection(e, "resume")} className="text-primary hover:underline">Resume section</a> of this portfolio for more information.</p>
+        </div>
+      );
     }
     
     // Check for project related questions
     if (lowerQuestion.includes("project") || lowerQuestion.includes("portfolio")) {
-      return "Subhrajyoti has worked on several data analysis projects. You can explore them in detail in the Projects section of this portfolio. These projects showcase his ability to extract insights from complex datasets and present them in a compelling way.";
+      return (
+        <div>
+          <p>Subhrajyoti has worked on several data analysis projects that showcase his skills. Here are some highlights:</p>
+          <ul className="list-disc pl-5 mt-2 space-y-1">
+            <li>Data job market analysis</li>
+            <li>GoodCabs ride data analysis</li>
+            <li>Additional data visualization and insight generation projects</li>
+          </ul>
+          <p className="mt-2">You can explore them in the <a href="#projects" onClick={(e) => scrollToSection(e, "projects")} className="text-primary hover:underline">Projects section</a> of this portfolio.</p>
+        </div>
+      );
     }
     
     // Check for contact related questions
     if (lowerQuestion.includes("contact") || lowerQuestion.includes("email") || lowerQuestion.includes("phone") || lowerQuestion.includes("reach")) {
-      return "You can contact Subhrajyoti via email at subhrajyoutimahanta@gmail.com, by phone at +91 6002967278, or connect with him on LinkedIn. There's also a contact form in the Contact section of this website.";
+      return (
+        <div>
+          <p>You can reach Subhrajyoti through:</p>
+          <ul className="list-disc pl-5 mt-2 space-y-1">
+            <li>Email: <a href="mailto:subhrajyoutimahanta@gmail.com" className="text-primary hover:underline">subhrajyoutimahanta@gmail.com</a></li>
+            <li>Phone: +91 6002967278</li>
+            <li>LinkedIn: <a href="https://www.linkedin.com/in/subhrajyotimahanta/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline inline-flex items-center gap-1">Subhrajyoti Mahanta <ExternalLink size={14} /></a></li>
+            <li>GitHub: <a href="https://github.com/Subhrajyouti" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline inline-flex items-center gap-1">Subhrajyouti <ExternalLink size={14} /></a></li>
+          </ul>
+          <p className="mt-2">There's also a <a href="#contact" onClick={(e) => scrollToSection(e, "contact")} className="text-primary hover:underline">contact form</a> in this portfolio.</p>
+        </div>
+      );
     }
     
     // Check for resume related questions
     if (lowerQuestion.includes("resume") || lowerQuestion.includes("cv")) {
-      return "You can view or download Subhrajyoti's resume from the Resume section of this website. It contains detailed information about his professional experience, skills, and education.";
+      return (
+        <div>
+          <p>You can <a href="/resume.pdf" download className="text-primary hover:underline inline-flex items-center gap-1">download Subhrajyoti's resume here <ExternalLink size={14} /></a>.</p>
+          <p className="mt-2">You can also check the <a href="#resume" onClick={(e) => scrollToSection(e, "resume")} className="text-primary hover:underline">Resume section</a> of this portfolio.</p>
+        </div>
+      );
+    }
+    
+    // Check for LinkedIn related questions
+    if (lowerQuestion.includes("linkedin") || lowerQuestion.includes("social media") || lowerQuestion.includes("profile")) {
+      return (
+        <div>
+          <p>You can connect with Subhrajyoti on <a href="https://www.linkedin.com/in/subhrajyotimahanta/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline inline-flex items-center gap-1">LinkedIn <ExternalLink size={14} /></a>.</p>
+        </div>
+      );
+    }
+    
+    // Check for GitHub related questions
+    if (lowerQuestion.includes("github") || lowerQuestion.includes("code") || lowerQuestion.includes("repository")) {
+      return (
+        <div>
+          <p>Check out Subhrajyoti's projects on <a href="https://github.com/Subhrajyouti" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline inline-flex items-center gap-1">GitHub <ExternalLink size={14} /></a>.</p>
+        </div>
+      );
     }
     
     // Check for greetings
@@ -99,11 +170,42 @@ const MessagingAssistant = () => {
     }
     
     if (lowerQuestion.includes("who") && (lowerQuestion.includes("subhrajyoti") || lowerQuestion.includes("he"))) {
-      return "Subhrajyoti Mahanta is a Data Analyst who specializes in turning complex datasets into actionable insights. He has expertise in SQL, Python, data visualization, and various analytical tools.";
+      return (
+        <div>
+          <p>Subhrajyoti Mahanta is a Data Analyst who specializes in transforming complex datasets into actionable insights. He has expertise in:</p>
+          <ul className="list-disc pl-5 mt-2 space-y-1">
+            <li>SQL and Python data analysis</li>
+            <li>Data visualization</li>
+            <li>Dashboard creation</li>
+            <li>Statistical analysis</li>
+          </ul>
+          <p className="mt-2">You can learn more by exploring this portfolio or <a href="/resume.pdf" download className="text-primary hover:underline inline-flex items-center gap-1">downloading his resume <ExternalLink size={14} /></a>.</p>
+        </div>
+      );
     }
     
     // Default response
-    return "I'm not sure about that, but you can learn more about Subhrajyoti's skills, experience, and projects by exploring this portfolio. Is there something specific you'd like to know about his data analysis background?";
+    return (
+      <div>
+        <p>I'm not sure about that, but you can learn more about Subhrajyoti through:</p>
+        <ul className="list-disc pl-5 mt-2 space-y-1">
+          <li><a href="#projects" onClick={(e) => scrollToSection(e, "projects")} className="text-primary hover:underline">Projects section</a> - See his data analysis work</li>
+          <li><a href="#skills" onClick={(e) => scrollToSection(e, "skills")} className="text-primary hover:underline">Skills section</a> - Explore his technical abilities</li>
+          <li><a href="/resume.pdf" download className="text-primary hover:underline inline-flex items-center gap-1">Resume <ExternalLink size={14} /></a> - Download his full CV</li>
+          <li><a href="https://www.linkedin.com/in/subhrajyotimahanta/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline inline-flex items-center gap-1">LinkedIn <ExternalLink size={14} /></a> - Connect professionally</li>
+        </ul>
+        <p className="mt-2">Is there something specific you'd like to know about his data analysis background?</p>
+      </div>
+    );
+  };
+  
+  const scrollToSection = (e: React.MouseEvent, sectionId: string) => {
+    e.preventDefault();
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+      setIsOpen(false); // Close the chat after navigation
+    }
   };
 
   return (
