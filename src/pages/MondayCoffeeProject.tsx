@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { 
@@ -509,8 +510,6 @@ ORDER BY 2 DESC;`}
                           className="w-full rounded-md border border-border/50" 
                         />
                       </div>
-                      
-                       
                     </CollapsibleContent>
                   </Collapsible>
                   
@@ -588,42 +587,40 @@ ORDER BY 2 DESC;`}
                           className="w-full rounded-md border border-border/50" 
                         />
                       </div>
-                      
-                       
                     </CollapsibleContent>
                   </Collapsible>
                   
-    <Collapsible className="border border-border/50 rounded-md">
-      <CollapsibleTrigger className="flex justify-between items-center w-full p-4 text-left hover:bg-accent/10 transition-colors">
-        <h3 className="text-lg font-medium">🔎 Q3: Sales Count for Each Product</h3>
-        <div className="text-muted-foreground">
-          <ChevronDown className="h-5 w-5" />
-        </div>
-      </CollapsibleTrigger>
-      <CollapsibleContent className="p-6 pt-0 border-t border-border/50">
-        <p className="text-muted-foreground mb-4">How many units of each coffee product have been sold?</p>
-        
-        <Accordion type="single" collapsible className="w-full mb-4">
-          <AccordionItem value="question-3-sql">
-            <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
-              SQL Query
-            </AccordionTrigger>
-            <AccordionContent>
-              <div className="bg-card/20 p-4 rounded-md overflow-x-auto relative">
-                <button 
-                  onClick={() => copyToClipboard(`SELECT 
+                  <Collapsible className="border border-border/50 rounded-md">
+                    <CollapsibleTrigger className="flex justify-between items-center w-full p-4 text-left hover:bg-accent/10 transition-colors">
+                      <h3 className="text-lg font-medium">🔎 Q3: Sales Count for Each Product</h3>
+                      <div className="text-muted-foreground">
+                        <ChevronDown className="h-5 w-5" />
+                      </div>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent className="p-6 pt-0 border-t border-border/50">
+                      <p className="text-muted-foreground mb-4">How many units of each coffee product have been sold?</p>
+                      
+                      <Accordion type="single" collapsible className="w-full mb-4">
+                        <AccordionItem value="question-3-sql">
+                          <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
+                            SQL Query
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            <div className="bg-card/20 p-4 rounded-md overflow-x-auto relative">
+                              <button 
+                                onClick={() => copyToClipboard(`SELECT 
     p.product_name,
     COUNT(s.sale_id) AS total_orders
 FROM products AS p
 LEFT JOIN sales AS s ON s.product_id = p.product_id
 GROUP BY 1
 ORDER BY 2 DESC;`)}
-                  className="absolute right-2 top-2 p-1 rounded hover:bg-primary/10"
-                  aria-label="Copy code"
-                >
-                  <Copy size={16} />
-                </button>
-                <pre className="text-sm">
+                                className="absolute right-2 top-2 p-1 rounded hover:bg-primary/10"
+                                aria-label="Copy code"
+                              >
+                                <Copy size={16} />
+                              </button>
+                              <pre className="text-sm">
 {`SELECT 
     p.product_name,
     COUNT(s.sale_id) AS total_orders
@@ -631,34 +628,193 @@ FROM products AS p
 LEFT JOIN sales AS s ON s.product_id = p.product_id
 GROUP BY 1
 ORDER BY 2 DESC;`}
-                </pre>
+                              </pre>
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
+                      
+                      <div className="mb-4">
+                        <h4 className="text-base font-medium mb-2">Result:</h4>
+                        <img 
+                          src="/cq3.png" 
+                          alt="Sales Count Query Result" 
+                          className="w-full rounded-md border border-border/50" 
+                        />
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                  
+                  <Collapsible className="border border-border/50 rounded-md">
+                    <CollapsibleTrigger className="flex justify-between items-center w-full p-4 text-left hover:bg-accent/10 transition-colors">
+                      <h3 className="text-lg font-medium">🔎 Q4: Average Sales Amount per City</h3>
+                      <div className="text-muted-foreground">
+                        <ChevronDown className="h-5 w-5" />
+                      </div>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent className="p-6 pt-0 border-t border-border/50">
+                      <p className="text-muted-foreground mb-4">What is the average sales amount per customer in each city?</p>
+                      
+                      <Accordion type="single" collapsible className="w-full mb-4">
+                        <AccordionItem value="question-4-sql">
+                          <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
+                            SQL Query
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            <div className="bg-card/20 p-4 rounded-md overflow-x-auto relative">
+                              <button 
+                                onClick={() => copyToClipboard(`SELECT 
+    ci.city_name,
+    ROUND(AVG(s.total), 2) AS avg_sale_amount
+FROM sales AS s
+JOIN customers AS c ON s.customer_id = c.customer_id
+JOIN city AS ci ON c.city_id = ci.city_id
+GROUP BY 1
+ORDER BY 2 DESC;`)}
+                                className="absolute right-2 top-2 p-1 rounded hover:bg-primary/10"
+                                aria-label="Copy code"
+                              >
+                                <Copy size={16} />
+                              </button>
+                              <pre className="text-sm">
+{`SELECT 
+    ci.city_name,
+    ROUND(AVG(s.total), 2) AS avg_sale_amount
+FROM sales AS s
+JOIN customers AS c ON s.customer_id = c.customer_id
+JOIN city AS ci ON c.city_id = ci.city_id
+GROUP BY 1
+ORDER BY 2 DESC;`}
+                              </pre>
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
+                      
+                      <div className="mb-4">
+                        <h4 className="text-base font-medium mb-2">Result:</h4>
+                        <img 
+                          src="/cq4.png" 
+                          alt="Average Sales Query Result" 
+                          className="w-full rounded-md border border-border/50" 
+                        />
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                  
+                  {/* You can add additional collapsible sections for other Ad Hoc requests */}
+                </div>
+              </section>
+              
+              {/* Conclusion Section */}
+              <section id="conclusion" className="scroll-mt-24 mb-16">
+                <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+                  <CheckCircle2 className="text-primary" /> Conclusion
+                </h2>
+                <div className="text-muted-foreground mb-4">
+                  Based on our comprehensive analysis using weighted scoring of multiple business factors:
+                </div>
+                
+                <ul className="list-none space-y-2 text-muted-foreground mb-6">
+                  <li className="flex items-start">
+                    <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">1</span>
+                    <strong>Pune</strong> emerges as the top choice for business expansion with the best balance of high revenue potential and reasonable operating costs.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">2</span>
+                    <strong>Chennai</strong> ranks second with its large customer base and strong sales performance.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">3</span>
+                    <strong>Delhi</strong> secures the third position with significant market potential despite moderate customer spending.
+                  </li>
+                </ul>
+                
+                <div className="bg-accent/10 p-6 rounded-lg border border-border/50">
+                  <h3 className="text-lg font-medium mb-3">Recommendation</h3>
+                  <p className="text-muted-foreground">
+                    Monday Coffee should prioritize expansion into Pune first, followed by Chennai and Delhi. This strategic expansion plan aligns with the company's growth objectives while balancing revenue potential with operational costs.
+                  </p>
+                </div>
+              </section>
+            </div>
+            
+            {/* Sidebar Column - optional sidebar content */}
+            <div className="hidden lg:block">
+              <div className="sticky top-[120px]">
+                <h3 className="text-lg font-medium mb-4">Project Details</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <Database className="h-5 w-5 text-primary mt-0.5" />
+                    <div>
+                      <h4 className="text-sm font-medium">Data Source</h4>
+                      <p className="text-xs text-muted-foreground">Internal company database</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <LineChart className="h-5 w-5 text-primary mt-0.5" />
+                    <div>
+                      <h4 className="text-sm font-medium">Analysis Tools</h4>
+                      <p className="text-xs text-muted-foreground">SQL, Excel, Tableau</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <Monitor className="h-5 w-5 text-primary mt-0.5" />
+                    <div>
+                      <h4 className="text-sm font-medium">Project Duration</h4>
+                      <p className="text-xs text-muted-foreground">3 weeks</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <Lightbulb className="h-5 w-5 text-primary mt-0.5" />
+                    <div>
+                      <h4 className="text-sm font-medium">Key Insight</h4>
+                      <p className="text-xs text-muted-foreground">Rent costs had less impact on overall profitability than expected when balanced against higher customer spending.</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="mt-8">
+                  <h3 className="text-lg font-medium mb-4">Resources</h3>
+                  <div className="space-y-3">
+                    <a 
+                      href="https://github.com/Subhrajyouti/Monday_cofee_sales_store_expansion/tree/main" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
+                    >
+                      <Github className="h-4 w-4" />
+                      GitHub Repository
+                    </a>
+                    <a 
+                      href="#"
+                      className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
+                    >
+                      <FileText className="h-4 w-4" />
+                      Full Report (PDF)
+                    </a>
+                    <a 
+                      href="#"
+                      className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      Interactive Dashboard
+                    </a>
+                  </div>
+                </div>
               </div>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-        
-        <div className="mb-4">
-          <h4 className="text-base font-medium mb-2">Result:</h4>
-          <img 
-            src="/cq3.png" 
-            alt="Sales Count Query Result" 
-            className="w-full rounded-md border border-border/50" 
-          />
+            </div>
+          </div>
         </div>
         
-         
-      </CollapsibleContent>
-    </Collapsible>
-    
-    <Collapsible className="border border-border/50 rounded-md">
-      <CollapsibleTrigger className="flex justify-between items-center w-full p-4 text-left hover:bg-accent/10 transition-colors">
-        <h3 className="text-lg font-medium">🔎 Q4: Average Sales Amount per City</h3>
-        <div className="text-muted-foreground">
-          <ChevronDown className="h-5 w-5" />
-        </div>
-      </CollapsibleTrigger>
-      <CollapsibleContent className="p-6 pt-0 border-t border-border/50">
-        <p className="text-muted-foreground mb-4">What is the average sales amount per customer in each city?</p>
-        
-        <Accordion type="single" collapsible className="w-full mb-4">
-          <AccordionItem value="question-4-sql">
+        {/* Footer */}
+        <Footer />
+      </main>
+    </div>
+  );
+};
+
+export default MondayCoffeeProject;
