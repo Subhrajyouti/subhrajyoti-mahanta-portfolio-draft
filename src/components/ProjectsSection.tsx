@@ -22,7 +22,7 @@ const projects: Project[] = [
     description: "Analyzing city performance to determine the best locations for business expansion using data-driven insights",
     image: "/coffee1.jpg",
     tags: ["SQL", "Data Analysis", "Weighted Scoring", "Decision Making"],
-    slug: "new-project"
+    slug: "monday-coffee-project"
   },
   {
     id: 8,
@@ -67,8 +67,8 @@ const ProjectCard = ({ project }: { project: Project }) => {
     ? "/goodcabs-analysis" 
     : project.slug === "data-job-market-analysis"
     ? "/data-job-market-analysis"
-    : project.slug === "new-project"
-    ? "/new-project"
+    : project.slug === "monday-coffee-project"
+    ? "/monday-coffee-project"
     : `/project/${project.slug}`;
 
   // Preload images 
