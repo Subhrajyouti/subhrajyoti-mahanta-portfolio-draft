@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { X, Send, ChevronDown, User, Bot, ExternalLink, HelpCircle } from "lucide-react";
+import { MessageSquare, X, Send, ChevronDown, User, Bot, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface Message {
@@ -210,7 +210,7 @@ const MessagingAssistant = () => {
 
   return (
     <>
-      {/* Chat button - Updated with HelpCircle icon instead of MessageSquare */}
+      {/* Chat button */}
       <Button
         onClick={toggleAssistant}
         className={cn(
@@ -219,7 +219,7 @@ const MessagingAssistant = () => {
         )}
         aria-label={isOpen ? "Close chat" : "Open chat"}
       >
-        {isOpen ? <X size={20} /> : <HelpCircle size={20} />}
+        {isOpen ? <X size={20} /> : <MessageSquare size={20} />}
       </Button>
 
       {/* Chat window */}
