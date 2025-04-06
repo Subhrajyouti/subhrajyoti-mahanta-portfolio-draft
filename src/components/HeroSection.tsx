@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Download } from "lucide-react";
 import { useEffect, useState } from "react";
+import MessagingAssistant from "./MessagingAssistant";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -180,6 +181,9 @@ const HeroSection = () => {
       >
         <ChevronDown className="h-10 w-10 text-muted-foreground/50" />
       </button>
+
+      {/* Add Messaging Assistant */}
+      <MessagingAssistant />
     </section>
   );
 };
