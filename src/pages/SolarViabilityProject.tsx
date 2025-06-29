@@ -157,7 +157,7 @@ const MondayCoffeeProjectCopy = () => {
             alt="Residential Solar Feasibility & Financial Model – Assam, India (PM Surya Ghar Yojana based)" 
             className="w-full h-full object-cover brightness-[0.7]"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background flex flex-col justify-end pb-32">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background flex flex-col justify-end pb-0">
             <div className="container max-w-7xl mx-auto px-4">
               <div className="flex justify-between items-center mb-8">
                 <Link to="/" className="inline-flex items-center text-white/90 hover:text-white transition-colors">
