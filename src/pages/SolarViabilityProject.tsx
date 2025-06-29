@@ -211,10 +211,10 @@ const MondayCoffeeProjectCopy = () => {
                   <Eye className="text-primary" /> Project Overview
                 </h2>
                 <div className="text-muted-foreground mb-4">
-                  This project evaluates multiple cities based on business performance metrics to determine the most suitable locations for expansion. By analyzing sales, customer base, spending habits, and rent costs, a weighted scoring system was applied to rank the cities.
+                  As the Indian government increasingly promotes rooftop solar through substantial subsidies, this study evaluates the financial viability of installing a solar power system at my residence. Detailed analyses were conducted considering the geographical location, specific solar panel and inverter selections, and comprehensive accounting for system losses. Utilizing precise solar irradiance data and Technical Meteorological Year (TMY) profiles, the project's annual electricity generation potential was calculated. Further, an extensive 30-year financial model was developed, incorporating critical variables such as inflation rates, electricity tariff escalation, rising consumption trends, equipment degradation, and replacement costs. This robust analysis aims to provide a clear insight into the economic feasibility and long-term benefits of adopting rooftop solar for residential users.
                 </div>
                 <div className="text-muted-foreground">
-                  The analysis helps identify cities with the highest growth potential, providing data-driven insights for the expansion of the Monday Coffee business.
+                  In conclusion, the detailed analysis underscores the substantial economic and environmental advantages of transitioning to solar energy. This study aims to empower homeowners with clear, data-driven insights to confidently adopt solar solutions.
                 </div>
               </section>
                 
