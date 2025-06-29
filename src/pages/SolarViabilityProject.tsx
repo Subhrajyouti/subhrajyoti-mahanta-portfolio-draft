@@ -1,822 +1,424 @@
-
-
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { 
-  ArrowLeft, 
-  Database, 
-  ExternalLink, 
-  Github, 
-  LineChart, 
-  Lightbulb, 
-  Monitor, 
-  Rocket, 
-  GraduationCap, 
-  Link2, 
-  FileText, 
-  Eye,
-  Target,
-  ListChecks,
-  BarChart,
-  Copy,
-  CheckCircle2,
-  Coffee,
-  ChevronDown
-} from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import Footer from "@/components/Footer";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { 
+  Sun, 
+  Download, 
+  Calculator, 
+  TrendingUp, 
+  BarChart3, 
+  Settings, 
+  DollarSign,
+  Leaf,
+  FileText,
+  ExternalLink,
+  ArrowLeft,
+  Phone,
+  Mail,
+  Github,
+  Linkedin
+} from "lucide-react";
+import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
-import { toast } from "sonner";
+import Footer from "@/components/Footer";
 
-// Custom sidebar navigation for Monday Coffee project
-const MondayCoffeeSidebar = () => {
-  // Add click handler for smooth scrolling
-  const handleNavClick = (e) => {
-    e.preventDefault();
-    const href = e.currentTarget.getAttribute('href');
-    if (href && href.startsWith('#')) {
-      const id = href.substring(1);
-      const element = document.getElementById(id);
-      if (element) {
-        const yOffset = -100; // Adjust offset as needed
-        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-        // Update URL hash without triggering a scroll
-        window.history.pushState(null, '', href);
-      }
-    }
-  };
+const SolarViabilityProject = () => {
+  const keyMetrics = [
+    { metric: "Estimated System Size", value: "~3 kWp", icon: <Settings className="h-5 w-5" /> },
+    { metric: "Annual Solar Generation", value: "~4000 kWh/year", icon: <Sun className="h-5 w-5" /> },
+    { metric: "Payback Period", value: "~6.5 years", icon: <TrendingUp className="h-5 w-5" /> },
+    { metric: "Internal Rate of Return (IRR)", value: "~16%", icon: <BarChart3 className="h-5 w-5" /> },
+    { metric: "Net Present Value (NPV)", value: "₹1.2 – ₹1.6 Lakhs", icon: <DollarSign className="h-5 w-5" /> },
+    { metric: "Lifetime Savings", value: "₹3.5 – ₹4.2 Lakhs", icon: <DollarSign className="h-5 w-5" /> },
+    { metric: "Lifetime CO₂ Avoided", value: "~35–40 tons", icon: <Leaf className="h-5 w-5" /> }
+  ];
 
-  return (
-    <div className="sticky top-[60px] z-10 w-full bg-background/95 backdrop-blur-sm border-b">
-      <div className="container max-w-7xl mx-auto px-4">
-        <div className="flex overflow-x-auto py-2 gap-4 no-scrollbar">
-          <a href="#overview" onClick={handleNavClick} className="whitespace-nowrap text-sm font-bold hover:text-primary transition-colors px-2 py-2 flex items-center gap-1.5">
-            <Eye className="h-4 w-4 text-blue-500" />
-            Overview
-          </a>
-          <a href="#objective" onClick={handleNavClick} className="whitespace-nowrap text-sm font-bold hover:text-primary transition-colors px-2 py-2 flex items-center gap-1.5">
-            <Target className="h-4 w-4 text-blue-500" />
-            Objective
-          </a>
-          <a href="#data-setup" onClick={handleNavClick} className="whitespace-nowrap text-sm font-bold hover:text-primary transition-colors px-2 py-2 flex items-center gap-1.5">
-            <Database className="h-4 w-4 text-blue-500" />
-            Data Description
-          </a>
-          <a href="#methodology" onClick={handleNavClick} className="whitespace-nowrap text-sm font-bold hover:text-primary transition-colors px-2 py-2 flex items-center gap-1.5">
-            <ListChecks className="h-4 w-4 text-blue-500" />
-            Methodology
-          </a>
-          <a href="#top-cities" onClick={handleNavClick} className="whitespace-nowrap text-sm font-bold hover:text-primary transition-colors px-2 py-2 flex items-center gap-1.5">
-            <Rocket className="h-4 w-4 text-blue-500" />
-            Top Cities
-          </a>
-          <a href="#ad-hoc-requests" onClick={handleNavClick} className="whitespace-nowrap text-sm font-bold hover:text-primary transition-colors px-2 py-2 flex items-center gap-1.5">
-            <Database className="h-4 w-4 text-blue-500" />
-            Ad Hoc Requests
-          </a>
-          <a href="#conclusion" onClick={handleNavClick} className="whitespace-nowrap text-sm font-bold hover:text-primary transition-colors px-2 py-2 flex items-center gap-1.5">
-            <CheckCircle2 className="h-4 w-4 text-blue-500" />
-            Conclusion
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-};
+  const downloadFiles = [
+    { name: "Excel-based Financial Model", type: "Excel", icon: <FileText className="h-5 w-5" /> },
+    { name: "PVsyst Output Summary", type: "PDF", icon: <FileText className="h-5 w-5" /> },
+    { name: "Panel & Inverter Datasheets", type: "ZIP", icon: <FileText className="h-5 w-5" /> },
+    { name: "Complete PDF Report", type: "PDF", icon: <FileText className="h-5 w-5" /> }
+  ];
 
-// Top City Card component
-const TopCityCard = ({ position, city, description }: { position: string; city: string; description: string }) => {
-  return (
-    <Card className="overflow-hidden border border-border/50 hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
-      <CardContent className="p-6">
-        <div className="text-4xl mb-4">{position}</div>
-        <h3 className="text-lg font-medium mb-2">{city}</h3>
-        <p className="text-muted-foreground text-sm">{description}</p>
-      </CardContent>
-    </Card>
-  );
-};
-
-const MondayCoffeeProjectCopy = () => {
-  // Scroll to top when component mounts
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  // Handle hash links when page loads
-  useEffect(() => {
-    // Function to handle scrolling to element by ID
-    const scrollToElement = (id) => {
-      const element = document.getElementById(id);
-      if (element) {
-        const yOffset = -100; // Consistent offset
-        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      }
-    };
-
-    // Handle initial hash if present
-    if (window.location.hash) {
-      const id = window.location.hash.substring(1);
-      // Small delay to ensure DOM is fully loaded
-      setTimeout(() => scrollToElement(id), 300);
-    }
-
-    // Add event listener for hash changes
-    const handleHashChange = () => {
-      if (window.location.hash) {
-        const id = window.location.hash.substring(1);
-        scrollToElement(id);
-      }
-    };
-    
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-    toast.success("Code copied to clipboard", {
-      description: "You can now paste it anywhere you need",
-    });
-  };
+  const references = [
+    "MNRE PM Surya Ghar Yojana Official Guidelines",
+    "NASA Surface Meteorology & Solar Energy Database",
+    "Waaree, Adani & Sungrow Equipment Datasheets",
+    "APDCL Tariff Structure & Regulations (2024)",
+    "SEIA, IEA & KPMG Solar Analysis Methodologies"
+  ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen bg-black text-white">
       <Navbar />
-      <main className="flex-grow">
-        {/* Hero Section with Cover Image */}
-        <div className="relative h-[60vh] md:h-[70vh] overflow-hidden">
-          <img 
-            src="/solar.jpg" 
-            alt="Residential Solar Feasibility & Financial Model – Assam, India (PM Surya Ghar Yojana based)" 
-            className="w-full h-full object-cover brightness-[0.7]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background flex flex-col justify-end pb-20">
-            <div className="container max-w-7xl mx-auto px-4">
-              <div className="flex justify-between items-center mb-8">
-                <Link to="/" className="inline-flex items-center text-white/90 hover:text-white transition-colors">
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  Back to Portfolio
+      
+      {/* Hero Section */}
+      <section className="relative h-[70vh] bg-gradient-to-br from-gray-900 to-black flex items-center">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl">
+            <div className="mb-6">
+              <Button asChild variant="ghost" size="sm" className="mb-4 text-gray-300 hover:text-blue-400">
+                <Link to="/#projects" className="flex items-center gap-2">
+                  <ArrowLeft className="h-4 w-4" />
+                  Back to Projects
                 </Link>
-              </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Residential Solar Feasibility & Financial Model – Assam, India (PM Surya Ghar Yojana based)</h1>
-              <p className="text-xl text-white/90 mb-6 max-w-2xl">
-                A detailed energy-economic analysis using NASA TMY data, PVsyst simulations, and dynamic financial modeling.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                <Badge variant="outline" className="bg-white/20 text-white font-normal backdrop-blur-sm hover:-translate-y-0.5 transition-transform">SQL</Badge>
-                <Badge variant="outline" className="bg-white/20 text-white font-normal backdrop-blur-sm hover:-translate-y-0.5 transition-transform">Data Analysis</Badge>
-                <Badge variant="outline" className="bg-white/20 text-white font-normal backdrop-blur-sm hover:-translate-y-0.5 transition-transform">Weighted Scoring</Badge>
-                <Badge variant="outline" className="bg-white/20 text-white font-normal backdrop-blur-sm hover:-translate-y-0.5 transition-transform">Decision Making</Badge>
-                <Badge variant="outline" className="bg-white/20 text-white font-normal backdrop-blur-sm hover:-translate-y-0.5 transition-transform">Visualization</Badge>
-              </div>
-              <Button 
-                variant="outline" 
-                size="sm"
-                asChild
-                className="bg-blue-600/90 hover:bg-blue-700 text-white border-none rounded-md"
-              >
-                <a 
-                  href="https://github.com/Subhrajyouti/Monday_cofee_sales_store_expansion/tree/main" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2"
-                >
-                  <Github className="w-4 h-4" />
-                  View Code
-                </a>
+              </Button>
+            </div>
+            
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+              <Sun className="inline h-10 w-10 text-yellow-500 mr-3" />
+              Residential Solar Feasibility Study – Assam, India
+            </h1>
+            
+            <h4 className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+              Evaluating the economic, energy, and policy dynamics of rooftop solar under PM Surya Ghar Muft Bijli Yojana using real irradiance, demand, and tariff data.
+            </h4>
+            
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
+                <Download className="h-5 w-5 mr-2" />
+                Download Full Excel Model
+              </Button>
+              
+              <Button size="lg" variant="outline" className="border-green-500 text-green-400 hover:bg-green-900/20">
+                <Calculator className="h-5 w-5 mr-2" />
+                Try Interactive Calculator
               </Button>
             </div>
           </div>
         </div>
+        
+        {/* Real solar panel image */}
+        <div className="absolute inset-0 opacity-20">
+          <img 
+            src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+            alt="Solar panels on rooftop in India"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </section>
 
-        {/* Horizontal Navigation Bar - Updated with custom sidebar */}
-        <MondayCoffeeSidebar />
-
-        {/* Main Content */}
-        <div className="container max-w-7xl mx-auto px-4 py-8">
-          {/* Grid Layout for Main Content and Project Sidebar - Modified to full width */}
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            {/* Main Content Column - Modified to be wider */}
-            <div className="lg:col-span-3">
-              {/* Overview Section */}
-              <section id="overview" className="scroll-mt-24 mb-16">
-                <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
-                  <Eye className="text-primary" /> Project Overview
-                </h2>
-                <div className="text-muted-foreground mb-4">
-                  This project evaluates multiple cities based on business performance metrics to determine the most suitable locations for expansion. By analyzing sales, customer base, spending habits, and rent costs, a weighted scoring system was applied to rank the cities.
-                </div>
-                <div className="text-muted-foreground">
-                  The analysis helps identify cities with the highest growth potential, providing data-driven insights for the expansion of the Monday Coffee business.
-                </div>
-              </section>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        
+        {/* Executive Summary */}
+        <section className="mb-16">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="h-8 w-1 bg-blue-600 rounded-full"></div>
+            <h2 className="text-3xl font-bold text-white">
+              🔍 Executive Summary
+            </h2>
+          </div>
+          
+          <Card className="border-gray-800 shadow-lg bg-gray-900/50">
+            <CardContent className="p-8">
+              <div className="prose prose-lg max-w-none text-gray-300 leading-relaxed">
+                <p className="mb-4">
+                  India's rooftop solar sector is experiencing unprecedented growth, driven by supportive government policies and declining technology costs. The PM Surya Ghar Muft Bijli Yojana represents a pivotal initiative to democratize solar energy access across Indian households.
+                </p>
                 
-              {/* Objective Section */}
-              <section id="objective" className="scroll-mt-24 mb-16">
-                <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
-                  <Target className="text-primary" /> Objective
-                </h2>
-                <ul className="list-none space-y-2 text-muted-foreground">
-                  <li className="flex items-start">
-                    <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
-                    Identify the top 3 cities for business expansion.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
-                    Apply a data-driven approach to rank cities using key business metrics.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
-                    Use a weighted scoring methodology to balance revenue potential and cost factors.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
-                    Ad Hoc Requests – Answering key business questions through SQL queries and visualizations to support expansion decisions.
-                  </li>
+                <p className="mb-4">
+                  <strong className="text-white">Study Objective:</strong> This comprehensive analysis evaluates solar feasibility for typical residential consumers in Assam, utilizing real-world consumption patterns, local irradiance data, and current policy frameworks to provide actionable insights.
+                </p>
+                
+                <p className="mb-4">
+                  <strong className="text-white">Methodology:</strong> Our approach combines PVsyst modeling with NASA TMY meteorological data, incorporating actual utility tariffs, inflation projections, and available subsidies to deliver precise financial projections.
+                </p>
+                
+                <p>
+                  <strong className="text-white">Key Finding:</strong> Rooftop solar installations demonstrate strong economic viability with payback periods of 6-7 years, delivering substantial long-term savings while contributing to India's renewable energy transition.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Methodology Overview */}
+        <section className="mb-16">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="h-8 w-1 bg-green-600 rounded-full"></div>
+            <h2 className="text-3xl font-bold text-white">
+              📐 Methodology & Data Sources
+            </h2>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 bg-gray-900/50">
+              <CardHeader className="text-center pb-4">
+                <div className="mx-auto h-16 w-16 bg-blue-900/50 rounded-full flex items-center justify-center mb-4">
+                  <BarChart3 className="h-8 w-8 text-blue-400" />
+                </div>
+                <CardTitle className="text-xl font-semibold text-white">📈 Data Collection</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-gray-300">
+                  <li>• 12-month consumption analysis (Muft App)</li>
+                  <li>• NASA TMY irradiance database</li>
+                  <li>• Equipment specifications (Waaree, Adani, Sungrow)</li>
+                  <li>• Local utility tariff structures</li>
                 </ul>
-              </section>
-              
-              {/* Data Description Section */}
-              <section id="data-setup" className="scroll-mt-24 mb-16">
-                <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
-                  <Database className="text-primary" /> Data Description
-                </h2>
-                <div className="text-muted-foreground mb-4">
-                  The dataset consists of four main tables, each providing essential business insights:
+              </CardContent>
+            </Card>
+
+            <Card className="border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 bg-gray-900/50">
+              <CardHeader className="text-center pb-4">
+                <div className="mx-auto h-16 w-16 bg-green-900/50 rounded-full flex items-center justify-center mb-4">
+                  <Settings className="h-8 w-8 text-green-400" />
                 </div>
-
-                <div className="space-y-4 mb-6">
-                  <Card className="border border-border/50 hover:border-primary/30 transition-all">
-                    <CardContent className="p-4">
-                      <h3 className="font-medium flex items-center gap-2 mb-2">
-                        <Coffee className="h-4 w-4 text-primary" /> Products Table
-                      </h3>
-                      <ul className="list-disc pl-6 space-y-1 text-sm text-muted-foreground">
-                        <li><strong>product_id</strong> – Unique identifier for each product.</li>
-                        <li><strong>product_name</strong> – Name of the product.</li>
-                        <li><strong>price</strong> – Selling price of the product.</li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="border border-border/50 hover:border-primary/30 transition-all">
-                    <CardContent className="p-4">
-                      <h3 className="font-medium flex items-center gap-2 mb-2">
-                        <BarChart className="h-4 w-4 text-primary" /> Sales Table
-                      </h3>
-                      <ul className="list-disc pl-6 space-y-1 text-sm text-muted-foreground">
-                        <li><strong>sale_id</strong> – Unique identifier for each sale.</li>
-                        <li><strong>sale_date</strong> – Date when the sale occurred.</li>
-                        <li><strong>customer_id</strong> – ID of the customer making the purchase.</li>
-                        <li><strong>product_id</strong> – ID of the purchased product.</li>
-                        <li><strong>rating</strong> – Customer rating for the product.</li>
-                        <li><strong>total</strong> – Total revenue from the sale.</li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="border border-border/50 hover:border-primary/30 transition-all">
-                    <CardContent className="p-4">
-                      <h3 className="font-medium flex items-center gap-2 mb-2">
-                        <Eye className="h-4 w-4 text-primary" /> Customers Table
-                      </h3>
-                      <ul className="list-disc pl-6 space-y-1 text-sm text-muted-foreground">
-                        <li><strong>customer_id</strong> – Unique identifier for each customer.</li>
-                        <li><strong>customer_name</strong> – Name of the customer.</li>
-                        <li><strong>city_id</strong> – ID of the city where the customer resides.</li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="border border-border/50 hover:border-primary/30 transition-all">
-                    <CardContent className="p-4">
-                      <h3 className="font-medium flex items-center gap-2 mb-2">
-                        <Target className="h-4 w-4 text-primary" /> City Table
-                      </h3>
-                      <ul className="list-disc pl-6 space-y-1 text-sm text-muted-foreground">
-                        <li><strong>city_id</strong> – Unique identifier for each city.</li>
-                        <li><strong>city_name</strong> – Name of the city.</li>
-                        <li><strong>city_rank</strong> – Rank of the city based on business potential.</li>
-                        <li><strong>estimated_rent</strong> – Average rent cost per customer.</li>
-                        <li><strong>population</strong> – Total number of residents in the city.</li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </div>
-                
-                <div className="bg-card/5 p-2 rounded-md overflow-hidden">
-                  <img 
-                    src="/erd.png" 
-                    alt="Data Model Schema" 
-                    className="w-full h-auto rounded-md shadow-md border border-border/50" 
-                  />
-                </div>
-              </section>
-                
-              {/* Methodology Section */}
-              <section id="methodology" className="scroll-mt-24 mb-16">
-                <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
-                  <ListChecks className="text-primary" /> Methodology for Selecting Top 3 Cities
-                </h2>
-                <div className="text-muted-foreground mb-4">
-                  A weighted scoring system was applied to rank the cities based on critical business factors.
-                </div>
-
-                <h3 className="text-lg font-medium mb-3">Key Metrics Used:</h3>
-                <ul className="list-none space-y-2 text-muted-foreground mb-6">
-                  <li className="flex items-start">
-                    <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
-                    <strong>Total Sales (50%)</strong> – Higher revenue is prioritized.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
-                    <strong>Estimated Consumers (30%)</strong> – A larger customer base is advantageous.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
-                    <strong>Average Sale per Customer (40%)</strong> – Higher spending per customer is beneficial.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
-                    <strong>Average Rent per Customer (-20%)</strong> – Higher rent negatively impacts the score.
-                  </li>
+                <CardTitle className="text-xl font-semibold text-white">⚙ PVsyst Analysis</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-gray-300">
+                  <li>• GHI, DHI, DNI modeling</li>
+                  <li>• System loss calculations</li>
+                  <li>• Shading & mismatch analysis</li>
+                  <li>• Performance ratio optimization</li>
                 </ul>
-                
-                <Card className="border border-border/50 hover:border-primary/30 transition-all mb-6">
-                  <CardContent className="p-4">
-                    <h3 className="font-medium mb-2">Formula Used:</h3>
-                    <p className="text-sm text-muted-foreground mb-2">Each city's weighted score was calculated as:</p>
-                    <div className="bg-card/20 p-4 rounded-md overflow-x-auto relative">
-                      <button 
-                        onClick={() => copyToClipboard("Final Score = (Total Sales * 0.5) + (Estimated Consumers * 0.3) + (Avg Sale per Customer * 0.4) - (Avg Rent per Customer * 0.2)")}
-                        className="absolute right-2 top-2 p-1 rounded hover:bg-primary/10"
-                        aria-label="Copy code"
-                      >
-                        <Copy size={16} />
-                      </button>
-                      <pre className="text-sm">
-                        Final Score = (Total Sales * 0.5) + (Estimated Consumers * 0.3) + (Avg Sale per Customer * 0.4) - (Avg Rent per Customer * 0.2)
-                      </pre>
-                    </div>
-                    <p className="text-sm text-muted-foreground mt-2">
-                      This formula balances revenue generation potential with cost efficiency, ensuring the best cities for expansion are chosen.
-                    </p>
-                  </CardContent>
-                </Card>
-              </section>
-                
-              {/* Top 3 Cities Section */}
-              <section id="top-cities" className="scroll-mt-24 mb-16">
-                <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
-                  <Rocket className="text-primary" /> Top 3 Cities for Expansion
-                </h2>
-                <div className="text-muted-foreground mb-6">
-                  After applying the weighted scoring system, the top 3 cities for business expansion are:
-                </div>
+              </CardContent>
+            </Card>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                  <TopCityCard 
-                    position="🥇" 
-                    city="Pune" 
-                    description="Strong revenue, high customer spending, and reasonable rent costs."
-                  />
-                  <TopCityCard 
-                    position="🥈" 
-                    city="Chennai" 
-                    description="Large customer base with solid sales performance."
-                  />
-                  <TopCityCard 
-                    position="🥉" 
-                    city="Delhi" 
-                    description="High market potential despite moderate spending per customer."
-                  />
+            <Card className="border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 bg-gray-900/50">
+              <CardHeader className="text-center pb-4">
+                <div className="mx-auto h-16 w-16 bg-yellow-900/50 rounded-full flex items-center justify-center mb-4">
+                  <DollarSign className="h-8 w-8 text-yellow-400" />
                 </div>
-
-                <h3 className="text-lg font-medium mb-4">City Metrics Table</h3>
-                <div className="overflow-x-auto mb-6">
-                  <table className="w-full border-collapse">
-                    <thead>
-                      <tr className="bg-accent/50">
-                        <th className="border border-border p-2 text-left">City Name</th>
-                        <th className="border border-border p-2 text-left">Total Sales</th>
-                        <th className="border border-border p-2 text-left">Estimated Consumers</th>
-                        <th className="border border-border p-2 text-left">Avg Sale per Customer</th>
-                        <th className="border border-border p-2 text-left">Avg Rent per Customer</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="hover:bg-accent/20">
-                        <td className="border border-border p-2">Pune</td>
-                        <td className="border border-border p-2">1,258,290</td>
-                        <td className="border border-border p-2">1,875,000</td>
-                        <td className="border border-border p-2">24,198</td>
-                        <td className="border border-border p-2">294</td>
-                      </tr>
-                      <tr className="hover:bg-accent/20">
-                        <td className="border border-border p-2">Chennai</td>
-                        <td className="border border-border p-2">944,120</td>
-                        <td className="border border-border p-2">2,775,000</td>
-                        <td className="border border-border p-2">22,479</td>
-                        <td className="border border-border p-2">407</td>
-                      </tr>
-                      <tr className="hover:bg-accent/20">
-                        <td className="border border-border p-2">Bangalore</td>
-                        <td className="border border-border p-2">860,110</td>
-                        <td className="border border-border p-2">3,075,000</td>
-                        <td className="border border-border p-2">22,054</td>
-                        <td className="border border-border p-2">762</td>
-                      </tr>
-                      <tr className="hover:bg-accent/20">
-                        <td className="border border-border p-2">Delhi</td>
-                        <td className="border border-border p-2">750,420</td>
-                        <td className="border border-border p-2">7,750,000</td>
-                        <td className="border border-border p-2">11,036</td>
-                        <td className="border border-border p-2">331</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                <div className="bg-card/5 p-2 rounded-md overflow-hidden">
-                  <img 
-                    src="/cityscore.png" 
-                    alt="Final Visualization" 
-                    className="w-full h-auto rounded-md shadow-md border border-border/50" 
-                  />
-                </div>
-              </section>
-                
-              {/* Ad Hoc Requests Section - Updated with collapsible questions */}
-              <section id="ad-hoc-requests" className="scroll-mt-24 mb-16">
-                <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
-                  <Database className="text-primary" /> Ad Hoc Requests
-                </h2>
-                
-                <div className="space-y-4">
-                  {/* Using Collapsible component from UI library for each question */}
-                  <Collapsible className="border border-border/50 rounded-md">
-                    <CollapsibleTrigger className="flex justify-between items-center w-full p-4 text-left hover:bg-accent/10 transition-colors">
-                      <h3 className="text-lg font-medium">🔎 Q1: Coffee Consumers Count</h3>
-                      <div className="text-muted-foreground">
-                        <ChevronDown className="h-5 w-5" />
-                      </div>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent className="p-6 pt-0 border-t border-border/50">
-                      <p className="text-muted-foreground mb-4">How many people in each city are estimated to consume coffee, given that 25% of the population does?</p>
-                      
-                      <Accordion type="single" collapsible className="w-full mb-4">
-                        <AccordionItem value="question-1-sql">
-                          <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
-                            SQL Query
-                          </AccordionTrigger>
-                          <AccordionContent>
-                            <div className="bg-card/20 p-4 rounded-md overflow-x-auto relative">
-                              <button 
-                                onClick={() => copyToClipboard(`SELECT 
-    city_name,
-    ROUND((population * 0.25)/1000000, 2) AS coffee_consumers_in_millions,
-    city_rank
-FROM city
-ORDER BY 2 DESC;`)}
-                                className="absolute right-2 top-2 p-1 rounded hover:bg-primary/10"
-                                aria-label="Copy code"
-                              >
-                                <Copy size={16} />
-                              </button>
-                              <pre className="text-sm">
-{`SELECT 
-    city_name,
-    ROUND((population * 0.25)/1000000, 2) AS coffee_consumers_in_millions,
-    city_rank
-FROM city
-ORDER BY 2 DESC;`}
-                              </pre>
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
-                      
-                      <div className="mb-4">
-                        <h4 className="text-base font-medium mb-2">Result:</h4>
-                        <img 
-                          src="/cq1.png" 
-                          alt="Coffee Consumers Count Query Result" 
-                          className="w-full rounded-md border border-border/50" 
-                        />
-                      </div>
-                    </CollapsibleContent>
-                  </Collapsible>
-                  
-                  <Collapsible className="border border-border/50 rounded-md">
-                    <CollapsibleTrigger className="flex justify-between items-center w-full p-4 text-left hover:bg-accent/10 transition-colors">
-                      <h3 className="text-lg font-medium">🔎 Q2: Total Revenue from Coffee Sales</h3>
-                      <div className="text-muted-foreground">
-                        <ChevronDown className="h-5 w-5" />
-                      </div>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent className="p-6 pt-0 border-t border-border/50">
-                      <p className="text-muted-foreground mb-4">What is the total revenue generated from coffee sales across all cities in the last quarter of 2023?</p>
-                      
-                      <Accordion type="single" collapsible className="w-full mb-4">
-                        <AccordionItem value="question-2-sql">
-                          <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
-                            SQL Query
-                          </AccordionTrigger>
-                          <AccordionContent>
-                            <div className="bg-card/20 p-4 rounded-md overflow-x-auto relative">
-                              <button 
-                                onClick={() => copyToClipboard(`SELECT 
-    SUM(total) AS total_revenue
-FROM sales
-WHERE 
-    EXTRACT(YEAR FROM sale_date) = 2023
-    AND EXTRACT(QUARTER FROM sale_date) = 4;
-
-SELECT 
-    ci.city_name,
-    SUM(s.total) AS total_revenue
-FROM sales AS s
-JOIN customers AS c ON s.customer_id = c.customer_id
-JOIN city AS ci ON ci.city_id = c.city_id
-WHERE 
-    EXTRACT(YEAR FROM s.sale_date) = 2023
-    AND EXTRACT(QUARTER FROM s.sale_date) = 4
-GROUP BY 1
-ORDER BY 2 DESC;`)}
-                                className="absolute right-2 top-2 p-1 rounded hover:bg-primary/10"
-                                aria-label="Copy code"
-                              >
-                                <Copy size={16} />
-                              </button>
-                              <pre className="text-sm">
-{`SELECT 
-    SUM(total) AS total_revenue
-FROM sales
-WHERE 
-    EXTRACT(YEAR FROM sale_date) = 2023
-    AND EXTRACT(QUARTER FROM sale_date) = 4;
-
-SELECT 
-    ci.city_name,
-    SUM(s.total) AS total_revenue
-FROM sales AS s
-JOIN customers AS c ON s.customer_id = c.customer_id
-JOIN city AS ci ON ci.city_id = c.city_id
-WHERE 
-    EXTRACT(YEAR FROM s.sale_date) = 2023
-    AND EXTRACT(QUARTER FROM s.sale_date) = 4
-GROUP BY 1
-ORDER BY 2 DESC;`}
-                              </pre>
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
-                      
-                      <div className="mb-4">
-                        <h4 className="text-base font-medium mb-2">Result:</h4>
-                        <img 
-                          src="/cq2.png" 
-                          alt="Total Revenue Query Result" 
-                          className="w-full rounded-md border border-border/50" 
-                        />
-                      </div>
-                    </CollapsibleContent>
-                  </Collapsible>
-                  
-                  <Collapsible className="border border-border/50 rounded-md">
-                    <CollapsibleTrigger className="flex justify-between items-center w-full p-4 text-left hover:bg-accent/10 transition-colors">
-                      <h3 className="text-lg font-medium">🔎 Q3: Sales Count for Each Product</h3>
-                      <div className="text-muted-foreground">
-                        <ChevronDown className="h-5 w-5" />
-                      </div>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent className="p-6 pt-0 border-t border-border/50">
-                      <p className="text-muted-foreground mb-4">How many units of each coffee product have been sold?</p>
-                      
-                      <Accordion type="single" collapsible className="w-full mb-4">
-                        <AccordionItem value="question-3-sql">
-                          <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
-                            SQL Query
-                          </AccordionTrigger>
-                          <AccordionContent>
-                            <div className="bg-card/20 p-4 rounded-md overflow-x-auto relative">
-                              <button 
-                                onClick={() => copyToClipboard(`SELECT 
-    p.product_name,
-    COUNT(s.sale_id) AS total_orders
-FROM products AS p
-LEFT JOIN sales AS s ON s.product_id = p.product_id
-GROUP BY 1
-ORDER BY 2 DESC;`)}
-                                className="absolute right-2 top-2 p-1 rounded hover:bg-primary/10"
-                                aria-label="Copy code"
-                              >
-                                <Copy size={16} />
-                              </button>
-                              <pre className="text-sm">
-{`SELECT 
-    p.product_name,
-    COUNT(s.sale_id) AS total_orders
-FROM products AS p
-LEFT JOIN sales AS s ON s.product_id = p.product_id
-GROUP BY 1
-ORDER BY 2 DESC;`}
-                              </pre>
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
-                      
-                      <div className="mb-4">
-                        <h4 className="text-base font-medium mb-2">Result:</h4>
-                        <img 
-                          src="/cq3.png" 
-                          alt="Sales Count Query Result" 
-                          className="w-full rounded-md border border-border/50" 
-                        />
-                      </div>
-                    </CollapsibleContent>
-                  </Collapsible>
-                  
-                  <Collapsible className="border border-border/50 rounded-md">
-                    <CollapsibleTrigger className="flex justify-between items-center w-full p-4 text-left hover:bg-accent/10 transition-colors">
-                      <h3 className="text-lg font-medium">🔎 Q4: Average Sales Amount per City</h3>
-                      <div className="text-muted-foreground">
-                        <ChevronDown className="h-5 w-5" />
-                      </div>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent className="p-6 pt-0 border-t border-border/50">
-                      <p className="text-muted-foreground mb-4">What is the average sales amount per customer in each city?</p>
-                      
-                      <Accordion type="single" collapsible className="w-full mb-4">
-                        <AccordionItem value="question-4-sql">
-                          <AccordionTrigger className="hover:text-primary text-base font-medium py-3">
-                            SQL Query
-                          </AccordionTrigger>
-                          <AccordionContent>
-                            <div className="bg-card/20 p-4 rounded-md overflow-x-auto relative">
-                              <button 
-                                onClick={() => copyToClipboard(`SELECT 
-    ci.city_name,
-    ROUND(AVG(s.total), 2) AS avg_sale_amount
-FROM sales AS s
-JOIN customers AS c ON s.customer_id = c.customer_id
-JOIN city AS ci ON c.city_id = ci.city_id
-GROUP BY 1
-ORDER BY 2 DESC;`)}
-                                className="absolute right-2 top-2 p-1 rounded hover:bg-primary/10"
-                                aria-label="Copy code"
-                              >
-                                <Copy size={16} />
-                              </button>
-                              <pre className="text-sm">
-{`SELECT 
-    ci.city_name,
-    ROUND(AVG(s.total), 2) AS avg_sale_amount
-FROM sales AS s
-JOIN customers AS c ON s.customer_id = c.customer_id
-JOIN city AS ci ON c.city_id = ci.city_id
-GROUP BY 1
-ORDER BY 2 DESC;`}
-                              </pre>
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
-                      
-                      <div className="mb-4">
-                        <h4 className="text-base font-medium mb-2">Result:</h4>
-                        <img 
-                          src="/cq4.png" 
-                          alt="Average Sales Query Result" 
-                          className="w-full rounded-md border border-border/50" 
-                        />
-                      </div>
-                    </CollapsibleContent>
-                  </Collapsible>
-                  
-                  {/* You can add additional collapsible sections for other Ad Hoc requests */}
-                </div>
-              </section>
-              
-              {/* Conclusion Section */}
-              <section id="conclusion" className="scroll-mt-24 mb-16">
-                <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
-                  <CheckCircle2 className="text-primary" /> Conclusion
-                </h2>
-                <div className="text-muted-foreground mb-4">
-                  Based on our comprehensive analysis using weighted scoring of multiple business factors:
-                </div>
-                
-                <ul className="list-none space-y-2 text-muted-foreground mb-6">
-                  <li className="flex items-start">
-                    <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">1</span>
-                    <strong>Pune</strong> emerges as the top choice for business expansion with the best balance of high revenue potential and reasonable operating costs.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">2</span>
-                    <strong>Chennai</strong> ranks second with its large customer base and strong sales performance.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">3</span>
-                    <strong>Delhi</strong> secures the third position with significant market potential despite moderate customer spending.
-                  </li>
+                <CardTitle className="text-xl font-semibold text-white">💰 Financial Modeling</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-gray-300">
+                  <li>• Multi-tier tariff analysis</li>
+                  <li>• Inflation & demand projections</li>
+                  <li>• CAPEX, OPEX, & subsidy integration</li>
+                  <li>• NPV, ROI, IRR calculations</li>
                 </ul>
-                
-                <div className="bg-accent/10 p-6 rounded-lg border border-border/50">
-                  <h3 className="text-lg font-medium mb-3">Recommendation</h3>
-                  <p className="text-muted-foreground">
-                    Monday Coffee should prioritize expansion into Pune first, followed by Chennai and Delhi. This strategic expansion plan aligns with the company's growth objectives while balancing revenue potential with operational costs.
-                  </p>
-                </div>
-              </section>
-            </div>
-            
-            {/* Sidebar Column - optional sidebar content */}
-            <div className="hidden lg:block">
-              <div className="sticky top-[120px]">
-                <h3 className="text-lg font-medium mb-4">Project Details</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <Database className="h-5 w-5 text-primary mt-0.5" />
-                    <div>
-                      <h4 className="text-sm font-medium">Data Source</h4>
-                      <p className="text-xs text-muted-foreground">Internal company database</p>
-                    </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Key Financial Metrics */}
+        <section className="mb-16">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="h-8 w-1 bg-blue-600 rounded-full"></div>
+            <h2 className="text-3xl font-bold text-white">
+              💡 Key Insights & Outputs
+            </h2>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+            {keyMetrics.map((item, index) => (
+              <Card key={index} className="border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 bg-gray-900/50">
+                <CardContent className="p-6 text-center">
+                  <div className="mx-auto h-12 w-12 bg-blue-900/50 rounded-full flex items-center justify-center mb-4">
+                    {item.icon}
                   </div>
-                  
-                  <div className="flex items-start gap-3">
-                    <LineChart className="h-5 w-5 text-primary mt-0.5" />
-                    <div>
-                      <h4 className="text-sm font-medium">Analysis Tools</h4>
-                      <p className="text-xs text-muted-foreground">SQL, Excel, Tableau</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-3">
-                    <Monitor className="h-5 w-5 text-primary mt-0.5" />
-                    <div>
-                      <h4 className="text-sm font-medium">Project Duration</h4>
-                      <p className="text-xs text-muted-foreground">3 weeks</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-3">
-                    <Lightbulb className="h-5 w-5 text-primary mt-0.5" />
-                    <div>
-                      <h4 className="text-sm font-medium">Key Insight</h4>
-                      <p className="text-xs text-muted-foreground">Rent costs had less impact on overall profitability than expected when balanced against higher customer spending.</p>
-                    </div>
+                  <h3 className="font-semibold text-white mb-2">{item.metric}</h3>
+                  <p className="text-2xl font-bold text-blue-400">{item.value}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          
+          {/* Chart Placeholders */}
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="border-gray-800 shadow-lg bg-gray-900/50">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-white">
+                  <BarChart3 className="h-5 w-5" />
+                  Solar vs Grid Cost Comparison
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="h-64 bg-gray-800 rounded-lg flex items-center justify-center">
+                  <div className="text-center text-gray-400">
+                    <BarChart3 className="h-12 w-12 mx-auto mb-2" />
+                    <p>Chart Placeholder</p>
+                    <p className="text-sm">Comparative cost analysis over 25 years</p>
                   </div>
                 </div>
-                
-                <div className="mt-8">
-                  <h3 className="text-lg font-medium mb-4">Resources</h3>
-                  <div className="space-y-3">
-                    <a 
-                      href="https://github.com/Subhrajyouti/Monday_cofee_sales_store_expansion/tree/main" 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
-                    >
-                      <Github className="h-4 w-4" />
-                      GitHub Repository
-                    </a>
-                    <a 
-                      href="#"
-                      className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
-                    >
-                      <FileText className="h-4 w-4" />
-                      Full Report (PDF)
-                    </a>
-                    <a 
-                      href="#"
-                      className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                      Interactive Dashboard
-                    </a>
+              </CardContent>
+            </Card>
+
+            <Card className="border-gray-800 shadow-lg bg-gray-900/50">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-white">
+                  <Leaf className="h-5 w-5" />
+                  CO₂ Avoidance Impact
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="h-64 bg-gray-800 rounded-lg flex items-center justify-center">
+                  <div className="text-center text-gray-400">
+                    <Leaf className="h-12 w-12 mx-auto mb-2" />
+                    <p>Chart Placeholder</p>
+                    <p className="text-sm">Environmental impact visualization</p>
                   </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Interactive Calculator */}
+        <section className="mb-16">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="h-8 w-1 bg-green-600 rounded-full"></div>
+            <h2 className="text-3xl font-bold text-white">
+              🧮 Try Our Solar Calculator
+            </h2>
+          </div>
+          
+          <Card className="border-gray-800 shadow-lg bg-gray-900/50">
+            <CardContent className="p-8">
+              <div className="h-96 bg-gradient-to-br from-blue-900/20 to-green-900/20 rounded-lg flex items-center justify-center">
+                <div className="text-center">
+                  <Calculator className="h-16 w-16 mx-auto mb-4 text-blue-400" />
+                  <h3 className="text-xl font-semibold text-white mb-2">Interactive Calculator</h3>
+                  <p className="text-gray-300 mb-6">Input your location and consumption to calculate your payback, savings, and subsidy.</p>
+                  <Button className="bg-green-600 hover:bg-green-700">
+                    Launch Calculator
+                    <ExternalLink className="h-4 w-4 ml-2" />
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Downloads */}
+        <section className="mb-16">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="h-8 w-1 bg-blue-600 rounded-full"></div>
+            <h2 className="text-3xl font-bold text-white">
+              📂 Download Project Files
+            </h2>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {downloadFiles.map((file, index) => (
+              <Card key={index} className="border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer bg-gray-900/50">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-4">
+                    <div className="h-12 w-12 bg-blue-900/50 rounded-lg flex items-center justify-center">
+                      {file.icon}
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-white">{file.name}</h4>
+                      <Badge variant="secondary" className="mt-1 bg-gray-700 text-gray-300">{file.type}</Badge>
+                    </div>
+                    <Download className="h-5 w-5 text-gray-400" />
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Image Showcase */}
+        <section className="mb-16">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="h-8 w-1 bg-green-600 rounded-full"></div>
+            <h2 className="text-3xl font-bold text-white">
+              🌇 Real-World Visuals
+            </h2>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="border-gray-800 shadow-lg overflow-hidden bg-gray-900/50">
+              <div className="h-48 bg-gradient-to-br from-yellow-900/30 to-orange-900/30 flex items-center justify-center">
+                <Sun className="h-16 w-16 text-yellow-400" />
+              </div>
+              <CardContent className="p-4">
+                <p className="text-sm text-gray-300">PVsyst simulation snapshot showing optimal tilt and orientation analysis</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-gray-800 shadow-lg overflow-hidden bg-gray-900/50">
+              <div className="h-48 bg-gradient-to-br from-blue-900/30 to-green-900/30 flex items-center justify-center">
+                <Settings className="h-16 w-16 text-blue-400" />
+              </div>
+              <CardContent className="p-4">
+                <p className="text-sm text-gray-300">Waaree 545Wp panel installation on typical Assam residence</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-gray-800 shadow-lg overflow-hidden bg-gray-900/50">
+              <div className="h-48 bg-gradient-to-br from-green-900/30 to-blue-900/30 flex items-center justify-center">
+                <BarChart3 className="h-16 w-16 text-green-400" />
+              </div>
+              <CardContent className="p-4">
+                <p className="text-sm text-gray-300">Financial model dashboard showing 25-year projections and ROI analysis</p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* References */}
+        <section className="mb-16">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="h-8 w-1 bg-blue-600 rounded-full"></div>
+            <h2 className="text-3xl font-bold text-white">
+              📘 References & Resources
+            </h2>
+          </div>
+          
+          <Card className="border-gray-800 shadow-lg bg-gray-900/50">
+            <CardContent className="p-8">
+              <ul className="space-y-4">
+                {references.map((reference, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <div className="h-2 w-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-gray-300">{reference}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        </section>
+      </div>
+
+      {/* Footer Section */}
+      <footer className="bg-gray-900 border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="text-lg font-semibold text-white mb-4">Contact Information</h3>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <Mail className="h-5 w-5 text-gray-400" />
+                  <span className="text-gray-300">thesubhrajyotimahanta@gmail.com</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Phone className="h-5 w-5 text-gray-400" />
+                  <span className="text-gray-300">+91 6002967278</span>
                 </div>
               </div>
             </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold text-white mb-4">Connect</h3>
+              <div className="flex gap-4">
+                <a href="https://github.com/Subhrajyouti" className="text-gray-400 hover:text-gray-300">
+                  <Github className="h-6 w-6" />
+                </a>
+                <a href="https://www.linkedin.com/in/subhrajyotimahanta/" className="text-gray-400 hover:text-gray-300">
+                  <Linkedin className="h-6 w-6" />
+                </a>
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold text-white mb-4">Project Credits</h3>
+              <p className="text-gray-300">Designed and developed by</p>
+              <p className="font-semibold text-white">Subhrajyoti Mahanta</p>
+              <p className="text-sm text-gray-400 mt-2">© 2024 All rights reserved</p>
+            </div>
           </div>
         </div>
-        
-        {/* Footer */}
-        <Footer />
-      </main>
+      </footer>
     </div>
   );
 };
 
-export default MondayCoffeeProjectCopy;
-
+export default SolarViabilityProject;

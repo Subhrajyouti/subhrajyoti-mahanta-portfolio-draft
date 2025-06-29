@@ -19,9 +19,9 @@ interface Project {
 const projects: Project[] = [
   {
     id: 10,
-    title: "Residential Solar Feasibility & Financial Model – Assam, India (PM Surya Ghar Yojana based)",
+    title: "Solar Viability Assessment - Assam",
     description: "Comprehensive feasibility study for residential rooftop solar under PM Surya Ghar Yojana using PVsyst modeling and financial analysis",
-    image: "/solar.jpg",
+    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     tags: ["PVsyst", "Financial Modeling", "Solar Energy", "Policy Analysis"],
     slug: "solar-viability-assam"
   },
@@ -31,9 +31,9 @@ const projects: Project[] = [
     description: "Analyzing city performance to determine the best locations for business expansion using data-driven insights",
     image: "/solar.jpg",
     tags: ["Energy Analysis", "PvSyst Analysis", "Financial Modelling", "Meteriological Analysis"],
-    slug: "residentalsolaranalysis"
+    slug: "monday-coffee-project-copy"
   },
-  {res
+  {
     id: 9,
     title: "Monday Coffee Business Expansion Analysis",
     description: "Analyzing city performance to determine the best locations for business expansion using data-driven insights",
@@ -87,7 +87,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
     : project.slug === "monday-coffee-project"
     ? "/monday-coffee-project"
     : project.slug === "residental-solar-analysis"
-    ? "/residental-solar-analysis"
+    ? "/monday-coffee-project-copy"
     : project.slug === "solar-viability-assam"
     ? "/solar-viability-assam"
     : `/project/${project.slug}`;
