@@ -27,10 +27,10 @@ const projects: Project[] = [
   },
   {
     id: 11,
-    title: "Monday Coffee Business Expansion Analysis - Copy",
+    title: "Residential Solar Feasibility & Financial Model – Assam, India (PM Surya Ghar Yojana based)",
     description: "Analyzing city performance to determine the best locations for business expansion using data-driven insights",
-    image: "/coffee1.jpg",
-    tags: ["SQL", "Data Analysis", "Weighted Scoring", "Decision Making"],
+    image: "/solar.jpg",
+    tags: ["Energy Analysis", "PvSyst Analysis", "Financial Modelling", "Meteriological Analysis"],
     slug: "monday-coffee-project-copy"
   },
   {
@@ -86,7 +86,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
     ? "/data-job-market-analysis"
     : project.slug === "monday-coffee-project"
     ? "/monday-coffee-project"
-    : project.slug === "monday-coffee-project-copy"
+    : project.slug === "residental-solar-analysis"
     ? "/monday-coffee-project-copy"
     : project.slug === "solar-viability-assam"
     ? "/solar-viability-assam"

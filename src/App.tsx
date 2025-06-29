@@ -11,7 +11,7 @@ import NotFound from "./pages/NotFound";
 import GoodCabsProject from "./pages/GoodCabsProject";
 import DataJobMarketProject from "./pages/DataJobMarketProject";
 import MondayCoffeeProject from "./pages/MondayCoffeeProject";
-import MondayCoffeeProjectCopy from "./pages/MondayCoffeeProjectCopy";
+import MondayCoffeeProjectCopy from "./pages/residental-solar-analysis";
 import SolarViabilityProject from "./pages/SolarViabilityProject";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import "./styles/global.css";
