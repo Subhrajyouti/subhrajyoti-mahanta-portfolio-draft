@@ -1,3 +1,4 @@
+
 import { ExternalLink } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -19,7 +20,7 @@ const projects: Project[] = [
     id: 10,
     title: "Solar Viability Assessment - Assam",
     description: "Comprehensive feasibility study for residential rooftop solar under PM Surya Ghar Yojana using PVsyst modeling and financial analysis",
-    image: "/solar-panel.jpg",
+    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     tags: ["PVsyst", "Financial Modeling", "Solar Energy", "Policy Analysis"],
     slug: "solar-viability-assam"
   },
