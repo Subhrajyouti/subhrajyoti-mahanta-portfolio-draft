@@ -25,14 +25,7 @@ const projects: Project[] = [
     tags: ["PVsyst", "Financial Modeling", "Solar Energy", "Policy Analysis"],
     slug: "solar-viability-assam"
   },
-  {
-    id: 11,
-    title: "Residential Solar Feasibility & Financial Model – Assam, India (PM Surya Ghar Yojana based)",
-    description: "Analyzing city performance to determine the best locations for business expansion using data-driven insights",
-    image: "/solar.jpg",
-    tags: ["Energy Analysis", "PvSyst Analysis", "Financial Modelling", "Meteriological Analysis"],
-    slug: "monday-coffee-project-copy"
-  },
+  
   {
     id: 9,
     title: "Monday Coffee Business Expansion Analysis",
