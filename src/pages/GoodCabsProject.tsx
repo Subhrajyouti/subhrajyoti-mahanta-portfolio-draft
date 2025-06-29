@@ -124,7 +124,7 @@ const GoodCabsProject = () => {
                     <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
                     Analyze GoodCabs' business performance through data-driven insights.
                   </li>
-                  <li className="flex items-start">
+                  <li className ="flex items-start">
                     <span className="inline-flex justify-center items-center h-5 w-5 text-[10px] rounded-full bg-primary text-white font-bold mr-2 mt-0.5">✓</span>
                     Identify revenue trends, passenger behavior, and city-wise performance.
                   </li>
