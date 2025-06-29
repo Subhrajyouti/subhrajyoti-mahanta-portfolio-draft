@@ -1,4 +1,3 @@
-
 import { ExternalLink } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -16,6 +15,14 @@ interface Project {
 }
 
 const projects: Project[] = [
+  {
+    id: 10,
+    title: "Solar Viability Assessment - Assam",
+    description: "Comprehensive feasibility study for residential rooftop solar under PM Surya Ghar Yojana using PVsyst modeling and financial analysis",
+    image: "/solar-panel.jpg",
+    tags: ["PVsyst", "Financial Modeling", "Solar Energy", "Policy Analysis"],
+    slug: "solar-viability-assam"
+  },
   {
     id: 9,
     title: "Monday Coffee Business Expansion Analysis",
@@ -69,6 +76,8 @@ const ProjectCard = ({ project }: { project: Project }) => {
     ? "/data-job-market-analysis"
     : project.slug === "monday-coffee-project"
     ? "/monday-coffee-project"
+    : project.slug === "solar-viability-assam"
+    ? "/solar-viability-assam"
     : `/project/${project.slug}`;
 
   // Preload images 
