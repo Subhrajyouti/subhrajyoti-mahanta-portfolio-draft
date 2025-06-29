@@ -153,8 +153,8 @@ const MondayCoffeeProjectCopy = () => {
         {/* Hero Section with Cover Image */}
         <div className="relative h-[60vh] md:h-[70vh] overflow-hidden">
           <img 
-            src="/coffee1.jpg" 
-            alt="Monday Coffee Business Analysis" 
+            src="/solar.jpg" 
+            alt="Residential Solar Feasibility & Financial Model – Assam, India (PM Surya Ghar Yojana based)" 
             className="w-full h-full object-cover brightness-[0.7]"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background flex flex-col justify-end pb-20">
@@ -165,9 +165,9 @@ const MondayCoffeeProjectCopy = () => {
                   Back to Portfolio
                 </Link>
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Monday Coffee Business Expansion Analysis</h1>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Residential Solar Feasibility & Financial Model – Assam, India (PM Surya Ghar Yojana based)</h1>
               <p className="text-xl text-white/90 mb-6 max-w-2xl">
-                Analyzing city performance to determine the best locations for business expansion using data-driven insights.
+                A detailed energy-economic analysis using NASA TMY data, PVsyst simulations, and dynamic financial modeling.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
                 <Badge variant="outline" className="bg-white/20 text-white font-normal backdrop-blur-sm hover:-translate-y-0.5 transition-transform">SQL</Badge>
