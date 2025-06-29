@@ -31,9 +31,9 @@ const projects: Project[] = [
     description: "Analyzing city performance to determine the best locations for business expansion using data-driven insights",
     image: "/solar.jpg",
     tags: ["Energy Analysis", "PvSyst Analysis", "Financial Modelling", "Meteriological Analysis"],
-    slug: "monday-coffee-project-copy"
+    slug: "residentalsolaranalysis"
   },
-  {
+  {res
     id: 9,
     title: "Monday Coffee Business Expansion Analysis",
     description: "Analyzing city performance to determine the best locations for business expansion using data-driven insights",
@@ -87,7 +87,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
     : project.slug === "monday-coffee-project"
     ? "/monday-coffee-project"
     : project.slug === "residental-solar-analysis"
-    ? "/monday-coffee-project-copy"
+    ? "/residental-solar-analysis"
     : project.slug === "solar-viability-assam"
     ? "/solar-viability-assam"
     : `/project/${project.slug}`;
