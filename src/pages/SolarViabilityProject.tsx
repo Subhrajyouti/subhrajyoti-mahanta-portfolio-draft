@@ -331,36 +331,7 @@ const SolarViabilityProject = () => {
                   </Card>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                  <Card className="border border-green-200 bg-green-50/50 dark:bg-green-900/20 dark:border-green-800">
-                    <CardContent className="p-6">
-                      <h3 className="text-lg font-semibold mb-3 text-green-900 dark:text-green-100">Solar Module Specifications</h3>
-                      <div className="space-y-3 text-green-800 dark:text-green-200">
-                        <div>
-                          <h4 className="font-medium">Waaree Bi-55-540</h4>
-                          <p className="text-sm">540 Wp Framed Dual-Glass Mono-PERC Bifacial</p>
-                          <p className="text-sm">Maximum Power (Pₘₐₓ): 540 W at STC (1,000 W/m², AM 1.5, 25°C)</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="border border-orange-200 bg-orange-50/50 dark:bg-orange-900/20 dark:border-orange-800">
-                    <CardContent className="p-6">
-                      <h3 className="text-lg font-semibold mb-3 text-orange-900 dark:text-orange-100">System Performance Factors</h3>
-                      <div className="space-y-3 text-orange-800 dark:text-orange-200">
-                        <div>
-                          <h4 className="font-medium">ABB UNO-DM-3.0-TL-PLUS</h4>
-                          <p className="text-sm">3 kW On-Grid String Inverter</p>
-                          <p className="text-sm">AC Output: 3.0 kW maximum; 230 V, 50 Hz; max AC current 14.5 A</p>
-                        </div>
-                        <div>
-                          <h4 className="font-medium">Load: 3 kW</h4>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
+               
               </section>
 
               {/* Solar Module Specifications Section - Before Financial Modeling */}
