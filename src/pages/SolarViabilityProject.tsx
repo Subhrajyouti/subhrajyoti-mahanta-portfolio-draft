@@ -431,15 +431,15 @@ const SolarViabilityProject = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <Card className="text-center p-6">
-                    <div className="text-3xl font-bold text-green-600 mb-2">[XX]%</div>
+                    <div className="text-3xl font-bold text-green-600 mb-2">15.06%</div>
                     <div className="text-sm text-muted-foreground">Projected IRR</div>
                   </Card>
                   <Card className="text-center p-6">
-                    <div className="text-3xl font-bold text-blue-600 mb-2">[XX] Years</div>
+                    <div className="text-3xl font-bold text-blue-600 mb-2">7.24Years</div>
                     <div className="text-sm text-muted-foreground">Payback Period</div>
                   </Card>
                   <Card className="text-center p-6">
-                    <div className="text-3xl font-bold text-purple-600 mb-2">₹[XX] Lakhs</div>
+                    <div className="text-3xl font-bold text-purple-600 mb-2">₹1.84 Lakhs</div>
                     <div className="text-sm text-muted-foreground">Net Present Value</div>
                   </Card>
                 </div>
@@ -491,26 +491,26 @@ const SolarViabilityProject = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                   <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 border-green-200 dark:border-green-800">
                     <CardContent className="p-6 text-center">
-                      <div className="text-2xl font-bold text-green-700 dark:text-green-300 mb-2">[XX,XXX] kWh</div>
+                      <div className="text-2xl font-bold text-green-700 dark:text-green-300 mb-2">1,09,993 kWh</div>
                       <div className="text-sm text-green-600 dark:text-green-400">Annual Generation</div>
                     </CardContent>
                   </Card>
                   <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 border-blue-200 dark:border-blue-800">
                     <CardContent className="p-6 text-center">
-                      <div className="text-2xl font-bold text-blue-700 dark:text-blue-300 mb-2">₹[XX,XXX]</div>
-                      <div className="text-sm text-blue-600 dark:text-blue-400">Annual Savings</div>
+                      <div className="text-2xl font-bold text-blue-700 dark:text-blue-300 mb-2">₹7,97,996</div>
+                      <div className="text-sm text-blue-600 dark:text-blue-400">Total Savings</div>
                     </CardContent>
                   </Card>
                   <Card className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 border-purple-200 dark:border-purple-800">
                     <CardContent className="p-6 text-center">
-                      <div className="text-2xl font-bold text-purple-700 dark:text-purple-300 mb-2">[XX] Tons</div>
-                      <div className="text-sm text-purple-600 dark:text-purple-400">CO₂ Avoided/Year</div>
+                      <div className="text-2xl font-bold text-purple-700 dark:text-purple-300 mb-2">78332 KG</div>
+                      <div className="text-sm text-purple-600 dark:text-purple-400">CO₂ Avoided</div>
                     </CardContent>
                   </Card>
                   <Card className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 border-orange-200 dark:border-orange-800">
                     <CardContent className="p-6 text-center">
-                      <div className="text-2xl font-bold text-orange-700 dark:text-orange-300 mb-2">[XX]%</div>
-                      <div className="text-sm text-orange-600 dark:text-orange-400">Grid Independence</div>
+                      <div className="text-2xl font-bold text-orange-700 dark:text-orange-300 mb-2">7832</div>
+                      <div className="text-sm text-orange-600 dark:text-orange-400">Trees Saved</div>
                     </CardContent>
                   </Card>
                 </div>
@@ -522,19 +522,19 @@ const SolarViabilityProject = () => {
                       <div>
                         <h4 className="font-medium text-amber-800 dark:text-amber-200 mb-2">Energy Performance</h4>
                         <ul className="text-sm text-amber-700 dark:text-amber-300 space-y-1">
-                          <li>• System capacity: [XX] kW</li>
-                          <li>• Performance ratio: [XX]%</li>
-                          <li>• Capacity utilization factor: [XX]%</li>
-                          <li>• 25-year energy yield: [XXX,XXX] kWh</li>
+                          <li>• System capacity: 3 kW</li>
+                          <li>• Performance ratio: 79.07%</li>
+                          <li>• Capacity utilization factor: 59%</li>
+                          <li>• 25-year energy yield: 1,09,993 kWh</li>
                         </ul>
                       </div>
                       <div>
                         <h4 className="font-medium text-amber-800 dark:text-amber-200 mb-2">Financial Performance</h4>
                         <ul className="text-sm text-amber-700 dark:text-amber-300 space-y-1">
-                          <li>• Total project cost: ₹[XX] lakhs</li>
-                          <li>• Government subsidy: ₹[XX] lakhs</li>
-                          <li>• Net investment: ₹[XX] lakhs</li>
-                          <li>• 30-year NPV: ₹[XX] lakhs</li>
+                          <li>• Total project cost: ₹2.77 lakhs</li>
+                          <li>• Government subsidy: ₹1.23 lakhs</li>
+                          <li>• Net investment: ₹1.54 lakhs</li>
+                          <li>• 30-year NPV: ₹1.84 lakhs</li>
                         </ul>
                       </div>
                     </div>
@@ -570,15 +570,15 @@ const SolarViabilityProject = () => {
                     <div className="flex flex-wrap justify-center gap-4">
                       <div className="bg-white/20 rounded-lg px-4 py-2">
                         <div className="font-bold">Strong ROI</div>
-                        <div className="text-sm">[XX]% IRR</div>
+                        <div className="text-sm">15.06% IRR</div>
                       </div>
                       <div className="bg-white/20 rounded-lg px-4 py-2">
-                        <div className="font-bold">Quick Payback</div>
-                        <div className="text-sm">[XX] years</div>
+                        <div className="font-bold">Payback</div>
+                        <div className="text-sm">7.24 years</div>
                       </div>
                       <div className="bg-white/20 rounded-lg px-4 py-2">
                         <div className="font-bold">Long-term Value</div>
-                        <div className="text-sm">₹[XX]L+ savings</div>
+                        <div className="text-sm">₹7.97L+ savings</div>
                       </div>
                     </div>
                   </CardContent>
