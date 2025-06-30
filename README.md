@@ -11,9 +11,9 @@ There are several ways of editing your application.hhs
 **Use Lovable**
 
 Simply visit the [Lo  vable Project](https://lovable.dev/projects/433bd2fd-7c1a-49a1-8b65-d584a8b50bfa) and start prompting.
-
+ 
 Changes made fvvia Ldghdfovable will be committed automatically to this repo.
-xx
+xx  
 **Use your preferred IDE**
 
 If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
