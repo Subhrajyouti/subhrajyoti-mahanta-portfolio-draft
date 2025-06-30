@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { 
@@ -364,6 +363,81 @@ const SolarViabilityProject = () => {
                 </div>
               </section>
 
+              {/* Solar Module Specifications Section - Before Financial Modeling */}
+              <section className="scroll-mt-24 mb-16">
+                <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
+                  <Zap className="text-primary" /> Solar Module & System Specifications
+                </h2>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                  <Card className="border border-green-200 bg-green-50/50 dark:bg-green-900/20 dark:border-green-800">
+                    <CardContent className="p-6">
+                      <h3 className="text-lg font-semibold mb-3 text-green-900 dark:text-green-100">Waaree Solar Module</h3>
+                      <div className="space-y-3 text-green-800 dark:text-green-200">
+                        <div>
+                          <h4 className="font-medium">Waaree Bi-55-540</h4>
+                          <p className="text-sm">540 Wp Framed Dual-Glass Mono-PERC Bifacial</p>
+                          <p className="text-sm">Maximum Power (Pₘₐₓ): 540 W at STC</p>
+                          <p className="text-sm">(1,000 W/m², AM 1.5, 25°C)</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border border-orange-200 bg-orange-50/50 dark:bg-orange-900/20 dark:border-orange-800">
+                    <CardContent className="p-6">
+                      <h3 className="text-lg font-semibold mb-3 text-orange-900 dark:text-orange-100">Inverter Details</h3>
+                      <div className="space-y-3 text-orange-800 dark:text-orange-200">
+                        <div>
+                          <h4 className="font-medium">ABB UNO-DM-3.0-TL-PLUS</h4>
+                          <p className="text-sm">3 kW On-Grid String Inverter</p>
+                          <p className="text-sm">AC Output: 3.0 kW maximum</p>
+                          <p className="text-sm">230 V, 50 Hz; max AC current 14.5 A</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border border-blue-200 bg-blue-50/50 dark:bg-blue-900/20 dark:border-blue-800">
+                    <CardContent className="p-6">
+                      <h3 className="text-lg font-semibold mb-3 text-blue-900 dark:text-blue-100">Load Capacity</h3>
+                      <div className="space-y-3 text-blue-800 dark:text-blue-200">
+                        <div>
+                          <h4 className="font-medium">System Load</h4>
+                          <p className="text-sm">3 kW Maximum Load Capacity</p>
+                          <p className="text-sm">Residential Application</p>
+                          <p className="text-sm">Grid-tied Configuration</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                <Card className="border border-purple-200 bg-purple-50/50 dark:bg-purple-900/20 dark:border-purple-800">
+                  <CardContent className="p-6">
+                    <h3 className="text-lg font-semibold mb-4 text-purple-900 dark:text-purple-100">System Performance Metrics</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-purple-700 dark:text-purple-300 mb-2">1293 kWh/kWp/Year</div>
+                        <div className="text-sm text-purple-600 dark:text-purple-400">Energy Production</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-purple-700 dark:text-purple-300 mb-2">79%</div>
+                        <div className="text-sm text-purple-600 dark:text-purple-400">Performance Ratio</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-purple-700 dark:text-purple-300 mb-2">59%</div>
+                        <div className="text-sm text-purple-600 dark:text-purple-400">Solar Fraction</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-purple-700 dark:text-purple-300 mb-2">15 m²</div>
+                        <div className="text-sm text-purple-600 dark:text-purple-400">Required Area</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </section>
+
               {/* Section 3: Financial Modeling and Dashboard */}
               <section id="financial-modeling" className="scroll-mt-24 mb-16">
                 <h2 className="text-3xl font-semibold mb-6 flex items-center gap-2">
@@ -623,13 +697,15 @@ const SolarViabilityProject = () => {
                       <div className="flex items-center gap-3 mb-3">
                         <FileText className="h-8 w-8 text-red-500" />
                         <div>
-                          <h3 className="font-medium">Complete Study Report</h3>
-                          <p className="text-sm text-muted-foreground">Detailed PDF report with all analyses</p>
+                          <h3 className="font-medium">PVSyst Report</h3>
+                          <p className="text-sm text-muted-foreground">Detailed simulation analysis report</p>
                         </div>
                       </div>
-                      <Button variant="outline" size="sm" className="w-full">
-                        <Download className="h-4 w-4 mr-2" />
-                        Download PDF
+                      <Button variant="outline" size="sm" className="w-full" asChild>
+                        <a href="/PvSyst_Report.pdf" download="PvSyst_Report.pdf">
+                          <Download className="h-4 w-4 mr-2" />
+                          Download PDF
+                        </a>
                       </Button>
                     </CardContent>
                   </Card>
@@ -643,9 +719,11 @@ const SolarViabilityProject = () => {
                           <p className="text-sm text-muted-foreground">Excel-based calculation model</p>
                         </div>
                       </div>
-                      <Button variant="outline" size="sm" className="w-full">
-                        <Download className="h-4 w-4 mr-2" />
-                        Download Excel
+                      <Button variant="outline" size="sm" className="w-full" asChild>
+                        <a href="/Finacial Model.xlsx" download="Financial_Model.xlsx">
+                          <Download className="h-4 w-4 mr-2" />
+                          Download Excel
+                        </a>
                       </Button>
                     </CardContent>
                   </Card>
