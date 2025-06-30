@@ -268,15 +268,15 @@ const SolarViabilityProject = () => {
                     <ul className="space-y-2 text-blue-800 dark:text-blue-200">
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="h-5 w-5 mt-0.5 text-blue-600" />
-                        Average monthly consumption: [Placeholder for actual data] kWh
+                        Average monthly consumption: 133 kWh
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="h-5 w-5 mt-0.5 text-blue-600" />
-                        Peak consumption months: [Summer/Winter period analysis]
+                        Peak consumption months: May,June,August
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="h-5 w-5 mt-0.5 text-blue-600" />
-                        Load profile characteristics: [Residential usage patterns]
+                        Load profile characteristics: 3KW
                       </li>
                     </ul>
                   </CardContent>
