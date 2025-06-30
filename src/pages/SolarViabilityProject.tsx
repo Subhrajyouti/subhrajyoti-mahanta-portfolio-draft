@@ -245,21 +245,27 @@ const SolarViabilityProject = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                   <Card className="overflow-hidden border border-border/50 hover:shadow-lg transition-all duration-300">
-              <CardContent className="p-6">
-    <img 
-      src="/consumption.jpg" 
-      alt="Monthly Electricity Consumption"
-      className="w-full h-auto rounded-lg mb-4"
-    />
-    <h3 className="text-lg font-medium mb-2">Monthly Electricity Consumption</h3>
-    <p className="text-muted-foreground text-sm">Bar graph showing 12-month electricity consumption pattern</p>
-  </CardContent>
- </Card>
-                  <PlaceholderCard 
-                    title="Consumption Summary Table"
-                    description="Detailed monthly consumption values, average daily usage, and peak demand analysis for accurate system sizing."
-                    type="table"
-                  />
+                    <CardContent className="p-6">
+                      <img 
+                        src="/consumption.jpg" 
+                        alt="Monthly Electricity Consumption"
+                        className="w-full h-auto rounded-lg mb-4"
+                      />
+                      <h3 className="text-lg font-medium mb-2">Monthly Electricity Consumption</h3>
+                      <p className="text-muted-foreground text-sm">Bar graph showing 12-month electricity consumption pattern</p>
+                    </CardContent>
+                  </Card>
+                  <Card className="overflow-hidden border border-border/50 hover:shadow-lg transition-all duration-300">
+                    <CardContent className="p-6">
+                      <img 
+                        src="/consumption_summary.jpg" 
+                        alt="Consumption Summary Table"
+                        className="w-full h-auto rounded-lg mb-4"
+                      />
+                      <h3 className="text-lg font-medium mb-2">Consumption Summary Table</h3>
+                      <p className="text-muted-foreground text-sm">Detailed monthly consumption values, average daily usage, and peak demand analysis for accurate system sizing.</p>
+                    </CardContent>
+                  </Card>
                 </div>
 
                 <Card className="border border-blue-200 bg-blue-50/50 dark:bg-blue-900/20 dark:border-blue-800">
@@ -272,7 +278,7 @@ const SolarViabilityProject = () => {
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="h-5 w-5 mt-0.5 text-blue-600" />
-                        Peak consumption months: May,June,August
+                        Peak consumption months: May, June, August
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="h-5 w-5 mt-0.5 text-blue-600" />
@@ -294,29 +300,36 @@ const SolarViabilityProject = () => {
                     The energy yield analysis forms the technical backbone of this solar viability study, utilizing NASA's solar irradiance data and Technical Meteorological Year (TMY) datasets specifically calibrated for Assam's geographical coordinates. This methodology ensures highly accurate solar resource assessment and energy generation projections.
                   </p>
                   <p>
-                    Solar module selection was based on comprehensive evaluation of leading manufacturers, with detailed analysis of <strong>Waaree AHNAY Series</strong> and <strong>Adani ELAN PRIDE Series</strong> modules. The selection criteria included efficiency ratings, temperature coefficients, degradation rates, and warranty terms suitable for Assam's climatic conditions.
+                    Solar module selection was based on comprehensive evaluation of leading manufacturers, with detailed analysis of <strong>Waaree Bi-55-540</strong> modules. The selection criteria included efficiency ratings, temperature coefficients, degradation rates, and warranty terms suitable for Assam's climatic conditions.
                   </p>
                   <p>
                     PvSyst simulation software was employed to model the complete solar PV system, accounting for various loss factors including shading losses, soiling effects, temperature derating, inverter efficiency curves, DC and AC cabling losses, and system availability factors. This comprehensive modeling approach provides realistic energy generation estimates essential for accurate financial projections.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                  <PlaceholderCard 
-                    title="Solar Irradiance Analysis"
-                    description="NASA TMY data visualization showing annual solar irradiance patterns and seasonal variations for Assam region."
-                    type="chart"
-                  />
-                  <PlaceholderCard 
-                    title="Annual Energy Generation"
-                    description="PvSyst simulation results showing monthly energy generation capacity and annual yield projections."
-                    type="graph"
-                  />
-                  <PlaceholderCard 
-                    title="System Loss Breakdown"
-                    description="Comprehensive diagram illustrating various system losses and their impact on overall energy generation efficiency."
-                    type="chart"
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                  <Card className="overflow-hidden border border-border/50 hover:shadow-lg transition-all duration-300">
+                    <CardContent className="p-6">
+                      <img 
+                        src="/GHI.jpg" 
+                        alt="Global Horizontal Irradiance Analysis"
+                        className="w-full h-auto rounded-lg mb-4"
+                      />
+                      <h3 className="text-lg font-medium mb-2">Solar Irradiance Analysis</h3>
+                      <p className="text-muted-foreground text-sm">NASA TMY data visualization showing annual solar irradiance patterns and seasonal variations for Assam region.</p>
+                    </CardContent>
+                  </Card>
+                  <Card className="overflow-hidden border border-border/50 hover:shadow-lg transition-all duration-300">
+                    <CardContent className="p-6">
+                      <img 
+                        src="/yield.jpg" 
+                        alt="Annual Energy Generation"
+                        className="w-full h-auto rounded-lg mb-4"
+                      />
+                      <h3 className="text-lg font-medium mb-2">Annual Energy Generation</h3>
+                      <p className="text-muted-foreground text-sm">PvSyst simulation results showing monthly energy generation capacity and annual yield projections.</p>
+                    </CardContent>
+                  </Card>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -325,12 +338,9 @@ const SolarViabilityProject = () => {
                       <h3 className="text-lg font-semibold mb-3 text-green-900 dark:text-green-100">Solar Module Specifications</h3>
                       <div className="space-y-3 text-green-800 dark:text-green-200">
                         <div>
-                          <h4 className="font-medium">Waaree AHNAY Series</h4>
-                          <p className="text-sm">Monocrystalline technology, [Power rating] W, [Efficiency]% efficiency</p>
-                        </div>
-                        <div>
-                          <h4 className="font-medium">Adani ELAN PRIDE Series</h4>
-                          <p className="text-sm">Advanced cell technology, [Power rating] W, [Efficiency]% efficiency</p>
+                          <h4 className="font-medium">Waaree Bi-55-540</h4>
+                          <p className="text-sm">540 Wp Framed Dual-Glass Mono-PERC Bifacial</p>
+                          <p className="text-sm">Maximum Power (Pₘₐₓ): 540 W at STC (1,000 W/m², AM 1.5, 25°C)</p>
                         </div>
                       </div>
                     </CardContent>
@@ -339,12 +349,16 @@ const SolarViabilityProject = () => {
                   <Card className="border border-orange-200 bg-orange-50/50 dark:bg-orange-900/20 dark:border-orange-800">
                     <CardContent className="p-6">
                       <h3 className="text-lg font-semibold mb-3 text-orange-900 dark:text-orange-100">System Performance Factors</h3>
-                      <ul className="space-y-2 text-orange-800 dark:text-orange-200">
-                        <li className="flex justify-between"><span>Inverter Efficiency:</span><span>[XX]%</span></li>
-                        <li className="flex justify-between"><span>Temperature Losses:</span><span>[XX]%</span></li>
-                        <li className="flex justify-between"><span>Soiling Losses:</span><span>[XX]%</span></li>
-                        <li className="flex justify-between"><span>System Availability:</span><span>[XX]%</span></li>
-                      </ul>
+                      <div className="space-y-3 text-orange-800 dark:text-orange-200">
+                        <div>
+                          <h4 className="font-medium">ABB UNO-DM-3.0-TL-PLUS</h4>
+                          <p className="text-sm">3 kW On-Grid String Inverter</p>
+                          <p className="text-sm">AC Output: 3.0 kW maximum; 230 V, 50 Hz; max AC current 14.5 A</p>
+                        </div>
+                        <div>
+                          <h4 className="font-medium">Load: 3 kW</h4>
+                        </div>
+                      </div>
                     </CardContent>
                   </Card>
                 </div>
@@ -368,17 +382,32 @@ const SolarViabilityProject = () => {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                  <PlaceholderCard 
-                    title="Financial Metrics Summary"
-                    description="Comprehensive table displaying ROI, IRR, NPV, and Payback Period calculations with scenario analysis."
-                    type="table"
-                  />
-                  <PlaceholderCard 
-                    title="Sensitivity Analysis"
-                    description="Tornado chart showing the impact of key variables on financial performance and risk assessment."
-                    type="chart"
-                  />
+                <div className="mb-8">
+                  <Card className="overflow-hidden border border-border/50 hover:shadow-lg transition-all duration-300">
+                    <CardContent className="p-6">
+                      <img 
+                        src="/financial_model.jpg" 
+                        alt="Financial Model Overview"
+                        className="w-full h-auto rounded-lg mb-4"
+                      />
+                      <h3 className="text-lg font-medium mb-2">Financial Metrics Summary</h3>
+                      <p className="text-muted-foreground text-sm">Comprehensive table displaying ROI, IRR, NPV, and Payback Period calculations with scenario analysis.</p>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                <div className="mb-8">
+                  <Card className="overflow-hidden border border-border/50 hover:shadow-lg transition-all duration-300">
+                    <CardContent className="p-6">
+                      <img 
+                        src="/solar_dashboard.jpg" 
+                        alt="Interactive Dashboard"
+                        className="w-full h-auto rounded-lg mb-4"
+                      />
+                      <h3 className="text-lg font-medium mb-2">Interactive Dashboard</h3>
+                      <p className="text-muted-foreground text-sm">Real-time visualization of financial metrics with adjustable parameters for scenario analysis.</p>
+                    </CardContent>
+                  </Card>
                 </div>
 
                 <Card className="border border-purple-200 bg-purple-50/50 dark:bg-purple-900/20 dark:border-purple-800 mb-8">
@@ -435,16 +464,28 @@ const SolarViabilityProject = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                  <PlaceholderCard 
-                    title="Solar vs Grid Cost Comparison"
-                    description="30-year comparative analysis showing escalating grid electricity costs versus stable solar energy costs with declining LCOE."
-                    type="graph"
-                  />
-                  <PlaceholderCard 
-                    title="Cumulative Savings Analysis"
-                    description="Progressive savings accumulation over project lifetime, including avoided costs, subsidies, and net cash flows."
-                    type="chart"
-                  />
+                  <Card className="overflow-hidden border border-border/50 hover:shadow-lg transition-all duration-300">
+                    <CardContent className="p-6">
+                      <img 
+                        src="/yieldVsCons.jpg" 
+                        alt="Solar Yield vs Consumption Comparison"
+                        className="w-full h-auto rounded-lg mb-4"
+                      />
+                      <h3 className="text-lg font-medium mb-2">Solar vs Grid Cost Comparison</h3>
+                      <p className="text-muted-foreground text-sm">30-year comparative analysis showing escalating grid electricity costs versus stable solar energy costs with declining LCOE.</p>
+                    </CardContent>
+                  </Card>
+                  <Card className="overflow-hidden border border-border/50 hover:shadow-lg transition-all duration-300">
+                    <CardContent className="p-6">
+                      <img 
+                        src="/cumulative.jpg" 
+                        alt="Cumulative Savings Analysis"
+                        className="w-full h-auto rounded-lg mb-4"
+                      />
+                      <h3 className="text-lg font-medium mb-2">Cumulative Savings Analysis</h3>
+                      <p className="text-muted-foreground text-sm">Progressive savings accumulation over project lifetime, including avoided costs, subsidies, and net cash flows.</p>
+                    </CardContent>
+                  </Card>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
@@ -518,12 +559,6 @@ const SolarViabilityProject = () => {
                     This study empowers homeowners with clear, data-driven insights to confidently adopt solar solutions, contributing to India's renewable energy transition and energy independence objectives. The methodology and framework developed can be replicated for similar assessments across the northeastern region, supporting broader adoption of distributed renewable energy systems.
                   </p>
                 </div>
-
-                <PlaceholderCard 
-                  title="Solar Viability Summary"
-                  description="Comprehensive infographic summarizing key findings, financial benefits, environmental impact, and implementation recommendations."
-                  type="chart"
-                />
 
                 <Card className="bg-gradient-to-r from-green-500 to-blue-600 text-white mt-8">
                   <CardContent className="p-8 text-center">
