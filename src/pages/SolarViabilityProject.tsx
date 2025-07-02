@@ -26,7 +26,8 @@ import {
   Download,
   Mail,
   Phone,
-  User
+  User,
+  Activity
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -73,6 +74,10 @@ const SolarViabilitySidebar = () => {
           <a href="#financial-modeling" onClick={handleNavClick} className="whitespace-nowrap text-sm font-bold hover:text-primary transition-colors px-2 py-2 flex items-center gap-1.5">
             <Calculator className="h-4 w-4 text-blue-500" />
             Financial Modeling
+          </a>
+          <a href="#sensitivity-analysis" onClick={handleNavClick} className="whitespace-nowrap text-sm font-bold hover:text-primary transition-colors px-2 py-2 flex items-center gap-1.5">
+            <Activity className="h-4 w-4 text-blue-500" />
+            Sensitivity Analysis
           </a>
           <a href="#final-results" onClick={handleNavClick} className="whitespace-nowrap text-sm font-bold hover:text-primary transition-colors px-2 py-2 flex items-center gap-1.5">
             <TrendingUp className="h-4 w-4 text-blue-500" />
@@ -488,6 +493,141 @@ const SolarViabilityProject = () => {
                     <div className="text-sm text-muted-foreground">Net Present Value</div>
                   </Card>
                 </div>
+              </section>
+
+              {/* Section: Sensitivity Analysis */}
+              <section id="sensitivity-analysis" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-semibold mb-6 flex items-center gap-2">
+                  <Activity className="text-primary" /> Sensitivity Analysis
+                </h2>
+                
+                <div className="prose prose-lg max-w-none text-muted-foreground space-y-4 mb-8">
+                  <p>
+                    A comprehensive sensitivity analysis was conducted to evaluate how variations in key parameters affect the financial viability of the solar investment. This analysis provides crucial insights into the robustness of the investment under different economic scenarios and helps identify the most critical factors influencing project success.
+                  </p>
+                </div>
+
+                <div className="space-y-8">
+                  {/* Subsection 1: Impact of Subsidy on Solar Investment */}
+                  <div>
+                    <h3 className="text-2xl font-semibold mb-4">1. Impact of Subsidy on Solar Investment</h3>
+                    
+                    <Card className="border border-green-200 bg-green-50/50 dark:bg-green-900/20 dark:border-green-800 mb-6">
+                      <CardContent className="p-6">
+                        <h4 className="text-lg font-semibold mb-3 text-green-900 dark:text-green-100 flex items-center gap-2">
+                          <Target className="h-5 w-5" />
+                          Insight
+                        </h4>
+                        <p className="text-green-800 dark:text-green-200 mb-4">
+                          Our analysis strongly demonstrates that higher subsidies significantly enhance the attractiveness of solar investments. When the subsidy increases from ₹0 to ₹2,10,000, the payback period dramatically shortens from over 13 years to just about 3 years. IRR improves from 8.47% to a highly attractive 34.27%, and the lifetime savings surge from ₹6,74,996 to ₹8,84,996.
+                        </p>
+                        
+                        <div className="bg-white/60 dark:bg-black/20 rounded-lg p-4 mb-4">
+                          <h5 className="font-medium text-green-900 dark:text-green-100 mb-2">What it means:</h5>
+                          <p className="text-green-800 dark:text-green-200 text-sm">
+                            A higher subsidy directly lowers the initial investment burden, enhancing returns and significantly speeding up your return on investment.
+                          </p>
+                        </div>
+                        
+                        <div className="bg-green-100 dark:bg-green-800/30 rounded-lg p-4">
+                          <h5 className="font-medium text-green-900 dark:text-green-100 mb-2">What should we do:</h5>
+                          <p className="text-green-800 dark:text-green-200 text-sm">
+                            Encourage and leverage available government subsidies and schemes like PM SGY and state subsidies. Ensuring the highest possible subsidy will yield faster payback and substantial savings.
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  {/* Subsection 2: Robustness Against Economic Factors */}
+                  <div>
+                    <h3 className="text-2xl font-semibold mb-4">2. Robustness Against Economic Factors (Inflation, Tariff Rise, Consumption Increase)</h3>
+                    
+                    <Card className="border border-blue-200 bg-blue-50/50 dark:bg-blue-900/20 dark:border-blue-800 mb-6">
+                      <CardContent className="p-6">
+                        <h4 className="text-lg font-semibold mb-3 text-blue-900 dark:text-blue-100 flex items-center gap-2">
+                          <Target className="h-5 w-5" />
+                          Insight
+                        </h4>
+                        <p className="text-blue-800 dark:text-blue-200 mb-4">
+                          Our solar power investment proves highly resilient against typical economic fluctuations. The payback period remains stable around 7–8 years, even with significant variations in inflation rates (0%–11%), electricity tariff rise (0%–5.5%), and consumption growth rates (0%–5.5%). For instance, with inflation varying from 0% to 11%, payback fluctuates narrowly between 7.04 to 7.60 years, highlighting minimal sensitivity.
+                        </p>
+                        
+                        <div className="bg-white/60 dark:bg-black/20 rounded-lg p-4 mb-4">
+                          <h5 className="font-medium text-blue-900 dark:text-blue-100 mb-2">What it means:</h5>
+                          <p className="text-blue-800 dark:text-blue-200 text-sm">
+                            Investing in solar panels today shields you against future electricity price hikes, inflationary impacts, and growing electricity demands. Your savings and returns remain robust even as the economy fluctuates.
+                          </p>
+                        </div>
+                        
+                        <div className="bg-blue-100 dark:bg-blue-800/30 rounded-lg p-4">
+                          <h5 className="font-medium text-blue-900 dark:text-blue-100 mb-2">What should we do:</h5>
+                          <p className="text-blue-800 dark:text-blue-200 text-sm">
+                            Opting for solar power now means peace of mind in the future. It ensures stable and predictable electricity costs, protecting you against rising economic pressures.
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  {/* Subsection 3: Importance of Maintaining Solar Panel Performance */}
+                  <div>
+                    <h3 className="text-2xl font-semibold mb-4">3. Importance of Maintaining Solar Panel Performance</h3>
+                    
+                    <Card className="border border-orange-200 bg-orange-50/50 dark:bg-orange-900/20 dark:border-orange-800 mb-6">
+                      <CardContent className="p-6">
+                        <h4 className="text-lg font-semibold mb-3 text-orange-900 dark:text-orange-100 flex items-center gap-2">
+                          <Target className="h-5 w-5" />
+                          Insight
+                        </h4>
+                        <p className="text-orange-800 dark:text-orange-200 mb-4">
+                          Analysis clearly shows the direct impact of solar panel output and degradation on overall economic returns. A reduction in annual solar yield from 1,330 units to 690 units increases the payback period from about 7 years to over 13 years, drastically lowering IRR from 15.05% to below 8%. Similarly, increasing annual panel degradation from 0.3% to 1.5% significantly lowers lifetime savings from ₹8,77,578 to ₹6,92,703.
+                        </p>
+                        
+                        <div className="bg-white/60 dark:bg-black/20 rounded-lg p-4 mb-4">
+                          <h5 className="font-medium text-orange-900 dark:text-orange-100 mb-2">What it means:</h5>
+                          <p className="text-orange-800 dark:text-orange-200 text-sm">
+                            The effectiveness and profitability of solar systems heavily rely on sustained panel performance. Degradation or damage significantly reduces financial viability.
+                          </p>
+                        </div>
+                        
+                        <div className="bg-orange-100 dark:bg-orange-800/30 rounded-lg p-4">
+                          <h5 className="font-medium text-orange-900 dark:text-orange-100 mb-2">What should we do:</h5>
+                          <p className="text-orange-800 dark:text-orange-200 text-sm">
+                            Regular and proactive maintenance, periodic cleaning, and timely technical checks are crucial. Ensuring optimal performance prolongs the lifetime of your investment and secures maximum financial returns.
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+
+                {/* Summary Card */}
+                <Card className="bg-gradient-to-r from-purple-500 to-blue-600 text-white mt-8">
+                  <CardContent className="p-8">
+                    <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                      <CheckCircle2 className="h-6 w-6" />
+                      Key Takeaways from Sensitivity Analysis
+                    </h3>
+                    <p className="text-lg opacity-90 mb-4">
+                      Together, these insights underline solar power as a financially robust, economically resilient, and strategically beneficial choice for the long-term. Ensuring proper subsidy leverage, investing today to hedge against economic fluctuations, and maintaining panel performance are key to maximizing the benefits from your solar investment.
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                      <div className="bg-white/20 rounded-lg px-4 py-3 text-center">
+                        <div className="font-bold">Subsidy Impact</div>
+                        <div className="text-sm opacity-90">13 → 3 years payback</div>
+                      </div>
+                      <div className="bg-white/20 rounded-lg px-4 py-3 text-center">
+                        <div className="font-bold">Economic Resilience</div>
+                        <div className="text-sm opacity-90">Stable 7-8 years payback</div>
+                      </div>
+                      <div className="bg-white/20 rounded-lg px-4 py-3 text-center">
+                        <div className="font-bold">Performance Critical</div>
+                        <div className="text-sm opacity-90">Maintenance = Returns</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </section>
 
               {/* Section 4: Final Results */}
