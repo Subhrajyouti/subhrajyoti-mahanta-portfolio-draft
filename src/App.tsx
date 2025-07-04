@@ -12,7 +12,6 @@ import DataJobMarketProject from "./pages/DataJobMarketProject";
 import MondayCoffeeProject from "./pages/MondayCoffeeProject";
 import ResidentialSolarAnalysis from "./pages/residental-solar-analysis";
 import SolarViabilityProject from "./pages/SolarViabilityProject";
-import SolarCalculator from "./pages/SolarCalculator";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import "./styles/global.css";
 
@@ -33,7 +32,6 @@ const App = () => (
             <Route path="/monday-coffee-project" element={<MondayCoffeeProject />} />
             <Route path="/residental-solar-analysis" element={<ResidentialSolarAnalysis />} />
             <Route path="/solar-viability-assam" element={<SolarViabilityProject />} />
-            <Route path="/solar-calculator" element={<SolarCalculator />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

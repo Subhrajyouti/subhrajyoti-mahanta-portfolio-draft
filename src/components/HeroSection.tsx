@@ -1,8 +1,7 @@
 
 import { Button } from "@/components/ui/button";
-import { ChevronDown, Download, Calculator } from "lucide-react";
+import { ChevronDown, Download } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import MessagingAssistant from "./MessagingAssistant";
 
 const HeroSection = () => {
@@ -88,16 +87,6 @@ const HeroSection = () => {
                   onClick={scrollToProjects}
                 >
                   View Projects
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="rounded-md border-primary/30 text-foreground hover:bg-primary/10 transition-all gap-2"
-                >
-                  <Link to="/solar-calculator">
-                    <Calculator className="h-4 w-4" />
-                    Solar Calculator
-                  </Link>
                 </Button>
                 <Button
                   asChild
