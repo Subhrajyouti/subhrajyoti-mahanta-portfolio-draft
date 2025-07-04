@@ -84,7 +84,7 @@ const SolarCalculator = () => {
     setResult(null);
 
     try {
-      const response = await fetch('https://your-render-name.onrender.com/api/calculate', {
+      const response = await fetch('https://sunlytics.onrender.com/api/calculate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
