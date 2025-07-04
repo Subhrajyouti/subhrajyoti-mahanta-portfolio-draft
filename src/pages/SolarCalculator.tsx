@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, Sun, Zap, DollarSign } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -19,14 +20,23 @@ interface CalculationResults {
 
 const SolarCalculator = () => {
   const [formData, setFormData] = useState({
-    monthlyBill: "",
-    roofArea: "",
-    location: "",
-    electricityRate: "0.12"
+    monthlyUnits: "",
+    state: "",
+    latLong: ""
   });
   
   const [results, setResults] = useState<CalculationResults | null>(null);
   const [isCalculating, setIsCalculating] = useState(false);
+
+  const indianStates = [
+    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+    "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
+    "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
+    "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
+    "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal",
+    "Delhi", "Jammu and Kashmir", "Ladakh", "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu",
+    "Lakshadweep", "Puducherry", "Andaman and Nicobar Islands"
+  ];
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({
@@ -41,19 +51,18 @@ const SolarCalculator = () => {
     // Simulate API call delay
     await new Promise(resolve => setTimeout(resolve, 1500));
     
-    const monthlyBill = parseFloat(formData.monthlyBill);
-    const roofArea = parseFloat(formData.roofArea);
-    const electricityRate = parseFloat(formData.electricityRate);
+    const monthlyUnits = parseFloat(formData.monthlyUnits);
     
-    if (!monthlyBill || !roofArea || !electricityRate) {
+    if (!monthlyUnits || !formData.state || !formData.latLong) {
       setIsCalculating(false);
       return;
     }
 
-    // Basic solar calculations
-    const annualConsumption = (monthlyBill * 12) / electricityRate;
-    const systemSize = Math.min(annualConsumption / 1200, roofArea * 0.15); // kW
+    // Basic solar calculations based on monthly units
+    const annualConsumption = monthlyUnits * 12;
+    const systemSize = annualConsumption / 1200; // kW
     const annualGeneration = systemSize * 1200; // kWh per year
+    const electricityRate = 0.12; // Default rate
     const annualSavings = annualGeneration * electricityRate;
     const monthlySavings = annualSavings / 12;
     const totalCost = systemSize * 3000; // $3000 per kW
@@ -97,53 +106,49 @@ const SolarCalculator = () => {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="monthlyBill">Monthly Electricity Bill ($)</Label>
+                <Label htmlFor="monthlyUnits">Monthly Units (kWh)</Label>
                 <Input
-                  id="monthlyBill"
+                  id="monthlyUnits"
                   type="number"
-                  placeholder="Enter your monthly bill"
-                  value={formData.monthlyBill}
-                  onChange={(e) => handleInputChange("monthlyBill", e.target.value)}
+                  placeholder="Enter your monthly electricity units"
+                  value={formData.monthlyUnits}
+                  onChange={(e) => handleInputChange("monthlyUnits", e.target.value)}
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="roofArea">Available Roof Area (sq ft)</Label>
-                <Input
-                  id="roofArea"
-                  type="number"
-                  placeholder="Enter roof area"
-                  value={formData.roofArea}
-                  onChange={(e) => handleInputChange("roofArea", e.target.value)}
-                />
+                <Label htmlFor="state">State</Label>
+                <Select value={formData.state} onValueChange={(value) => handleInputChange("state", value)}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select your state" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {indianStates.map((state) => (
+                      <SelectItem key={state} value={state}>
+                        {state}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="location">Location</Label>
+                <Label htmlFor="latLong">Latitude, Longitude</Label>
                 <Input
-                  id="location"
+                  id="latLong"
                   type="text"
-                  placeholder="Enter your city/state"
-                  value={formData.location}
-                  onChange={(e) => handleInputChange("location", e.target.value)}
+                  placeholder="26.44,91.41"
+                  value={formData.latLong}
+                  onChange={(e) => handleInputChange("latLong", e.target.value)}
                 />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="electricityRate">Electricity Rate ($/kWh)</Label>
-                <Input
-                  id="electricityRate"
-                  type="number"
-                  step="0.01"
-                  placeholder="0.12"
-                  value={formData.electricityRate}
-                  onChange={(e) => handleInputChange("electricityRate", e.target.value)}
-                />
+                <p className="text-sm text-muted-foreground">
+                  Enter coordinates in format: latitude,longitude
+                </p>
               </div>
 
               <Button 
                 onClick={calculateSolar}
-                disabled={isCalculating || !formData.monthlyBill || !formData.roofArea}
+                disabled={isCalculating || !formData.monthlyUnits || !formData.state || !formData.latLong}
                 className="w-full"
               >
                 {isCalculating ? "Calculating..." : "Calculate Solar Potential"}
@@ -237,16 +242,16 @@ const SolarCalculator = () => {
                   </div>
                   <h3 className="font-semibold mb-2">Energy Analysis</h3>
                   <p className="text-sm text-muted-foreground">
-                    We analyze your energy consumption based on your monthly electricity bill
+                    We analyze your energy consumption based on your monthly electricity units
                   </p>
                 </div>
                 <div className="text-center">
                   <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Sun className="h-8 w-8 text-primary" />
                   </div>
-                  <h3 className="font-semibold mb-2">Solar Potential</h3>
+                  <h3 className="font-semibold mb-2">Location Analysis</h3>
                   <p className="text-sm text-muted-foreground">
-                    Calculate optimal system size based on your roof space and location
+                    Calculate optimal system size based on your location and solar irradiance
                   </p>
                 </div>
                 <div className="text-center">
