@@ -305,15 +305,7 @@ const SolarCalculator: React.FC = () => {
                     ))}
                   </div>
                   
-                  <div className="mt-6">
-                    <Progress 
-                      value={((phaseIndex + 1) / phases.length) * 100} 
-                      className="h-2"
-                    />
-                    <p className="text-center text-sm text-gray-600 dark:text-gray-300 mt-2">
-                      {Math.round(((phaseIndex + 1) / phases.length) * 100)}% Complete
-                    </p>
-                  </div>
+                 
                 </CardContent>
               </Card>
             )}
