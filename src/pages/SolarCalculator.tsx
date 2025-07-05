@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -10,16 +11,16 @@ import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
 
 interface CalculationResult {
-  recommended_kw: number;
-  yield_per_kwp: number;
-  total_cost: number;
-  subsidy_amount: number;
-  net_cost: number;
+  recommended_system_size_kw: number;
+  annual_energy_generation_kwh: number;
+  system_cost_rs: number;
+  subsidy_amount_rs: number;
+  net_system_cost_rs: number;
+  monthly_savings_rs: number;
+  annual_savings_rs: number;
   payback_period_years: number;
-  irr_percentage: number;
-  monthly_savings: number;
-  annual_savings: number;
-  lifetime_savings: number;
+  lifetime_savings_25_years_rs: number;
+  irr_percent: number;
 }
 
 const INDIAN_STATES = [
@@ -31,43 +32,6 @@ const INDIAN_STATES = [
   'Delhi', 'Puducherry', 'Chandigarh', 'Dadra and Nagar Haveli and Daman and Diu',
   'Jammu and Kashmir', 'Ladakh', 'Lakshadweep', 'Andaman and Nicobar Islands'
 ];
-
-// Fallback calculation function
-const calculateSolarPotential = (monthlyUnits: number, state: string, latlong: string): CalculationResult => {
-  console.log('Using fallback calculation for:', { monthlyUnits, state, latlong });
-  
-  // Basic calculations based on typical solar parameters in India
-  const averageTariff = 7; // Rs per unit
-  const systemEfficiency = 0.8;
-  const solarIrradiance = 5.5; // kWh/m²/day average for India
-  const systemCostPerKw = 60000; // Rs per kW
-  const subsidyRate = 0.4; // 40% subsidy
-  
-  const annualUnits = monthlyUnits * 12;
-  const recommendedKw = Math.ceil((annualUnits) / (solarIrradiance * 365 * systemEfficiency));
-  const yieldPerKwp = solarIrradiance * 365 * systemEfficiency;
-  const totalCost = recommendedKw * systemCostPerKw;
-  const subsidyAmount = totalCost * subsidyRate;
-  const netCost = totalCost - subsidyAmount;
-  const annualSavings = monthlyUnits * 12 * averageTariff;
-  const monthlySavings = annualSavings / 12;
-  const paybackPeriod = netCost / annualSavings;
-  const lifetimeSavings = annualSavings * 25 - netCost;
-  const irrPercentage = ((annualSavings * 25) / netCost - 1) / 25 * 100;
-
-  return {
-    recommended_kw: recommendedKw,
-    yield_per_kwp: Math.round(yieldPerKwp),
-    total_cost: totalCost,
-    subsidy_amount: subsidyAmount,
-    net_cost: netCost,
-    payback_period_years: paybackPeriod,
-    irr_percentage: irrPercentage,
-    monthly_savings: monthlySavings,
-    annual_savings: annualSavings,
-    lifetime_savings: lifetimeSavings
-  };
-};
 
 const SolarCalculator = () => {
   const [formData, setFormData] = useState({
@@ -109,6 +73,29 @@ const SolarCalculator = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const validateApiResponse = (data: any): data is CalculationResult => {
+    const requiredFields = [
+      'recommended_system_size_kw',
+      'annual_energy_generation_kwh',
+      'system_cost_rs',
+      'subsidy_amount_rs',
+      'net_system_cost_rs',
+      'monthly_savings_rs',
+      'annual_savings_rs',
+      'payback_period_years',
+      'lifetime_savings_25_years_rs',
+      'irr_percent'
+    ];
+
+    for (const field of requiredFields) {
+      if (!(field in data) || typeof data[field] !== 'number') {
+        console.error(`Missing or invalid field: ${field}`, data);
+        return false;
+      }
+    }
+    return true;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -120,7 +107,7 @@ const SolarCalculator = () => {
     setResult(null);
 
     try {
-      console.log('Attempting API call to sunlytics.onrender.com');
+      console.log('Making API call to sunlytics.onrender.com');
       const response = await fetch('https://sunlytics.onrender.com/api/calculate', {
         method: 'POST',
         headers: {
@@ -139,26 +126,22 @@ const SolarCalculator = () => {
 
       const data = await response.json();
       console.log('API response received:', data);
+
+      if (!validateApiResponse(data)) {
+        throw new Error('Invalid API response structure');
+      }
+
       setResult(data);
       toast({
         title: "Calculation Complete",
         description: "Your solar potential has been calculated successfully!",
       });
     } catch (error) {
-      console.error('API call failed, using fallback calculation:', error);
-      
-      // Use fallback calculation
-      const fallbackResult = calculateSolarPotential(
-        parseFloat(formData.monthly_units),
-        formData.state,
-        formData.latlong
-      );
-      
-      setResult(fallbackResult);
+      console.error('API call failed:', error);
       toast({
-        title: "Calculation Complete",
-        description: "Solar potential calculated using estimated parameters.",
-        variant: "default",
+        title: "Calculation Failed",
+        description: "Unable to calculate solar potential. Please try again later.",
+        variant: "destructive",
       });
     } finally {
       setLoading(false);
@@ -309,14 +292,14 @@ const SolarCalculator = () => {
                   <div className="flex justify-between items-center p-3 bg-primary/5 rounded-lg">
                     <span className="font-medium">Recommended System Size</span>
                     <span className="text-lg font-bold text-primary">
-                      {formatNumber(result.recommended_kw)} kW
+                      {formatNumber(result.recommended_system_size_kw)} kW
                     </span>
                   </div>
 
                   <div className="flex justify-between items-center p-3 bg-muted rounded-lg">
-                    <span className="font-medium">Annual Yield per kWp</span>
+                    <span className="font-medium">Annual Energy Generation</span>
                     <span className="text-lg font-semibold">
-                      {formatNumber(result.yield_per_kwp)} kWh
+                      {formatNumber(result.annual_energy_generation_kwh)} kWh
                     </span>
                   </div>
                 </div>
@@ -329,17 +312,17 @@ const SolarCalculator = () => {
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span>Total System Cost:</span>
-                      <span className="font-medium">{formatCurrency(result.total_cost)}</span>
+                      <span className="font-medium">{formatCurrency(result.system_cost_rs)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Subsidy Amount:</span>
                       <span className="font-medium text-green-600">
-                        -{formatCurrency(result.subsidy_amount)}
+                        -{formatCurrency(result.subsidy_amount_rs)}
                       </span>
                     </div>
                     <div className="flex justify-between pt-2 border-t">
                       <span className="font-medium">Net Cost:</span>
-                      <span className="font-bold">{formatCurrency(result.net_cost)}</span>
+                      <span className="font-bold">{formatCurrency(result.net_system_cost_rs)}</span>
                     </div>
                   </div>
                 </div>
@@ -353,19 +336,19 @@ const SolarCalculator = () => {
                     <div className="flex justify-between">
                       <span>Monthly Savings:</span>
                       <span className="font-medium text-green-600">
-                        {formatCurrency(result.monthly_savings)}
+                        {formatCurrency(result.monthly_savings_rs)}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span>Annual Savings:</span>
                       <span className="font-medium text-green-600">
-                        {formatCurrency(result.annual_savings)}
+                        {formatCurrency(result.annual_savings_rs)}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span>Lifetime Savings (25 years):</span>
                       <span className="font-bold text-green-600">
-                        {formatCurrency(result.lifetime_savings)}
+                        {formatCurrency(result.lifetime_savings_25_years_rs)}
                       </span>
                     </div>
                     <div className="flex justify-between pt-2 border-t">
@@ -377,7 +360,7 @@ const SolarCalculator = () => {
                     <div className="flex justify-between">
                       <span>Internal Rate of Return:</span>
                       <span className="font-medium">
-                        {formatNumber(result.irr_percentage)}%
+                        {formatNumber(result.irr_percent)}%
                       </span>
                     </div>
                   </div>
@@ -386,7 +369,7 @@ const SolarCalculator = () => {
                 <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800">
                   <p className="text-sm text-green-800 dark:text-green-200">
                     <strong>Great Investment!</strong> With a payback period of {formatNumber(result.payback_period_years)} years 
-                    and an IRR of {formatNumber(result.irr_percentage)}%, solar is an excellent investment for your property.
+                    and an IRR of {formatNumber(result.irr_percent)}%, solar is an excellent investment for your property.
                   </p>
                 </div>
               </CardContent>
