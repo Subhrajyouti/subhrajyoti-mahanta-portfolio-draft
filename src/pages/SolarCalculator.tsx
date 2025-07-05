@@ -178,25 +178,24 @@ const SolarCalculator: React.FC = () => {
       
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
-        <div className="text-center mb-1 mt-1">
-          <div className="flex justify-center items-center mb-1">
+        <div className="text-center mb-0 mt-0.2">
+          <div className="flex justify-center items-center mb-0">
             <img 
               src="/sunlyticslogo.png" 
               alt="Sunlytics" 
-               className="h-60 max-h-60 mx-auto mb-1"
+               className="h-44 max-h-50 mx-auto mb-1"
             />
           </div>
-          <p className="text-xl text-gray-600 dark:text-gray-400 mb-1">Precision Solar Insights for Your Home</p>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Discover your solar potential with precise calculations and financial insights
-          </p>
+          
         </div>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+       <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto px-6">
+
           {/* Left Side - Form (hide when results are shown) */}
           {!result && (
-            <div className="space-y-6">
+            <div className="space-y-6 max-w-md ml-4 lg:ml-12">
+
               <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-blue-500/20" style={{animation: 'floating 40s ease-in-out infinite'}}>
                 <CardHeader>
                   <CardTitle className="text-2xl text-gray-900 dark:text-white flex items-center gap-2">
