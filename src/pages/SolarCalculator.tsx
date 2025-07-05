@@ -10,6 +10,19 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
 
+interface ApiResponse {
+  system_size_kw: number;
+  annual_energy_kwh: number;
+  total_cost_rs: number;
+  subsidy_rs: number;
+  net_cost_rs: number;
+  monthly_savings_rs: number;
+  annual_savings_rs: number;
+  payback_years: number;
+  lifetime_savings_rs: number;
+  irr: number;
+}
+
 interface CalculationResult {
   recommended_system_size_kw: number;
   annual_energy_generation_kwh: number;
@@ -73,18 +86,18 @@ const SolarCalculator = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const validateApiResponse = (data: any): data is CalculationResult => {
+  const validateApiResponse = (data: any): data is ApiResponse => {
     const requiredFields = [
-      'recommended_system_size_kw',
-      'annual_energy_generation_kwh',
-      'system_cost_rs',
-      'subsidy_amount_rs',
-      'net_system_cost_rs',
+      'system_size_kw',
+      'annual_energy_kwh',
+      'total_cost_rs',
+      'subsidy_rs',
+      'net_cost_rs',
       'monthly_savings_rs',
       'annual_savings_rs',
-      'payback_period_years',
-      'lifetime_savings_25_years_rs',
-      'irr_percent'
+      'payback_years',
+      'lifetime_savings_rs',
+      'irr'
     ];
 
     for (const field of requiredFields) {
@@ -94,6 +107,21 @@ const SolarCalculator = () => {
       }
     }
     return true;
+  };
+
+  const transformApiResponse = (apiData: ApiResponse): CalculationResult => {
+    return {
+      recommended_system_size_kw: apiData.system_size_kw,
+      annual_energy_generation_kwh: apiData.annual_energy_kwh,
+      system_cost_rs: apiData.total_cost_rs,
+      subsidy_amount_rs: apiData.subsidy_rs,
+      net_system_cost_rs: apiData.net_cost_rs,
+      monthly_savings_rs: apiData.monthly_savings_rs,
+      annual_savings_rs: apiData.annual_savings_rs,
+      payback_period_years: apiData.payback_years,
+      lifetime_savings_25_years_rs: apiData.lifetime_savings_rs,
+      irr_percent: apiData.irr
+    };
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -131,7 +159,8 @@ const SolarCalculator = () => {
         throw new Error('Invalid API response structure');
       }
 
-      setResult(data);
+      const transformedResult = transformApiResponse(data);
+      setResult(transformedResult);
       toast({
         title: "Calculation Complete",
         description: "Your solar potential has been calculated successfully!",
