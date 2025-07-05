@@ -179,7 +179,12 @@ const SolarCalculator: React.FC = () => {
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-12 mt-8">
-          <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-2">Sunlytics</h1>
+         <img 
+             src="/sunlyticslogo.png" 
+             alt="Sunlytics" 
+             className="h-16 mx-auto mb-4"
+          />
+
           <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">Precision Solar Insights for Your Home</p>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Discover your solar potential with precise calculations and financial insights
