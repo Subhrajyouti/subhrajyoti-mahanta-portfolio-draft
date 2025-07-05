@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -32,6 +31,43 @@ const INDIAN_STATES = [
   'Delhi', 'Puducherry', 'Chandigarh', 'Dadra and Nagar Haveli and Daman and Diu',
   'Jammu and Kashmir', 'Ladakh', 'Lakshadweep', 'Andaman and Nicobar Islands'
 ];
+
+// Fallback calculation function
+const calculateSolarPotential = (monthlyUnits: number, state: string, latlong: string): CalculationResult => {
+  console.log('Using fallback calculation for:', { monthlyUnits, state, latlong });
+  
+  // Basic calculations based on typical solar parameters in India
+  const averageTariff = 7; // Rs per unit
+  const systemEfficiency = 0.8;
+  const solarIrradiance = 5.5; // kWh/m²/day average for India
+  const systemCostPerKw = 60000; // Rs per kW
+  const subsidyRate = 0.4; // 40% subsidy
+  
+  const annualUnits = monthlyUnits * 12;
+  const recommendedKw = Math.ceil((annualUnits) / (solarIrradiance * 365 * systemEfficiency));
+  const yieldPerKwp = solarIrradiance * 365 * systemEfficiency;
+  const totalCost = recommendedKw * systemCostPerKw;
+  const subsidyAmount = totalCost * subsidyRate;
+  const netCost = totalCost - subsidyAmount;
+  const annualSavings = monthlyUnits * 12 * averageTariff;
+  const monthlySavings = annualSavings / 12;
+  const paybackPeriod = netCost / annualSavings;
+  const lifetimeSavings = annualSavings * 25 - netCost;
+  const irrPercentage = ((annualSavings * 25) / netCost - 1) / 25 * 100;
+
+  return {
+    recommended_kw: recommendedKw,
+    yield_per_kwp: Math.round(yieldPerKwp),
+    total_cost: totalCost,
+    subsidy_amount: subsidyAmount,
+    net_cost: netCost,
+    payback_period_years: paybackPeriod,
+    irr_percentage: irrPercentage,
+    monthly_savings: monthlySavings,
+    annual_savings: annualSavings,
+    lifetime_savings: lifetimeSavings
+  };
+};
 
 const SolarCalculator = () => {
   const [formData, setFormData] = useState({
@@ -84,6 +120,7 @@ const SolarCalculator = () => {
     setResult(null);
 
     try {
+      console.log('Attempting API call to sunlytics.onrender.com');
       const response = await fetch('https://sunlytics.onrender.com/api/calculate', {
         method: 'POST',
         headers: {
@@ -101,17 +138,27 @@ const SolarCalculator = () => {
       }
 
       const data = await response.json();
+      console.log('API response received:', data);
       setResult(data);
       toast({
         title: "Calculation Complete",
         description: "Your solar potential has been calculated successfully!",
       });
     } catch (error) {
-      console.error('Error calculating solar potential:', error);
+      console.error('API call failed, using fallback calculation:', error);
+      
+      // Use fallback calculation
+      const fallbackResult = calculateSolarPotential(
+        parseFloat(formData.monthly_units),
+        formData.state,
+        formData.latlong
+      );
+      
+      setResult(fallbackResult);
       toast({
-        title: "Calculation Failed",
-        description: "Unable to calculate solar potential. Please try again.",
-        variant: "destructive",
+        title: "Calculation Complete",
+        description: "Solar potential calculated using estimated parameters.",
+        variant: "default",
       });
     } finally {
       setLoading(false);
