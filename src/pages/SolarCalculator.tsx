@@ -182,7 +182,7 @@ const SolarCalculator: React.FC = () => {
          <img 
              src="/sunlyticslogo.png" 
              alt="Sunlytics" 
-             className="h-80 max-h-100 mx-auto mb-6"
+             className="h-80 max-h-100 mx-auto mb-4"
           />
 
           <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">Precision Solar Insights for Your Home</p>
