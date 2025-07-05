@@ -10,7 +10,7 @@ There are several ways of editing your application.hhs
 
 **Use Lovable**
 
-Simply vi  sit the [Lo  vable Project](https://lovable.dev/projects/433bd2fd-7  c1a-4  9a1-  8b65-d584a8b50bfa) and start prompting.
+Simply vi  sit the [Lo  vable Project](https://lovable.dev/projects/433bd2fd-7  c1a-49a1-  8b65-d584a8b50bfa) and start prompting.
  
 Changes made f vvia Ldghdfo  vable will be committed automatically to this repo.
 xx  
