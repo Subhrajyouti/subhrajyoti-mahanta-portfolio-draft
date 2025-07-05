@@ -566,7 +566,7 @@ const SolarCalculator = () => {
             </div>
 
             <div className="grid gap-8 lg:grid-cols-3">
-              {/* Solar Output Card */}
+              {/* Solar  Card */}
               <Card className="group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-0 bg-gradient-to-br from-blue-50 to-sky-50 dark:from-blue-950/20 dark:to-sky-950/20">
                 <CardHeader className="text-center">
                   <div className="mx-auto mb-4 p-4 bg-blue-100 dark:bg-blue-900/30 rounded-full w-fit">
