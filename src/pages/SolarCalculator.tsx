@@ -11,29 +11,35 @@ import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
 
 interface ApiResponse {
-  system_size_kw: number;
-  annual_energy_kwh: number;
-  total_cost_rs: number;
-  subsidy_rs: number;
-  net_cost_rs: number;
-  monthly_savings_rs: number;
-  annual_savings_rs: number;
-  payback_years: number;
-  lifetime_savings_rs: number;
-  irr: number;
+  recommended_kw: number;
+  yield_per_kwp: number;
+  total_yield_kwh_year1: number;
+  total_cost: number;
+  state_subsidy: number;
+  central_subsidy: number;
+  net_cost: number;
+  npv: number;
+  irr_percent: number;
+  payback_period_years: number;
+  lifetime_savings: number;
+  co2_avoided_kg: number;
+  trees_saved_equivalent: number;
 }
 
 interface CalculationResult {
-  recommended_system_size_kw: number;
-  annual_energy_generation_kwh: number;
-  system_cost_rs: number;
-  subsidy_amount_rs: number;
-  net_system_cost_rs: number;
-  monthly_savings_rs: number;
-  annual_savings_rs: number;
-  payback_period_years: number;
-  lifetime_savings_25_years_rs: number;
-  irr_percent: number;
+  recommendedKw: number;
+  yieldPerKwp: number;
+  year1Yield: number;
+  totalCost: number;
+  stateSubsidy: number;
+  centralSubsidy: number;
+  netCost: number;
+  npv: number;
+  irrPercent: number;
+  paybackYears: number;
+  lifetimeSavings: number;
+  co2Kg: number;
+  treesSaved: number;
 }
 
 const INDIAN_STATES = [
@@ -87,18 +93,21 @@ const SolarCalculator = () => {
   };
 
   const validateApiResponse = (data: any): data is ApiResponse => {
-    const requiredFields = [
-      'system_size_kw',
-      'annual_energy_kwh',
-      'total_cost_rs',
-      'subsidy_rs',
-      'net_cost_rs',
-      'monthly_savings_rs',
-      'annual_savings_rs',
-      'payback_years',
-      'lifetime_savings_rs',
-      'irr'
-    ];
+  const requiredFields = [
+    'recommended_kw',
+    'yield_per_kwp',
+    'total_yield_kwh_year1',
+    'total_cost',
+    'state_subsidy',
+    'central_subsidy',
+   'net_cost',
+    'npv',
+    'irr_percent',
+    'payback_period_years',
+    'lifetime_savings',
+    'co2_avoided_kg',
+    'trees_saved_equivalent',
+  ];
 
     for (const field of requiredFields) {
       if (!(field in data) || typeof data[field] !== 'number') {
@@ -110,19 +119,22 @@ const SolarCalculator = () => {
   };
 
   const transformApiResponse = (apiData: ApiResponse): CalculationResult => {
-    return {
-      recommended_system_size_kw: apiData.system_size_kw,
-      annual_energy_generation_kwh: apiData.annual_energy_kwh,
-      system_cost_rs: apiData.total_cost_rs,
-      subsidy_amount_rs: apiData.subsidy_rs,
-      net_system_cost_rs: apiData.net_cost_rs,
-      monthly_savings_rs: apiData.monthly_savings_rs,
-      annual_savings_rs: apiData.annual_savings_rs,
-      payback_period_years: apiData.payback_years,
-      lifetime_savings_25_years_rs: apiData.lifetime_savings_rs,
-      irr_percent: apiData.irr
-    };
+  // derive monthly/annual savings from the 25-yr lifetime total
+  const annualSavings = apiData.lifetime_savings / 25;  const monthlySavings = annualSavings / 12;
+
+  return {
+    recommended_system_size_kw: apiData.recommended_kw,
+    annual_energy_generation_kwh: apiData.total_yield_kwh_year1,
+    system_cost_rs: apiData.total_cost,
+    subsidy_amount_rs: apiData.state_subsidy + apiData.central_subsidy,
+    net_system_cost_rs: apiData.net_cost,
+    monthly_savings_rs: monthlySavings,
+    annual_savings_rs: annualSavings,
+    payback_period_years: apiData.payback_period_years,
+    lifetime_savings_25_years_rs: apiData.lifetime_savings,
+    irr_percent: apiData.irr_percent,
   };
+};
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
