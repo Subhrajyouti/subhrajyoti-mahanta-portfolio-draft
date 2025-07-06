@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -5,7 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Progress } from '@/components/ui/progress';
-import { Loader2, Calculator, DollarSign, Leaf, Zap, Database, BarChart3, Award, TrendingUp, Sun, Home, Shield, Target, Globe, TrendingDown, AlertCircle } from 'lucide-react';
+import { Loader2, Calculator, DollarSign, Leaf, Zap, Database, BarChart3, Award, TrendingUp, Sun, Home, Shield, Target, Globe, TrendingDown, AlertCircle, Sparkles, Battery, ArrowUpRight } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
@@ -268,86 +269,120 @@ const SolarCalculator: React.FC = () => {
             </div>
           )}
 
-          {/* Right Side - Logo when form is shown, Loading or Results otherwise */}
+          {/* Right Side - Enhanced Benefits Cards */}
           <div className="space-y-6">
-            {/* Show interactive solar benefits when form is visible and not loading */}
+            {/* Show enhanced solar benefits when form is visible and not loading */}
             {!result && !loading && (
-              <div className="space-y-6">
-                {/* Solar Benefits Animated Cards */}
-                <div className="grid gap-4">
-                  <Card className="glass backdrop-blur-lg bg-gradient-to-br from-orrange-500/10 to-yellow-500/10 border border-orange-200/30 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-purple-500/25 group">
-                    <CardContent className="p-2">
-                      <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-yellow-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <Sun className="h-8 w-8 text-white animate-pulse" />
+              <div className="space-y-4">
+                {/* Hero Benefit Card */}
+                <Card className="relative overflow-hidden bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 border-0 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 group">
+                  <div className="absolute inset-0 bg-black/10"></div>
+                  <div className="absolute top-4 right-4 opacity-20">
+                    <Sun className="h-20 w-20 text-white" />
+                  </div>
+                  <CardContent className="relative z-10 p-6 text-white">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <Sparkles className="h-6 w-6 text-white" />
                         </div>
                         <div>
-                          <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400 mb-1">25+ Years Savings</h3>
-                          <p className="text-gray-600 dark:text-gray-300">Generate free electricity for decades</p>
+                          <h3 className="text-xl font-bold mb-1">Transform Your Home</h3>
+                          <p className="text-white/90 text-sm">Into a Clean Energy Powerhouse</p>
                         </div>
                       </div>
+                      <ArrowUpRight className="h-5 w-5 text-white/70 group-hover:text-white group-hover:scale-110 transition-all duration-300" />
+                    </div>
+                    <div className="bg-white/10 backdrop-blur rounded-lg p-3 mb-3">
+                      <div className="text-2xl font-bold">₹2.5L+ Savings</div>
+                      <div className="text-sm text-white/90">Over 25 years</div>
+                    </div>
+                    <div className="text-sm text-white/80">Join 10+ million homes already saving with solar</div>
+                  </CardContent>
+                </Card>
+
+                {/* Benefits Grid */}
+                <div className="grid grid-cols-2 gap-4">
+                  {/* ROI Card */}
+                  <Card className="relative overflow-hidden bg-gradient-to-br from-emerald-400 to-teal-600 border-0 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 group">
+                    <div className="absolute -top-2 -right-2 w-16 h-16 bg-white/10 rounded-full"></div>
+                    <CardContent className="p-4 text-white relative z-10">
+                      <div className="flex items-center gap-2 mb-2">
+                        <TrendingUp className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                        <span className="font-semibold text-sm">High Returns</span>
+                      </div>
+                      <div className="text-2xl font-bold mb-1">15-20%</div>
+                      <div className="text-xs text-white/90">Annual ROI</div>
                     </CardContent>
                   </Card>
 
-                 <Card className="glass backdrop-blur-lg bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-purple-200/30 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-purple-500/25 group">
-                    <CardContent className="p-2">
-                      <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <TrendingUp className="h-8 w-8 text-white" />
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-bold text-green-600 dark:text-green-400 mb-1">20%+ Returns</h3>
-                          <p className="text-gray-600 dark:text-gray-300">Better than most investments</p>
-                        </div>
+                  {/* Payback Card */}
+                  <Card className="relative overflow-hidden bg-gradient-to-br from-blue-500 to-indigo-600 border-0 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 group">
+                    <div className="absolute -bottom-2 -left-2 w-12 h-12 bg-white/10 rounded-full"></div>
+                    <CardContent className="p-4 text-white relative z-10">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Battery className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                        <span className="font-semibold text-sm">Quick Payback</span>
                       </div>
+                      <div className="text-2xl font-bold mb-1">4-6 Yrs</div>
+                      <div className="text-xs text-white/90">Investment Recovery</div>
                     </CardContent>
                   </Card>
 
-                 <Card className="glass backdrop-blur-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-purple-200/30 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-purple-500/25 group">
-                    <CardContent className="p-2">
-                      <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <Home className="h-8 w-8 text-white" />
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-bold text-blue-600 dark:text-blue-400 mb-1">Property Value+</h3>
-                          <p className="text-gray-600 dark:text-gray-300">Increase your home's worth</p>
-                        </div>
+                  {/* Property Value Card */}
+                  <Card className="relative overflow-hidden bg-gradient-to-br from-purple-500 to-pink-600 border-0 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 group">
+                    <div className="absolute top-0 right-0 w-8 h-8 bg-white/10 rounded-full"></div>
+                    <CardContent className="p-4 text-white relative z-10">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Home className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                        <span className="font-semibold text-sm">Property+</span>
                       </div>
+                      <div className="text-2xl font-bold mb-1">10-15%</div>
+                      <div className="text-xs text-white/90">Value Increase</div>
                     </CardContent>
                   </Card>
 
-                  <Card className="glass backdrop-blur-lg bg-gradient-to-br from-tean-500/10 to-cyan-500/10 border border-cyan-200/30 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-purple-500/25 group">
-                    <CardContent className="p-2">
-                      <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <Leaf className="h-8 w-8 text-white" />
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-bold text-teal-600 dark:text-teal-400 mb-1">Go Green</h3>
-                          <p className="text-gray-600 dark:text-gray-300">Reduce your carbon footprint</p>
-                        </div>
+                  {/* Environmental Card */}
+                  <Card className="relative overflow-hidden bg-gradient-to-br from-green-500 to-lime-600 border-0 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 group">
+                    <div className="absolute -top-1 -left-1 w-6 h-6 bg-white/20 rounded-full"></div>
+                    <CardContent className="p-4 text-white relative z-10">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Leaf className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                        <span className="font-semibold text-sm">Eco Impact</span>
                       </div>
+                      <div className="text-2xl font-bold mb-1">5T+ CO₂</div>
+                      <div className="text-xs text-white/90">Saved Annually</div>
                     </CardContent>
                   </Card>
                 </div>
 
-                {/* Call to Action */}
-                <Card className="glass backdrop-blur-lg bg-gradient-to-br from-tean-500/10 to-cyan-500/10 border border-purple-200/30 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-purple-500/25 group">
-                    <CardContent className="p-3">
-                      <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <Calculator className="h-8 w-8 text-white" />
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-bold text-teal-600 dark:text-teal-400 mb-1">Ready to Save ?</h3>
-                          <p className="text-gray-600 dark:text-gray-300">Calculate your personalized solar savings and see how much you can save every month!</p>
-                        </div>
+                {/* Call to Action Card */}
+                <Card className="relative overflow-hidden bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 border border-gray-700 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-pink-600/10"></div>
+                  <CardContent className="relative z-10 p-5">
+                    <div className="flex items-center gap-4">
+                      <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                        <Calculator className="h-7 w-7 text-white" />
                       </div>
-                    </CardContent>
-                  </Card>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-bold text-white mb-1 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all duration-300">
+                          Ready to Go Solar?
+                        </h3>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          Get your personalized solar analysis in under 2 minutes. 
+                          <span className="text-blue-400 font-medium"> Zero cost, maximum insight.</span>
+                        </p>
+                      </div>
+                      <div className="flex flex-col items-center gap-1">
+                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                        <div className="text-xs text-green-400 font-medium">Free</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             )}
+
             {/* Loading Animation */}
             {loading && phaseIndex >= 0 && (
               <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-2xl animate-fade-in hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-blue-500/20 transition-all duration-300" style={{animation: 'floating 40s ease-in-out infinite'}}>
