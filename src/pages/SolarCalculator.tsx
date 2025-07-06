@@ -116,7 +116,7 @@ const SolarCalculator: React.FC = () => {
     // Step through phases with 10 second intervals
     for (let i=0; i<phases.length-1; i++) {
       setPhaseIndex(i);
-      await new Promise(res => setTimeout(res, 10000));
+      await new Promise(res => setTimeout(res, 10));
     }
     
     // Start final phase
@@ -294,8 +294,8 @@ const SolarCalculator: React.FC = () => {
                       <ArrowUpRight className="h-5 w-5 text-white/70 group-hover:text-white group-hover:scale-110 transition-all duration-300" />
                     </div>
                     <div className="bg-white/10 backdrop-blur rounded-lg p-3 mb-3">
-                      <div className="text-2xl font-bold">₹2.5L+ Savings</div>
-                      <div className="text-sm text-white/90">Over 25 years</div>
+                      <div className="text-2xl font-bold">Free Electricity Forever</div>
+                      
                     </div>
                     <div className="text-sm text-white/80">Join 10+ million homes already saving with solar</div>
                   </CardContent>
