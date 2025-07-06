@@ -116,7 +116,7 @@ const SolarCalculator: React.FC = () => {
     // Step through phases with 10 second intervals
     for (let i=0; i<phases.length-1; i++) {
       setPhaseIndex(i);
-      await new Promise(res => setTimeout(res, 100));
+      await new Promise(res => setTimeout(res, 200));
     }
     
     // Start final phase
