@@ -5,7 +5,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Progress } from '@/components/ui/progress';
-import { Loader2, Calculator, DollarSign, Leaf, Zap, Database, BarChart3, Award } from 'lucide-react';
+import { Loader2, Calculator, DollarSign, Leaf, Zap,sparkle, Database, BarChart3, Award,   TrendingUp, Sun, Home, Shield } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
@@ -183,18 +183,21 @@ const SolarCalculator: React.FC = () => {
             <img 
               src="/sunlyticslogo.png" 
               alt="Sunlytics" 
-               className="h-44 max-h-50 mx-auto mb-1"
+               className="h-32 max-h-40 mx-auto mb-1"
             />
           </div>
+          <p className="text-xl text-gray-600 dark:text-gray-400 mb-3">
+    Precision Solar Insights for Your Home
+  </p>
           
         </div>
 
         {/* Main Content */}
-       <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto px-6">
+       <div className="grid lg:grid-cols-2 gap-20 max-w-5xl mx-auto px-6">
 
           {/* Left Side - Form (hide when results are shown) */}
           {!result && (
-            <div className="space-y-6 max-w-md ml-4 lg:ml-12">
+            <div className="space-y-8 max-w-md ml-4 lg:ml-12">
 
               <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-blue-500/20" style={{animation: 'floating 40s ease-in-out infinite'}}>
                 <CardHeader>
@@ -265,8 +268,86 @@ const SolarCalculator: React.FC = () => {
             </div>
           )}
 
-          {/* Right Side - Loading or Results */}
+          {/* Right Side - Logo when form is shown, Loading or Results otherwise */}
           <div className="space-y-6">
+            {/* Show interactive solar benefits when form is visible and not loading */}
+            {!result && !loading && (
+              <div className="space-y-6">
+                {/* Solar Benefits Animated Cards */}
+                <div className="grid gap-4">
+                  <Card className="glass backdrop-blur-lg bg-gradient-to-br from-orrange-500/10 to-yellow-500/10 border border-orange-200/30 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-purple-500/25 group">
+                    <CardContent className="p-2">
+                      <div className="flex items-center gap-4">
+                        <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-yellow-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <Sun className="h-8 w-8 text-white animate-pulse" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400 mb-1">25+ Years Savings</h3>
+                          <p className="text-gray-600 dark:text-gray-300">Generate free electricity for decades</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                 <Card className="glass backdrop-blur-lg bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-purple-200/30 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-purple-500/25 group">
+                    <CardContent className="p-2">
+                      <div className="flex items-center gap-4">
+                        <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <TrendingUp className="h-8 w-8 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-green-600 dark:text-green-400 mb-1">20%+ Returns</h3>
+                          <p className="text-gray-600 dark:text-gray-300">Better than most investments</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                 <Card className="glass backdrop-blur-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-purple-200/30 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-purple-500/25 group">
+                    <CardContent className="p-2">
+                      <div className="flex items-center gap-4">
+                        <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <Home className="h-8 w-8 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-blue-600 dark:text-blue-400 mb-1">Property Value+</h3>
+                          <p className="text-gray-600 dark:text-gray-300">Increase your home's worth</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="glass backdrop-blur-lg bg-gradient-to-br from-tean-500/10 to-cyan-500/10 border border-cyan-200/30 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-purple-500/25 group">
+                    <CardContent className="p-2">
+                      <div className="flex items-center gap-4">
+                        <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <Leaf className="h-8 w-8 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-teal-600 dark:text-teal-400 mb-1">Go Green</h3>
+                          <p className="text-gray-600 dark:text-gray-300">Reduce your carbon footprint</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Call to Action */}
+                <Card className="glass backdrop-blur-lg bg-gradient-to-br from-tean-500/10 to-cyan-500/10 border border-purple-200/30 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-purple-500/25 group">
+                    <CardContent className="p-3">
+                      <div className="flex items-center gap-4">
+                        <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <Calculator className="h-8 w-8 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-teal-600 dark:text-teal-400 mb-1">Ready to Save ?</h3>
+                          <p className="text-gray-600 dark:text-gray-300">Calculate your personalized solar savings and see how much you can save every month!</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+              </div>
+            )}
             {/* Loading Animation */}
             {loading && phaseIndex >= 0 && (
               <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-2xl animate-fade-in hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-blue-500/20 transition-all duration-300" style={{animation: 'floating 40s ease-in-out infinite'}}>
@@ -314,6 +395,7 @@ const SolarCalculator: React.FC = () => {
             )}
           </div>
         </div>
+        
 
         {/* Results Cards - Full Width, Side by Side */}
         {!loading && result && (
