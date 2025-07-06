@@ -41,26 +41,23 @@ const Navbar = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
-  // Improved scroll handling to prevent jumping
+  // Improved scroll handling with better timing and offset calculation
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      // Stop any existing scroll behavior
-      window.scrollTo({
-        top: window.scrollY,
-        behavior: 'auto'
-      });
+      // Get the navbar height dynamically
+      const navbar = document.querySelector('header');
+      const navbarHeight = navbar ? navbar.offsetHeight : 80;
       
-      // Small delay to ensure previous scroll is stopped
-      setTimeout(() => {
-        const elementTop = element.getBoundingClientRect().top + window.scrollY;
-        const offsetTop = elementTop - 100; // Account for fixed navbar
-        
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth'
-        });
-      }, 50);
+      // Calculate the target position with proper offset
+      const elementTop = element.getBoundingClientRect().top + window.scrollY;
+      const offsetTop = elementTop - navbarHeight - 20; // Extra 20px buffer
+      
+      // Smooth scroll to the target position
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
     }
   };
 
