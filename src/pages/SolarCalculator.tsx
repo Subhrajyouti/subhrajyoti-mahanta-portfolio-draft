@@ -206,11 +206,11 @@ const SolarCalculator: React.FC = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="space-y-1">
+                  <form onSubmit={handleSubmit} className="space-y-3">
+                    <div className="space-y-0">
                       <Label className="text-sm text-gray-700 dark:text-gray-300 font-medium">State *</Label>
                       <Select value={formData.state} onValueChange={v=>handleChange('state',v)}>
-                        <SelectTrigger className="h-10 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30">
+                        <SelectTrigger className="h-9 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30">
                           <SelectValue placeholder="Select your state" />
                         </SelectTrigger>
                         <SelectContent>
@@ -220,27 +220,27 @@ const SolarCalculator: React.FC = () => {
                       {errors.state && <p className="text-red-500 text-xs">{errors.state}</p>}
                     </div>
 
-                    <div className="space-y-1">
+                    <div className="space-y-0">
                       <Label className="text-sm text-gray-700 dark:text-gray-300 font-medium">Monthly Electricity Units (kWh) *</Label>
                       <Input 
                         type="number" 
                         placeholder="e.g. 300" 
                         value={formData.monthly} 
                         onChange={e=>handleChange('monthly',e.target.value)}
-                        className="h-10 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30"
+                        className="h-9 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30"
                       />
                       {errors.monthly && <p className="text-red-500 text-xs">{errors.monthly}</p>}
                     </div>
 
-                    <div className="space-y-1">
+                    <div className="space-y-0">
                       <Label className="text-sm text-gray-700 dark:text-gray-300 font-medium">Location Coordinates *</Label>
                       <Input 
                         placeholder="lat,lon (e.g. 28.6139, 77.2090)" 
                         value={formData.latlong} 
                         onChange={e=>handleChange('latlong',e.target.value)}
-                        className="h-10 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30"
+                        className="h-9 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30"
                       />
-                      <p className="text-gray-500 dark:text-gray-400 text-xs">Get coordinates from Google Maps</p>
+                      <p className="text-gray-500 dark:text-gray-400 text-xs">Right click on your location in Google Maps </p>
                       {errors.latlong && <p className="text-red-500 text-xs">{errors.latlong}</p>}
                     </div>
 
