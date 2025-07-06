@@ -184,7 +184,7 @@ const SolarCalculator: React.FC = () => {
             <img 
               src="/sunlyticslogo.png" 
               alt="Sunlytics" 
-               className="h-32 max-h-40 mx-auto mb-1"
+               className="h-28 max-h-40 mx-auto mb-1"
             />
           </div>
           <p className="text-xl text-gray-600 dark:text-gray-400 mb-3">
@@ -357,29 +357,7 @@ const SolarCalculator: React.FC = () => {
                 </div>
 
                 {/* Call to Action Card */}
-                <Card className="relative overflow-hidden bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 border border-gray-700 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 group">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-pink-600/10"></div>
-                  <CardContent className="relative z-10 p-5">
-                    <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                        <Calculator className="h-7 w-7 text-white" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-lg font-bold text-white mb-1 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all duration-300">
-                          Ready to Go Solar?
-                        </h3>
-                        <p className="text-gray-300 text-sm leading-relaxed">
-                          Get your personalized solar analysis in under 2 minutes. 
-                          <span className="text-blue-400 font-medium"> Zero cost, maximum insight.</span>
-                        </p>
-                      </div>
-                      <div className="flex flex-col items-center gap-1">
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                        <div className="text-xs text-green-400 font-medium">Free</div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                
               </div>
             )}
 
