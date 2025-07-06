@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -526,121 +525,92 @@ const SolarCalculator: React.FC = () => {
           
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             {/* India's Solar Initiative */}
-            <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-orange-500/20" style={{animation: 'floating 40s ease-in-out infinite'}}>
-              <CardHeader className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white rounded-t-lg">
-                <div className="flex items-center gap-3">
-                  <Target className="h-8 w-8" />
-                  <CardTitle className="text-xl">India's Solar Initiative</CardTitle>
+            <div className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-lg p-6 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-orange-500/20" style={{animation: 'floating 40s ease-in-out infinite'}}>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-orange-100/50 dark:bg-orange-900/50 backdrop-blur rounded-lg flex items-center justify-center">
+                  <Target className="h-6 w-6 text-orange-600 dark:text-orange-400" />
                 </div>
-              </CardHeader>
-              <CardContent className="p-6 bg-white/50 dark:bg-white/5 backdrop-blur rounded-b-lg">
-                <div className="space-y-4">
-                  <p className="text-gray-700 dark:text-gray-300">
-                    The <strong>PM Surya Ghar Muft Bijli Yojana</strong> has set an ambitious goal of installing rooftop solar on <strong>1 crore households by 2027</strong>.
-                  </p>
-                  <p className="text-gray-700 dark:text-gray-300">
-                    This initiative is backed by generous central and state-level subsidies, making solar adoption more attractive than ever for Indian homeowners.
-                  </p>
-                  <div className="flex items-center gap-2 text-orange-600 dark:text-orange-400 font-semibold">
-                    <Globe className="h-5 w-5" />
-                    <span>1 Crore Households Target</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">India's Solar Initiative</h3>
+              </div>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
+                The <strong>PM Surya Ghar Muft Bijli Yojana</strong> has set an ambitious goal of installing rooftop solar on <strong>1 crore households by 2027</strong>.
+              </p>
+              <p className="text-gray-600 dark:text-gray-300">
+                This initiative is backed by generous central and state-level subsidies, making solar adoption more attractive than ever for Indian homeowners.
+              </p>
+            </div>
 
             {/* Decreasing Cost of Rooftop Solar */}
-            <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-green-500/20" style={{animation: 'floating 40s ease-in-out infinite 4s'}}>
-              <CardHeader className="bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-t-lg">
-                <div className="flex items-center gap-3">
-                  <TrendingDown className="h-8 w-8" />
-                  <CardTitle className="text-xl">Decreasing Solar Costs</CardTitle>
+            <div className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-lg p-6 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-green-500/20" style={{animation: 'floating 40s ease-in-out infinite 4s'}}>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-green-100/50 dark:bg-green-900/50 backdrop-blur rounded-lg flex items-center justify-center">
+                  <TrendingDown className="h-6 w-6 text-green-600 dark:text-green-400" />
                 </div>
-              </CardHeader>
-              <CardContent className="p-6 bg-white/50 dark:bg-white/5 backdrop-blur rounded-b-lg">
-                <div className="space-y-4">
-                  <p className="text-gray-700 dark:text-gray-300">
-                    Rapid technological advancements have significantly reduced rooftop solar installation costs, making solar energy <strong>financially accessible</strong> to more households.
-                  </p>
-                  <p className="text-gray-700 dark:text-gray-300">
-                    Solar panel efficiency has improved while prices have dropped, creating an ideal environment for widespread adoption.
-                  </p>
-                  <div className="flex items-center gap-2 text-green-600 dark:text-green-400 font-semibold">
-                    <TrendingDown className="h-5 w-5" />
-                    <span>70% Cost Reduction</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Decreasing Solar Costs</h3>
+              </div>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
+                Rapid technological advancements have significantly reduced rooftop solar installation costs, making solar energy <strong>financially accessible</strong> to more households.
+              </p>
+              <p className="text-gray-600 dark:text-gray-300">
+                Solar panel efficiency has improved while prices have dropped, creating an ideal environment for widespread adoption.
+              </p>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Challenges Homeowners Face */}
-            <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-red-500/20" style={{animation: 'floating 40s ease-in-out infinite 8s'}}>
-              <CardHeader className="bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-t-lg">
-                <div className="flex items-center gap-3">
-                  <AlertCircle className="h-8 w-8" />
-                  <CardTitle className="text-xl">Challenges Homeowners Face</CardTitle>
+            <div className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-lg p-6 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-red-500/20" style={{animation: 'floating 40s ease-in-out infinite 8s'}}>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-red-100/50 dark:bg-red-900/50 backdrop-blur rounded-lg flex items-center justify-center">
+                  <AlertCircle className="h-6 w-6 text-red-600 dark:text-red-400" />
                 </div>
-              </CardHeader>
-              <CardContent className="p-6 bg-white/50 dark:bg-white/5 backdrop-blur rounded-b-lg">
-                <div className="space-y-4">
-                  <p className="text-gray-700 dark:text-gray-300 mb-4">
-                    Despite the benefits, homeowners lack accurate information about:
-                  </p>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700 dark:text-gray-300">Optimal rooftop solar capacity for their needs</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700 dark:text-gray-300">Location-specific solar energy generation potential</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700 dark:text-gray-300">Detailed financial insights including costs and subsidy availability</span>
-                    </li>
-                  </ul>
-                </div>
-              </CardContent>
-            </Card>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Challenges Homeowners Face</h3>
+              </div>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
+                Despite the benefits, homeowners lack accurate information about:
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-gray-600 dark:text-gray-300">Optimal rooftop solar capacity for their needs</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-gray-600 dark:text-gray-300">Location-specific solar energy generation potential</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-gray-600 dark:text-gray-300">Detailed financial insights including costs and subsidy availability</span>
+                </li>
+              </ul>
+            </div>
 
             {/* Sunlytics as the Solution */}
-            <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-blue-500/20" style={{animation: 'floating 40s ease-in-out infinite 12s'}}>
-              <CardHeader className="bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-t-lg">
-                <div className="flex items-center gap-3">
-                  <Shield className="h-8 w-8" />
-                  <CardTitle className="text-xl">Sunlytics as the Solution</CardTitle>
+            <div className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-lg p-6 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-blue-500/20" style={{animation: 'floating 40s ease-in-out infinite 12s'}}>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-blue-100/50 dark:bg-blue-900/50 backdrop-blur rounded-lg flex items-center justify-center">
+                  <Shield className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                 </div>
-              </CardHeader>
-              <CardContent className="p-6 bg-white/50 dark:bg-white/5 backdrop-blur rounded-b-lg">
-                <div className="space-y-4">
-                  <p className="text-gray-700 dark:text-gray-300 mb-4">
-                    Sunlytics resolves these challenges by providing:
-                  </p>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700 dark:text-gray-300"><strong>Precise location data</strong> to estimate solar energy production accurately</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700 dark:text-gray-300"><strong>Optimal system sizing</strong> based on your electricity consumption patterns</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700 dark:text-gray-300"><strong>Detailed financial modeling</strong> including costs, subsidies, payback period, and long-term savings</span>
-                    </li>
-                  </ul>
-                  <div className="mt-6 p-4 bg-blue-50/50 dark:bg-blue-900/20 rounded-lg border border-blue-200/30">
-                    <p className="text-blue-700 dark:text-blue-300 font-medium text-center">
-                      Making solar adoption decisions easier and more informed for every Indian household
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Sunlytics as the Solution</h3>
+              </div>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
+                Sunlytics resolves these challenges by providing:
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-gray-600 dark:text-gray-300"><strong>Precise location data</strong> to estimate solar energy production accurately</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-gray-600 dark:text-gray-300"><strong>Optimal system sizing</strong> based on your electricity consumption patterns</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-gray-600 dark:text-gray-300"><strong>Detailed financial modeling</strong> including costs, subsidies, payback period, and long-term savings</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
