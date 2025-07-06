@@ -96,7 +96,7 @@ const SolarCalculator: React.FC = () => {
     const errs: Record<string,string> = {};
     if (!formData.state) errs.state = 'Select a state';
     if (!formData.monthly || isNaN(+formData.monthly) || +formData.monthly <= 0) errs.monthly = 'Enter valid monthly units';
-    if (!/^[-\d.]+,[-\d.]+$/.test(formData.latlong)) errs.latlong = 'Enter coords as lat,lng';
+    if (!/^[-\d.]+, [-\d.]+$/.test(formData.latlong)) errs.latlong = 'Enter coords as lat,lng';
     setErrors(errs);
     return Object.keys(errs).length===0;
   };
@@ -236,7 +236,7 @@ const SolarCalculator: React.FC = () => {
                     <div className="space-y-2">
                       <Label className="text-gray-700 dark:text-gray-300 font-medium">Location Coordinates *</Label>
                       <Input 
-                        placeholder="lat,lon (e.g. 28.6139,77.2090)" 
+                        placeholder="lat,lon (e.g. 28.6139, 77.2090)" 
                         value={formData.latlong} 
                         onChange={e=>handleChange('latlong',e.target.value)}
                         className="h-12 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30"
