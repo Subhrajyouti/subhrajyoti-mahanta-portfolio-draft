@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 
 interface NavItem {
   label: string;
@@ -25,6 +25,7 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const location = useLocation();
+  const navigate = useNavigate();
   const isHomePage = location.pathname === "/";
 
   useEffect(() => {
@@ -41,34 +42,40 @@ const Navbar = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
-  // Improved scroll handling to prevent jumping and ensure smooth scrolling to correct sections
+  // Improved scroll handling with better timing and reliability
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      const elementTop = element.getBoundingClientRect().top + window.scrollY;
-      const offsetTop = elementTop - 100; // Account for fixed navbar
-      
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
-    }
+    // Small delay to ensure DOM is ready
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        const elementTop = element.getBoundingClientRect().top + window.scrollY;
+        const offsetTop = elementTop - 100; // Account for fixed navbar
+        
+        window.scrollTo({
+          top: Math.max(0, offsetTop), // Ensure we don't scroll to negative values
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
   };
 
-  // Handle link clicks for navigation items
+  // Simplified navigation handling
   const handleNavItemClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    // Only apply special handling on home page
-    if (isHomePage) {
-      if (href.startsWith('#')) {
+    setMobileMenuOpen(false);
+    
+    if (href.startsWith('#')) {
+      if (isHomePage) {
+        // On home page, prevent default and scroll to section
         e.preventDefault();
         scrollToSection(href);
-        setMobileMenuOpen(false);
-      }
-    } else {
-      // If not on home page and link is an anchor, navigate to home page first
-      if (href.startsWith('#')) {
-        // Don't prevent default here to let the Link component handle navigation
-        setMobileMenuOpen(false);
+      } else {
+        // Not on home page, navigate to home first then scroll
+        e.preventDefault();
+        navigate('/');
+        // Wait for navigation to complete before scrolling
+        setTimeout(() => {
+          scrollToSection(href);
+        }, 300);
       }
     }
   };
@@ -87,6 +94,14 @@ const Navbar = () => {
           <Link 
             to="/" 
             className="text-lg sm:text-xl font-bold text-foreground transition-all duration-300 hover:text-primary"
+            onClick={() => {
+              if (!isHomePage) {
+                // Scroll to top when navigating to home from other pages
+                setTimeout(() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 100);
+              }
+            }}
           >
             Subhrajyoti<span className="text-primary">.</span>
           </Link>
