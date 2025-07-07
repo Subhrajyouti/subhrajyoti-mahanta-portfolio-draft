@@ -43,17 +43,21 @@ const Navbar = () => {
 
   // Improved scroll handling to prevent jumping and ensure smooth scrolling to correct sections
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      const elementTop = element.getBoundingClientRect().top + window.scrollY;
-      const offsetTop = elementTop - 100; // Account for fixed navbar
-      
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
-    }
-  };
+  const element = document.querySelector(href);
+  const navbar = document.querySelector("header");
+
+  if (element && navbar) {
+    const navbarHeight = navbar.offsetHeight;
+    const elementTop = element.getBoundingClientRect().top + window.scrollY;
+    const offsetTop = elementTop - navbarHeight;
+
+    window.scrollTo({
+      top: offsetTop,
+      behavior: "smooth",
+    });
+  }
+};
+
 
   // Handle link clicks for navigation items
   const handleNavItemClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {

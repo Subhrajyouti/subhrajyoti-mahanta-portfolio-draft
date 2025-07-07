@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 const products = [
   {
     id: 1,
-    title: "Solar Calculator",
+    title: "SunLytics",
     description: "Advanced solar potential calculator with cost analysis, savings estimation, and ROI calculations for your location.",
-    thumbnail: "/solar.jpg",
+    thumbnail: "/sunlyticsthumbnail.jpg",
     link: "/calculator",
     tags: ["Solar", "Calculator", "Analytics"],
     type: "Tool"
@@ -67,7 +67,12 @@ const ProductsSection = () => {
                   ))}
                 </div>
                 
-                <Link to={product.link}>
+                <Link
+  to={product.link}
+  onClick={() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }}
+>
                   <Button className="w-full group/btn">
                     Use Calculator
                     <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
