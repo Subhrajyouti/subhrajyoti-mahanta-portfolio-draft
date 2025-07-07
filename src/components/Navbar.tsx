@@ -41,26 +41,17 @@ const Navbar = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
-  // Improved scroll handling to prevent jumping
+  // Improved scroll handling to prevent jumping and ensure smooth scrolling to correct sections
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      // Stop any existing scroll behavior
-      window.scrollTo({
-        top: window.scrollY,
-        behavior: 'auto'
-      });
+      const elementTop = element.getBoundingClientRect().top + window.scrollY;
+      const offsetTop = elementTop - 100; // Account for fixed navbar
       
-      // Small delay to ensure previous scroll is stopped
-      setTimeout(() => {
-        const elementTop = element.getBoundingClientRect().top + window.scrollY;
-        const offsetTop = elementTop - 100; // Account for fixed navbar
-        
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth'
-        });
-      }, 50);
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -107,7 +98,7 @@ const Navbar = () => {
                 key={item.label}
                 to={isHomePage ? item.href : `/${item.href}`}
                 className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors duration-200"
-                onClick={(e) => isHomePage && handleNavItemClick(e, item.href)}
+                onClick={(e) => handleNavItemClick(e, item.href)}
               >
                 {item.label}
               </Link>

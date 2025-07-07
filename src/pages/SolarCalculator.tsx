@@ -170,6 +170,8 @@ const SolarCalculator: React.FC = () => {
     setResult(null);
     setFormData({ state: '', monthly: '', latlong: '' });
     setErrors({});
+    // Scroll to top of the page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -410,15 +412,15 @@ const SolarCalculator: React.FC = () => {
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white text-center">Your Solar Analysis</h2>
             
             <div className="grid md:grid-cols-3 gap-6">
-              {/* Solar Output Card */}
-              <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-orange-500/25 group" style={{animation: 'floating 40s ease-in-out infinite'}}>
+              {/* Solar Output Card - Fixed grey color coverage */}
+              <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-orange-500/25 group overflow-hidden" style={{animation: 'floating 40s ease-in-out infinite'}}>
                 <CardHeader className="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-t-lg group-hover:from-orange-400 group-hover:to-red-400 transition-all duration-300 pb-3">
                   <div className="flex items-center gap-2">
                     <Zap className="h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
                     <CardTitle className="text-lg">Solar Output & Potential</CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent className="p-4 bg-white/50 dark:bg-white/5 backdrop-blur rounded-b-lg group-hover:bg-white/60 dark:group-hover:bg-white/10 transition-all duration-300">
+                <CardContent className="p-4 bg-white/50 dark:bg-white/5 backdrop-blur rounded-b-lg group-hover:bg-white/60 dark:group-hover:bg-white/10 transition-all duration-300 h-full">
                   <div className="space-y-3">
                     <div className="text-center">
                       <div className="text-2xl font-bold text-orange-600 dark:text-orange-400 group-hover:scale-110 transition-transform duration-300">{formatNum(result.recommended_kW)} kW</div>
@@ -436,7 +438,7 @@ const SolarCalculator: React.FC = () => {
                 </CardContent>
               </Card>
 
-              {/* Financial Metrics Card */}
+              {/* Financial Metrics Card - Fixed grey color coverage */}
               <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-green-500/25 group" style={{animation: 'floating 40s ease-in-out infinite 4s'}}>
                 <CardHeader className="bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-t-lg group-hover:from-green-400 group-hover:to-emerald-400 transition-all duration-300 pb-3">
                   <div className="flex items-center gap-2">
@@ -444,7 +446,7 @@ const SolarCalculator: React.FC = () => {
                     <CardTitle className="text-lg">Financial Metrics</CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent className="p-4 bg-white/50 dark:bg-white/5 backdrop-blur h-full group-hover:bg-white/60 dark:group-hover:bg-white/10 transition-all duration-300">
+                <CardContent className="p-4 bg-white/50 dark:bg-white/5 backdrop-blur rounded-b-lg group-hover:bg-white/60 dark:group-hover:bg-white/10 transition-all duration-300 h-full">
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
                       <span className="text-xs text-gray-600 dark:text-gray-300">Total System Cost:</span>
@@ -488,7 +490,7 @@ const SolarCalculator: React.FC = () => {
                 </CardContent>
               </Card>
 
-              {/* Environmental Impact Card */}
+              {/* Environmental Impact Card - Fixed grey color coverage */}
               <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-teal-500/25 group" style={{animation: 'floating 40s ease-in-out infinite 8s'}}>
                 <CardHeader className="bg-gradient-to-r from-teal-500 to-green-500 text-white rounded-t-lg group-hover:from-teal-400 group-hover:to-green-400 transition-all duration-300 pb-3">
                   <div className="flex items-center gap-2">
@@ -496,7 +498,7 @@ const SolarCalculator: React.FC = () => {
                     <CardTitle className="text-lg">Environmental Impact</CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent className="p-4 bg-white/50 dark:bg-white/5 backdrop-blur h-full group-hover:bg-white/60 dark:group-hover:bg-white/10 transition-all duration-300">
+                <CardContent className="p-4 bg-white/50 dark:bg-white/5 backdrop-blur rounded-b-lg group-hover:bg-white/60 dark:group-hover:bg-white/10 transition-all duration-300 h-full">
                   <div className="space-y-4">
                     <div className="text-center">
                       <div className="text-3xl font-bold text-teal-600 dark:text-teal-400 group-hover:scale-110 transition-transform duration-300">{formatNum(result.co2Avoided/1000, 1)}</div>
