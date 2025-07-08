@@ -10,7 +10,7 @@ const products = [
     title: "SunLytics",
     description: "Advanced solar potential calculator with cost analysis, savings estimation, and ROI calculations for your location.",
     thumbnail: "/sunlyticsthumbnail.jpg",
-    link: "/calculator",
+    link: "/sunlytics",
     tags: ["Solar", "Calculator", "Analytics"],
     type: "Tool"
   }
