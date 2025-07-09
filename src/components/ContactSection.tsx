@@ -94,8 +94,8 @@ const ContactSection = () => {
             <ContactCard
               icon={<Mail className="h-5 w-5 text-primary" />}
               title="Email"
-              value="thesubhrajyotimahanta@gmail.com"
-              href="mailto:thesubhrajyotimahanta@gmail.com"
+              value="subhrajyoti.analyst@gmail.com"
+              href="mailto:subhrajyoti.analyst@gmail.com"
             />
 
             <ContactCard
