@@ -122,7 +122,7 @@ const SolarCalculator: React.FC = () => {
     setPhaseIndex(phases.length-1);
 
     try {
-      const res = await fetch('https://sunlytics-fly.fly.dev/api/calculate', {
+      const res = await fetch('https://web-production-3be1.up.railway.app/', {
         method: 'POST', headers:{ 'Content-Type':'application/json' },
         body: JSON.stringify({
           state: formData.state,
