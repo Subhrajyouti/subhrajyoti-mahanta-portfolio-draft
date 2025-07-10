@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -5,7 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Progress } from '@/components/ui/progress';
-import { Loader2, Calculator, DollarSign, Leaf, Zap, Database, BarChart3, Award, TrendingUp, Sun, Home, Shield, Target, Globe, TrendingDown, AlertCircle, Sparkles, Battery, ArrowUpRight } from 'lucide-react';
+import { Loader2, Calculator, DollarSign, Leaf, Zap, Database, BarChart3, Award, TrendingUp, Sun, Home, Shield, Target, Globe, TrendingDown, AlertCircle, Sparkles, Battery, ArrowUpRight, MapPin, Settings, CheckCircle } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
@@ -269,91 +270,118 @@ const SolarCalculator: React.FC = () => {
             </div>
           )}
 
-          {/* Right Side - Enhanced Benefits Cards */}
+          {/* Right Side - Problem, Solution, Benefits */}
           <div className="space-y-4 h-full">
-            {/* Show enhanced solar benefits when form is visible and not loading */}
+            {/* Show problem, solution, and benefits when form is visible and not loading */}
             {!result && !loading && (
-              <div className="space-y-3">
-                {/* Hero Benefit Card */}
-                <Card className="relative overflow-hidden bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 group">
+              <div className="space-y-4">
+                {/* Problem Card */}
+                <Card className="relative overflow-hidden bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 group">
                   <div className="absolute inset-0 bg-black/10"></div>
                   <div className="absolute top-3 right-3 opacity-20">
-                    <Sun className="h-16 w-16 text-white" />
+                    <AlertCircle className="h-12 w-12 text-white" />
                   </div>
                   <CardContent className="relative z-10 p-4 text-white">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex items-center gap-2">
-                        <div className="w-10 h-10 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <Sparkles className="h-5 w-5 text-white" />
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className="w-8 h-8 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <AlertCircle className="h-4 w-4 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold mb-1">The Problem</h3>
+                        <p className="text-white/90 text-xs">Solar isn't one-size-fits-all</p>
+                      </div>
+                    </div>
+                    <div className="space-y-2 text-sm">
+                      <p className="text-white/95">Solar output varies dramatically across India:</p>
+                      <div className="bg-white/10 backdrop-blur rounded-lg p-2 space-y-1">
+                        <div className="flex items-center gap-2">
+                          <MapPin className="h-3 w-3 text-white/80" />
+                          <span className="text-xs">Rajasthan vs Assam = Different solar yields</span>
                         </div>
-                        <div>
-                          <h3 className="text-lg font-bold mb-1">Transform Your Home</h3>
-                          <p className="text-white/90 text-xs">Into a Clean Energy Powerhouse</p>
+                        <div className="flex items-center gap-2">
+                          <DollarSign className="h-3 w-3 text-white/80" />
+                          <span className="text-xs">State subsidies vary significantly</span>
                         </div>
                       </div>
-                      <ArrowUpRight className="h-4 w-4 text-white/70 group-hover:text-white group-hover:scale-110 transition-all duration-300" />
+                      <p className="text-xs text-white/80">Same usage ≠ Same solar system size</p>
                     </div>
-                    <div className="bg-white/10 backdrop-blur rounded-lg p-2 mb-2">
-                      <div className="text-xl font-bold">Free Electricity Forever</div>
-                    </div>
-                    <div className="text-xs text-white/80">Join 10+ million homes already saving with solar</div>
                   </CardContent>
                 </Card>
 
-                {/* Benefits Grid */}
-                <div className="grid grid-cols-2 gap-3">
-                  {/* ROI Card */}
-                  <Card className="relative overflow-hidden bg-gradient-to-br from-emerald-400 to-teal-600 border-0 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 group">
-                    <div className="absolute -top-2 -right-2 w-12 h-12 bg-white/10 rounded-full"></div>
-                    <CardContent className="p-3 text-white relative z-10">
-                      <div className="flex items-center gap-2 mb-1">
-                        <TrendingUp className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
-                        <span className="font-semibold text-xs">High Returns</span>
+                {/* Solution Card */}
+                <Card className="relative overflow-hidden bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 group">
+                  <div className="absolute inset-0 bg-black/10"></div>
+                  <div className="absolute top-3 right-3 opacity-20">
+                    <Target className="h-12 w-12 text-white" />
+                  </div>
+                  <CardContent className="relative z-10 p-4 text-white">
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className="w-8 h-8 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <Settings className="h-4 w-4 text-white" />
                       </div>
-                      <div className="text-xl font-bold mb-1">15-20%</div>
-                      <div className="text-xs text-white/90">Annual ROI</div>
-                    </CardContent>
-                  </Card>
+                      <div>
+                        <h3 className="text-lg font-bold mb-1">Sunlytics Solution</h3>
+                        <p className="text-white/90 text-xs">Precision solar analysis for your location</p>
+                      </div>
+                    </div>
+                    <div className="space-y-2 text-sm">
+                      <p className="text-white/95">We analyze your exact location data:</p>
+                      <div className="bg-white/10 backdrop-blur rounded-lg p-2 space-y-1">
+                        <div className="flex items-center gap-2">
+                          <Sun className="h-3 w-3 text-white/80" />
+                          <span className="text-xs">Real solar irradiance at your coordinates</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <BarChart3 className="h-3 w-3 text-white/80" />
+                          <span className="text-xs">Optimal system size for your usage</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Shield className="h-3 w-3 text-white/80" />
+                          <span className="text-xs">State-specific subsidy calculations</span>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
 
-                  {/* Payback Card */}
-                  <Card className="relative overflow-hidden bg-gradient-to-br from-blue-500 to-indigo-600 border-0 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 group">
-                    <div className="absolute -bottom-2 -left-2 w-10 h-10 bg-white/10 rounded-full"></div>
-                    <CardContent className="p-3 text-white relative z-10">
-                      <div className="flex items-center gap-2 mb-1">
-                        <Battery className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
-                        <span className="font-semibold text-xs">Quick Payback</span>
+                {/* Benefits Card */}
+                <Card className="relative overflow-hidden bg-gradient-to-br from-emerald-400 via-teal-500 to-green-600 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 group">
+                  <div className="absolute inset-0 bg-black/10"></div>
+                  <div className="absolute top-3 right-3 opacity-20">
+                    <CheckCircle className="h-12 w-12 text-white" />
+                  </div>
+                  <CardContent className="relative z-10 p-4 text-white">
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className="w-8 h-8 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <Sparkles className="h-4 w-4 text-white" />
                       </div>
-                      <div className="text-xl font-bold mb-1">4-6 Yrs</div>
-                      <div className="text-xs text-white/90">Investment Recovery</div>
-                    </CardContent>
-                  </Card>
-
-                  {/* Property Value Card */}
-                  <Card className="relative overflow-hidden bg-gradient-to-br from-purple-500 to-pink-600 border-0 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 group">
-                    <div className="absolute top-0 right-0 w-6 h-6 bg-white/10 rounded-full"></div>
-                    <CardContent className="p-3 text-white relative z-10">
-                      <div className="flex items-center gap-2 mb-1">
-                        <Home className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
-                        <span className="font-semibold text-xs">Property+</span>
+                      <div>
+                        <h3 className="text-lg font-bold mb-1">Your Benefits</h3>
+                        <p className="text-white/90 text-xs">Make informed solar decisions</p>
                       </div>
-                      <div className="text-xl font-bold mb-1">10-15%</div>
-                      <div className="text-xs text-white/90">Value Increase</div>
-                    </CardContent>
-                  </Card>
-
-                  {/* Environmental Card */}
-                  <Card className="relative overflow-hidden bg-gradient-to-br from-green-500 to-lime-600 border-0 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 hover:-translate-y-1 group">
-                    <div className="absolute -top-1 -left-1 w-5 h-5 bg-white/20 rounded-full"></div>
-                    <CardContent className="p-3 text-white relative z-10">
-                      <div className="flex items-center gap-2 mb-1">
-                        <Leaf className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
-                        <span className="font-semibold text-xs">Eco Impact</span>
+                    </div>
+                    <div className="space-y-2 text-sm">
+                      <p className="text-white/95">Get precise insights instantly:</p>
+                      <div className="bg-white/10 backdrop-blur rounded-lg p-2 space-y-1">
+                        <div className="flex items-center gap-2">
+                          <TrendingUp className="h-3 w-3 text-white/80" />
+                          <span className="text-xs">Exact payback period & savings</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Battery className="h-3 w-3 text-white/80" />
+                          <span className="text-xs">Right system size for your needs</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Home className="h-3 w-3 text-white/80" />
+                          <span className="text-xs">Location-specific recommendations</span>
+                        </div>
                       </div>
-                      <div className="text-xl font-bold mb-1">5T+ CO₂</div>
-                      <div className="text-xs text-white/90">Saved Annually</div>
-                    </CardContent>
-                  </Card>
-                </div>
+                      <div className="text-center mt-2">
+                        <div className="text-base font-bold">No Guesswork, Just Results</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             )}
 
