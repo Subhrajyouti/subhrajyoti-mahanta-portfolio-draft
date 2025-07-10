@@ -273,17 +273,19 @@ const SolarCalculator: React.FC = () => {
           )}
 
           {/* Right Side - Problem and Solution */}
-          <div className="space-y-4 h-96">
+         <div className="grid grid-rows-2 gap-4 h-96 max-w-sm ml-2 lg:ml-8">
             {/* Show problem and solution when form is visible and not loading */}
             {!result && !loading && (
-              <div className="space-y-4 h-96">
+              <div className="flex flex-col justify-between h-96">
+
                 {/* Problem Card - Refined */}
-                <Card className="relative overflow-hidden bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 group h-48">
+                <Card className="relative overflow-hidden bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 group flex-1">
                   <div className="absolute inset-0 bg-black/10"></div>
                   <div className="absolute top-3 right-3 opacity-20">
                     <AlertCircle className="h-8 w-8 text-white" />
                   </div>
-                  <CardContent className="relative z-10 p-4 text-white h-full">
+                  <CardContent className="relative z-10 p-3 text-white text-sm leading-tight h-full overflow-hidden">
+
                     <div className="flex items-start gap-3 mb-3">
                       <div className="w-8 h-8 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <AlertCircle className="h-4 w-4 text-white" />
@@ -319,12 +321,13 @@ const SolarCalculator: React.FC = () => {
                 </Card>
 
                 {/* Solution Card - How Sunlytics Helps */}
-                <Card className="relative overflow-hidden bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 group h-44">
+                <Card className="relative overflow-hidden bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 group flex-1">
                   <div className="absolute inset-0 bg-black/10"></div>
                   <div className="absolute top-3 right-3 opacity-20">
                     <Sparkles className="h-8 w-8 text-white" />
                   </div>
-                  <CardContent className="relative z-10 p-4 text-white h-full">
+                  <CardContent className="relative z-10 p-3 text-white text-sm leading-tight h-full overflow-hidden">
+
                     <div className="flex items-start gap-3 mb-3">
                       <div className="w-8 h-8 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <Target className="h-4 w-4 text-white" />
