@@ -193,6 +193,7 @@ const SolarCalculator: React.FC = () => {
         </div>
 
         {/* Main Content */}
+        
         <div className="grid lg:grid-cols-2 gap-4 max-w-5xl mx-auto px-1 items-start">
 
           {/* Left Side - Form (hide when results are shown) */}
@@ -512,7 +513,7 @@ const SolarCalculator: React.FC = () => {
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">{result.treesSaved}</div>
-                      <p className="text-xs text-gray-600 dark:text-gray-300">Trees equivalent planted</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-300">Trees equivalent planted/2.2</p>
                     </div>
                   </div>
                 </CardContent>
