@@ -197,7 +197,7 @@ const SolarCalculator: React.FC = () => {
 
           {/* Left Side - Form (hide when results are shown) */}
           {!result && (
-            <div className="space-y-3 w-full max-w-md ml-2 lg:ml-4 h-[380px]">
+          <div className="space-y-3 w-full max-w-md ml-2 lg:ml-4 h-auto">
 
               <Card className="h-[380px] glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-blue-500/20" style={{animation: 'floating 40s ease-in-out infinite'}}>
                 <CardHeader className="pb-3">
