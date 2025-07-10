@@ -179,7 +179,7 @@ const SolarCalculator: React.FC = () => {
       
       <div className="container mx-auto px-4 py-4">
         {/* Header */}
-        <div className="text-center mb-3">
+        <div className="text-center mb-">
           <div className="flex justify-center items-center mb-1">
             <img 
               src="/sunlyticslogo.png" 
