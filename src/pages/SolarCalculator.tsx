@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -242,7 +243,7 @@ const SolarCalculator: React.FC = () => {
                         onChange={e=>handleChange('latlong',e.target.value)}
                         className="h-9 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30"
                       />
-                      <p className="text-gray-500 dark:text-gray-400 text-xs">Right click on your location in Google Maps </p>
+                      <p className="text-gray-500 dark:text-gray-400 text-xs">Right click on your location in Google Maps</p>
                       {errors.latlong && <p className="text-red-500 text-xs">{errors.latlong}</p>}
                     </div>
 
@@ -448,7 +449,7 @@ const SolarCalculator: React.FC = () => {
               </Card>
 
               {/* Financial Metrics Card - Fixed grey color coverage */}
-              <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-green-500/25 group" style={{animation: 'floating 40s ease-in-out infinite 4s}}>
+              <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-green-500/25 group" style={{animation: 'floating 40s ease-in-out infinite 4s'}}>
                 <CardHeader className="bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-t-lg group-hover:from-green-400 group-hover:to-emerald-400 transition-all duration-300 pb-3">
                   <div className="flex items-center gap-2">
                     <DollarSign className="h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
