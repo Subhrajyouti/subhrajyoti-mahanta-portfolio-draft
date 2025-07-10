@@ -180,36 +180,36 @@ const SolarCalculator: React.FC = () => {
       
       <div className="container mx-auto px-4 py-6">
         {/* Header */}
-        <div className="text-center mb-2">
-          <div className="flex justify-center items-center mb-0">
+        <div className="text-center mb-4">
+          <div className="flex justify-center items-center mb-2">
             <img 
               src="/sunlyticslogo.png" 
               alt="Sunlytics - Precision Solar Insights" 
-              className="h-16 md:h-20 w-auto mx-auto mb-0"
+              className="h-12 md:h-14 w-auto mx-auto mb-1"
             />
           </div>
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-0">
+          <p className="text-base text-gray-600 dark:text-gray-400 mb-2">
             Precision Solar Insights for Your Home
           </p>
         </div>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-2 gap-12 max-w-4xl mx-auto px-1 items-stretch">
+        <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto px-1 items-start">
 
           {/* Left Side - Form (hide when results are shown) */}
           {!result && (
-            <div className="space-y-4 max-w-sm ml-2 lg:ml-8 h-full">
+            <div className="space-y-4 max-w-sm ml-2 lg:ml-8 h-96">
 
-              <Card className="h-full glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-blue-500/20" style={{animation: 'floating 40s ease-in-out infinite'}}>
+              <Card className="h-96 glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-blue-500/20" style={{animation: 'floating 40s ease-in-out infinite'}}>
                 <CardHeader className="pb-3">
                   <CardTitle className="text-lg text-gray-900 dark:text-white flex items-center gap-2">
                     <Calculator className="h-5 w-5 text-blue-600" />
                     Calculate Your Solar Potential
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="pt-0">
-                  <form onSubmit={handleSubmit} className="space-y-3">
-                    <div className="space-y-0">
+                <CardContent className="pt-0 flex flex-col h-full">
+                  <form onSubmit={handleSubmit} className="space-y-3 flex-1">
+                    <div className="space-y-1">
                       <Label className="text-sm text-gray-700 dark:text-gray-300 font-medium">State *</Label>
                       <Select value={formData.state} onValueChange={v=>handleChange('state',v)}>
                         <SelectTrigger className="h-9 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30">
@@ -222,7 +222,7 @@ const SolarCalculator: React.FC = () => {
                       {errors.state && <p className="text-red-500 text-xs">{errors.state}</p>}
                     </div>
 
-                    <div className="space-y-0">
+                    <div className="space-y-1">
                       <Label className="text-sm text-gray-700 dark:text-gray-300 font-medium">Monthly Electricity Units (kWh) *</Label>
                       <Input 
                         type="number" 
@@ -234,7 +234,7 @@ const SolarCalculator: React.FC = () => {
                       {errors.monthly && <p className="text-red-500 text-xs">{errors.monthly}</p>}
                     </div>
 
-                    <div className="space-y-0">
+                    <div className="space-y-1">
                       <Label className="text-sm text-gray-700 dark:text-gray-300 font-medium">Location Coordinates *</Label>
                       <Input 
                         placeholder="lat,lon (e.g. 28.6139, 77.2090)" 
@@ -246,23 +246,25 @@ const SolarCalculator: React.FC = () => {
                       {errors.latlong && <p className="text-red-500 text-xs">{errors.latlong}</p>}
                     </div>
 
-                    <Button 
-                      type="submit" 
-                      className="w-full h-10 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300" 
-                      disabled={loading}
-                    >
-                      {loading ? (
-                        <>
-                          <Loader2 className="animate-spin mr-2 h-4 w-4" />
-                          Analyzing...
-                        </>
-                      ) : (
-                        <>
-                          <Zap className="mr-2 h-4 w-4" />
-                          Calculate Solar Potential
-                        </>
-                      )}
-                    </Button>
+                    <div className="flex-1 flex items-end">
+                      <Button 
+                        type="submit" 
+                        className="w-full h-10 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300" 
+                        disabled={loading}
+                      >
+                        {loading ? (
+                          <>
+                            <Loader2 className="animate-spin mr-2 h-4 w-4" />
+                            Analyzing...
+                          </>
+                        ) : (
+                          <>
+                            <Zap className="mr-2 h-4 w-4" />
+                            Calculate Solar Potential
+                          </>
+                        )}
+                      </Button>
+                    </div>
                   </form>
                 </CardContent>
               </Card>
@@ -270,17 +272,17 @@ const SolarCalculator: React.FC = () => {
           )}
 
           {/* Right Side - Problem and Solution */}
-          <div className="space-y-4 h-full">
+          <div className="space-y-4 h-96">
             {/* Show problem and solution when form is visible and not loading */}
             {!result && !loading && (
-              <div className="space-y-4">
+              <div className="space-y-4 h-96">
                 {/* Problem Card - Refined */}
-                <Card className="relative overflow-hidden bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 group">
+                <Card className="relative overflow-hidden bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 group h-48">
                   <div className="absolute inset-0 bg-black/10"></div>
                   <div className="absolute top-3 right-3 opacity-20">
-                    <AlertCircle className="h-12 w-12 text-white" />
+                    <AlertCircle className="h-8 w-8 text-white" />
                   </div>
-                  <CardContent className="relative z-10 p-4 text-white">
+                  <CardContent className="relative z-10 p-4 text-white h-full">
                     <div className="flex items-start gap-3 mb-3">
                       <div className="w-8 h-8 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <AlertCircle className="h-4 w-4 text-white" />
@@ -316,12 +318,12 @@ const SolarCalculator: React.FC = () => {
                 </Card>
 
                 {/* Solution Card - How Sunlytics Helps */}
-                <Card className="relative overflow-hidden bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 group">
+                <Card className="relative overflow-hidden bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 group h-44">
                   <div className="absolute inset-0 bg-black/10"></div>
                   <div className="absolute top-3 right-3 opacity-20">
-                    <Sparkles className="h-12 w-12 text-white" />
+                    <Sparkles className="h-8 w-8 text-white" />
                   </div>
-                  <CardContent className="relative z-10 p-4 text-white">
+                  <CardContent className="relative z-10 p-4 text-white h-full">
                     <div className="flex items-start gap-3 mb-3">
                       <div className="w-8 h-8 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <Target className="h-4 w-4 text-white" />
@@ -355,8 +357,8 @@ const SolarCalculator: React.FC = () => {
                           <span className="text-xs"><strong>Location-Specific:</strong> Solar potential for your exact coordinates</span>
                         </div>
                       </div>
-                      <div className="text-center mt-3">
-                        <div className="text-base font-bold bg-white/20 rounded-lg py-1">Make Smart Solar Decisions</div>
+                      <div className="text-center mt-2">
+                        <div className="text-sm font-bold bg-white/20 rounded-lg py-1">Make Smart Solar Decisions</div>
                       </div>
                     </div>
                   </CardContent>
@@ -366,8 +368,8 @@ const SolarCalculator: React.FC = () => {
 
             {/* Loading Animation */}
             {loading && phaseIndex >= 0 && (
-              <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl animate-fade-in hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-blue-500/20 transition-all duration-300" style={{animation: 'floating 40s ease-in-out infinite'}}>
-                <CardContent className="p-6">
+              <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl animate-fade-in hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-blue-500/20 transition-all duration-300 h-96" style={{animation: 'floating 40s ease-in-out infinite'}}>
+                <CardContent className="p-6 h-full">
                   <div className="text-center mb-6">
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Analyzing Your Solar Potential</h3>
                     <p className="text-sm text-gray-600 dark:text-gray-300">Please wait while we process your data</p>
@@ -446,7 +448,7 @@ const SolarCalculator: React.FC = () => {
               </Card>
 
               {/* Financial Metrics Card - Fixed grey color coverage */}
-              <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-green-500/25 group" style={{animation: 'floating 40s ease-in-out infinite 4s'}}>
+              <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-green-500/25 group" style={{animation: 'floating 40s ease-in-out infinite 4s}}>
                 <CardHeader className="bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-t-lg group-hover:from-green-400 group-hover:to-emerald-400 transition-all duration-300 pb-3">
                   <div className="flex items-center gap-2">
                     <DollarSign className="h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
