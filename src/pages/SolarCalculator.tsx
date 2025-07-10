@@ -177,14 +177,14 @@ const SolarCalculator: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20">
       <Navbar />
       
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-1 py-8">
         {/* Header */}
-        <div className="text-center mb-">
+        <div className="text-center mb-0">
           <div className="flex justify-center items-center mb-1">
             <img 
               src="/sunlyticslogo.png" 
               alt="Sunlytics - Precision Solar Insights" 
-              className="h-10 md:h-12 w-auto mx-auto mb-1"
+              className="h-12 md:h-20 w-auto mx-auto mb-0"
             />
           </div>
           <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
@@ -197,7 +197,7 @@ const SolarCalculator: React.FC = () => {
 
           {/* Left Side - Form (hide when results are shown) */}
           {!result && (
-            <div className="space-y-3 max-w-sm ml-2 lg:ml-4 h-[380px]">
+            <div className="space-y-3 w-full max-w-md ml-2 lg:ml-4 h-[380px]">
 
               <Card className="h-[380px] glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-blue-500/20" style={{animation: 'floating 40s ease-in-out infinite'}}>
                 <CardHeader className="pb-3">
@@ -271,7 +271,7 @@ const SolarCalculator: React.FC = () => {
           )}
 
           {/* Right Side - Problem and Solution */}
-         <div className="flex flex-col gap-4 h-[380px] max-w-sm ml-2 lg:ml-4">
+         <div className="space-y-3 w-full max-w-md ml-2 lg:ml-4 h-[380px]">
             {/* Show problem and solution when form is visible and not loading */}
             {!result && !loading && (
               <>
@@ -283,36 +283,38 @@ const SolarCalculator: React.FC = () => {
                   </div>
                   <CardContent className="relative z-10 p-3 text-white leading-relaxed h-full overflow-hidden">
 
-                    <div className="flex items-start gap-2 mb-3">
+                    <div className="flex items-start gap-2 mb-0">
                       <div className="w-8 h-8 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <AlertCircle className="h-4 w-4 text-white" />
                       </div>
                       <div>
                         <h3 className="text-base font-bold mb-1">The Solar Confusion</h3>
-                        <p className="text-white/90 text-xs">Why most homeowners struggle with solar decisions</p>
+                       
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <p className="text-white/95 font-medium text-sm">Most people want solar but don't know:</p>
+                      
                       <div className="bg-white/10 backdrop-blur rounded-lg p-2 space-y-1">
                         <div className="flex items-start gap-2">
                           <div className="w-1.5 h-1.5 bg-white rounded-full mt-1 flex-shrink-0"></div>
-                          <span className="text-xs">How much solar capacity they actually need</span>
+                          <span className="text-xs"><strong>Location matters: </strong>Solar Yield in Rajasthan is different from  Assam, even with the same panel capacity.</span>
                         </div>
                         <div className="flex items-start gap-2">
                           <div className="w-1.5 h-1.5 bg-white rounded-full mt-1 flex-shrink-0"></div>
-                          <span className="text-xs">If solar will really save them money</span>
+                          <span className="text-xs"><strong>One-size-doesn’t-fit-all:</strong> Two homes using 300 kWh/month may need very different system sizes depending on local solar radiation.</span>
                         </div>
                         <div className="flex items-start gap-2">
                           <div className="w-1.5 h-1.5 bg-white rounded-full mt-1 flex-shrink-0"></div>
-                          <span className="text-xs">How much they'll get in government subsidies</span>
+                          <span className="text-xs"><strong>Subsidy variation:</strong> Your subsidy varies as per your State and Load</span>
                         </div>
                         <div className="flex items-start gap-2">
                           <div className="w-1.5 h-1.5 bg-white rounded-full mt-1 flex-shrink-0"></div>
-                          <span className="text-xs">The true payback period for their location</span>
+                          <span className="text-xs"><strong>Uncertain returns:</strong> Without precise, location-specific data you can’t forecast true payback or lifetime savings.
+
+</span>
                         </div>
                       </div>
-                      <p className="text-white/80 text-xs font-medium">Result: Expensive mistakes or no action at all</p>
+                      
                     </div>
                   </CardContent>
                 </Card>
@@ -325,42 +327,37 @@ const SolarCalculator: React.FC = () => {
                   </div>
                   <CardContent className="relative z-10 p-3 text-white leading-relaxed h-full overflow-hidden">
 
-                    <div className="flex items-start gap-2 mb-3">
+                    <div className="flex items-start gap-2 mb-0">
                       <div className="w-8 h-8 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <Target className="h-4 w-4 text-white" />
                       </div>
                       <div>
                         <h3 className="text-base font-bold mb-1">How Sunlytics Helps You</h3>
-                        <p className="text-white/90 text-xs">Get precise answers in minutes, not months</p>
+                        
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <p className="text-white/95 font-medium text-sm">Sunlytics gives you instant clarity:</p>
+                      
                       <div className="bg-white/10 backdrop-blur rounded-lg p-2 space-y-1">
                         <div className="flex items-start gap-2">
                           <CheckCircle className="h-3 w-3 text-green-300 mt-0.5 flex-shrink-0" />
-                          <span className="text-xs"><strong>Optimal System Size:</strong> Based on your exact usage patterns</span>
+                          <span className="text-xs"><strong>Pinpoint Yield:</strong>  We pull high-resolution solar data for your location</span>
                         </div>
                         <div className="flex items-start gap-2">
                           <CheckCircle className="h-3 w-3 text-green-300 mt-0.5 flex-shrink-0" />
-                          <span className="text-xs"><strong>Real Savings:</strong> Monthly & lifetime financial projections</span>
+                          <span className="text-xs"><strong>Custom Sizing: </strong>Based on your usage, we calculate the optimal system size you need.</span>
                         </div>
                         <div className="flex items-start gap-2">
                           <CheckCircle className="h-3 w-3 text-green-300 mt-0.5 flex-shrink-0" />
-                          <span className="text-xs"><strong>Subsidy Details:</strong> Central + state benefits you qualify for</span>
+                          <span className="text-xs"><strong>Subsidy Breakdown:</strong> Shows you central+state incentives you qualify for.</span>
                         </div>
                         <div className="flex items-start gap-2">
                           <CheckCircle className="h-3 w-3 text-green-300 mt-0.5 flex-shrink-0" />
-                          <span className="text-xs"><strong>Payback Timeline:</strong> When your investment pays off</span>
+                          <span className="text-xs"><strong>Clear ROI: </strong>Deliver a detailed payback timeline, net savings, and lifetime benefits—all tailored to your location.</span>
                         </div>
-                        <div className="flex items-start gap-2">
-                          <CheckCircle className="h-3 w-3 text-green-300 mt-0.5 flex-shrink-0" />
-                          <span className="text-xs"><strong>Location-Specific:</strong> Solar potential for your exact coordinates</span>
-                        </div>
+                       
                       </div>
-                      <div className="text-center mt-2">
-                        <div className="text-xs font-bold bg-white/20 rounded-lg py-1">Make Smart Solar Decisions</div>
-                      </div>
+                     
                     </div>
                   </CardContent>
                 </Card>
