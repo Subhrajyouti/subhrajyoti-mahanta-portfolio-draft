@@ -271,7 +271,7 @@ const SolarCalculator: React.FC = () => {
           )}
 
           {/* Right Side - Problem and Solution */}
-         <div className="space-y-3 w-full max-w-md ml-2 lg:ml-4 h-[380px]">
+            <div className="space-y-3 w-full max-w-md ml-2 lg:ml-4 h-auto">
             {/* Show problem and solution when form is visible and not loading */}
             {!result && !loading && (
               <>
