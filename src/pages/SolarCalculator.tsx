@@ -4,8 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Progress } from '@/components/ui/progress';
-import { Loader2, Calculator, DollarSign, Leaf, Zap, Database, BarChart3, Award, TrendingUp, Sun, Home, Shield, Target, Globe, TrendingDown, AlertCircle, Sparkles, Battery, ArrowUpRight, MapPin, Settings, CheckCircle } from 'lucide-react';
+import { Loader2, Calculator, DollarSign, Leaf, Zap, Database, BarChart3, Award, TrendingDown, AlertCircle, Sparkles, Shield, Target, CheckCircle } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
@@ -178,41 +177,41 @@ const SolarCalculator: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20">
       <Navbar />
       
-      <div className="container mx-auto px-4 py-6">
+      <div className="container mx-auto px-4 py-4">
         {/* Header */}
-        <div className="text-center mb-4">
-          <div className="flex justify-center items-center mb-2">
+        <div className="text-center mb-3">
+          <div className="flex justify-center items-center mb-1">
             <img 
               src="/sunlyticslogo.png" 
               alt="Sunlytics - Precision Solar Insights" 
-              className="h-12 md:h-14 w-auto mx-auto mb-1"
+              className="h-10 md:h-12 w-auto mx-auto mb-1"
             />
           </div>
-          <p className="text-base text-gray-600 dark:text-gray-400 mb-2">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
             Precision Solar Insights for Your Home
           </p>
         </div>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto px-1 items-start">
+        <div className="grid lg:grid-cols-2 gap-4 max-w-5xl mx-auto px-1 items-start">
 
           {/* Left Side - Form (hide when results are shown) */}
           {!result && (
-            <div className="space-y-4 max-w-md ml-2 lg:ml-8 h-[450px]">
+            <div className="space-y-3 max-w-sm ml-2 lg:ml-4 h-[380px]">
 
-              <Card className="h-[450px] glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-blue-500/20" style={{animation: 'floating 40s ease-in-out infinite'}}>
-                <CardHeader className="pb-4">
-                  <CardTitle className="text-xl text-gray-900 dark:text-white flex items-center gap-2">
-                    <Calculator className="h-6 w-6 text-blue-600" />
+              <Card className="h-[380px] glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-blue-500/20" style={{animation: 'floating 40s ease-in-out infinite'}}>
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-lg text-gray-900 dark:text-white flex items-center gap-2">
+                    <Calculator className="h-5 w-5 text-blue-600" />
                     Calculate Your Solar Potential
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0 flex flex-col h-full">
-                  <form onSubmit={handleSubmit} className="space-y-4 flex-1">
-                    <div className="space-y-2">
-                      <Label className="text-sm text-gray-700 dark:text-gray-300 font-medium">State *</Label>
+                  <form onSubmit={handleSubmit} className="space-y-3 flex-1">
+                    <div className="space-y-1">
+                      <Label className="text-xs text-gray-700 dark:text-gray-300 font-medium">State *</Label>
                       <Select value={formData.state} onValueChange={v=>handleChange('state',v)}>
-                        <SelectTrigger className="h-10 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30">
+                        <SelectTrigger className="h-8 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30">
                           <SelectValue placeholder="Select your state" />
                         </SelectTrigger>
                         <SelectContent>
@@ -222,25 +221,25 @@ const SolarCalculator: React.FC = () => {
                       {errors.state && <p className="text-red-500 text-xs">{errors.state}</p>}
                     </div>
 
-                    <div className="space-y-2">
-                      <Label className="text-sm text-gray-700 dark:text-gray-300 font-medium">Monthly Electricity Units (kWh) *</Label>
+                    <div className="space-y-1">
+                      <Label className="text-xs text-gray-700 dark:text-gray-300 font-medium">Monthly Electricity Units (kWh) *</Label>
                       <Input 
                         type="number" 
                         placeholder="e.g. 300" 
                         value={formData.monthly} 
                         onChange={e=>handleChange('monthly',e.target.value)}
-                        className="h-10 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30"
+                        className="h-8 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30"
                       />
                       {errors.monthly && <p className="text-red-500 text-xs">{errors.monthly}</p>}
                     </div>
 
-                    <div className="space-y-2">
-                      <Label className="text-sm text-gray-700 dark:text-gray-300 font-medium">Location Coordinates *</Label>
+                    <div className="space-y-1">
+                      <Label className="text-xs text-gray-700 dark:text-gray-300 font-medium">Location Coordinates *</Label>
                       <Input 
                         placeholder="lat,lon (e.g. 28.6139, 77.2090)" 
                         value={formData.latlong} 
                         onChange={e=>handleChange('latlong',e.target.value)}
-                        className="h-10 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30"
+                        className="h-8 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30"
                       />
                       <p className="text-gray-500 dark:text-gray-400 text-xs">Right click on your location in Google Maps</p>
                       {errors.latlong && <p className="text-red-500 text-xs">{errors.latlong}</p>}
@@ -249,7 +248,7 @@ const SolarCalculator: React.FC = () => {
                     <div className="flex-1 flex items-end">
                       <Button 
                         type="submit" 
-                        className="w-full h-11 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300" 
+                        className="w-full h-9 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300" 
                         disabled={loading}
                       >
                         {loading ? (
@@ -272,48 +271,48 @@ const SolarCalculator: React.FC = () => {
           )}
 
           {/* Right Side - Problem and Solution */}
-         <div className="flex flex-col gap-6 h-[450px] max-w-md ml-2 lg:ml-8">
+         <div className="flex flex-col gap-4 h-[380px] max-w-sm ml-2 lg:ml-4">
             {/* Show problem and solution when form is visible and not loading */}
             {!result && !loading && (
               <>
                 {/* Problem Card - Refined */}
                 <Card className="relative overflow-hidden bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 group flex-1">
                   <div className="absolute inset-0 bg-black/10"></div>
-                  <div className="absolute top-3 right-3 opacity-20">
-                    <AlertCircle className="h-8 w-8 text-white" />
+                  <div className="absolute top-2 right-2 opacity-20">
+                    <AlertCircle className="h-6 w-6 text-white" />
                   </div>
-                  <CardContent className="relative z-10 p-4 text-white leading-relaxed h-full overflow-hidden">
+                  <CardContent className="relative z-10 p-3 text-white leading-relaxed h-full overflow-hidden">
 
-                    <div className="flex items-start gap-3 mb-4">
-                      <div className="w-10 h-10 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <AlertCircle className="h-5 w-5 text-white" />
+                    <div className="flex items-start gap-2 mb-3">
+                      <div className="w-8 h-8 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <AlertCircle className="h-4 w-4 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold mb-1">The Solar Confusion</h3>
-                        <p className="text-white/90 text-sm">Why most homeowners struggle with solar decisions</p>
+                        <h3 className="text-base font-bold mb-1">The Solar Confusion</h3>
+                        <p className="text-white/90 text-xs">Why most homeowners struggle with solar decisions</p>
                       </div>
                     </div>
-                    <div className="space-y-3">
-                      <p className="text-white/95 font-medium">Most people want solar but don't know:</p>
-                      <div className="bg-white/10 backdrop-blur rounded-lg p-3 space-y-2">
+                    <div className="space-y-2">
+                      <p className="text-white/95 font-medium text-sm">Most people want solar but don't know:</p>
+                      <div className="bg-white/10 backdrop-blur rounded-lg p-2 space-y-1">
                         <div className="flex items-start gap-2">
-                          <div className="w-2 h-2 bg-white rounded-full mt-1.5 flex-shrink-0"></div>
-                          <span className="text-sm">How much solar capacity they actually need</span>
+                          <div className="w-1.5 h-1.5 bg-white rounded-full mt-1 flex-shrink-0"></div>
+                          <span className="text-xs">How much solar capacity they actually need</span>
                         </div>
                         <div className="flex items-start gap-2">
-                          <div className="w-2 h-2 bg-white rounded-full mt-1.5 flex-shrink-0"></div>
-                          <span className="text-sm">If solar will really save them money</span>
+                          <div className="w-1.5 h-1.5 bg-white rounded-full mt-1 flex-shrink-0"></div>
+                          <span className="text-xs">If solar will really save them money</span>
                         </div>
                         <div className="flex items-start gap-2">
-                          <div className="w-2 h-2 bg-white rounded-full mt-1.5 flex-shrink-0"></div>
-                          <span className="text-sm">How much they'll get in government subsidies</span>
+                          <div className="w-1.5 h-1.5 bg-white rounded-full mt-1 flex-shrink-0"></div>
+                          <span className="text-xs">How much they'll get in government subsidies</span>
                         </div>
                         <div className="flex items-start gap-2">
-                          <div className="w-2 h-2 bg-white rounded-full mt-1.5 flex-shrink-0"></div>
-                          <span className="text-sm">The true payback period for their location</span>
+                          <div className="w-1.5 h-1.5 bg-white rounded-full mt-1 flex-shrink-0"></div>
+                          <span className="text-xs">The true payback period for their location</span>
                         </div>
                       </div>
-                      <p className="text-white/80 text-sm font-medium">Result: Expensive mistakes or no action at all</p>
+                      <p className="text-white/80 text-xs font-medium">Result: Expensive mistakes or no action at all</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -321,46 +320,46 @@ const SolarCalculator: React.FC = () => {
                 {/* Solution Card - How Sunlytics Helps */}
                 <Card className="relative overflow-hidden bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 group flex-1">
                   <div className="absolute inset-0 bg-black/10"></div>
-                  <div className="absolute top-3 right-3 opacity-20">
-                    <Sparkles className="h-8 w-8 text-white" />
+                  <div className="absolute top-2 right-2 opacity-20">
+                    <Sparkles className="h-6 w-6 text-white" />
                   </div>
-                  <CardContent className="relative z-10 p-4 text-white leading-relaxed h-full overflow-hidden">
+                  <CardContent className="relative z-10 p-3 text-white leading-relaxed h-full overflow-hidden">
 
-                    <div className="flex items-start gap-3 mb-4">
-                      <div className="w-10 h-10 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <Target className="h-5 w-5 text-white" />
+                    <div className="flex items-start gap-2 mb-3">
+                      <div className="w-8 h-8 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <Target className="h-4 w-4 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold mb-1">How Sunlytics Helps You</h3>
-                        <p className="text-white/90 text-sm">Get precise answers in minutes, not months</p>
+                        <h3 className="text-base font-bold mb-1">How Sunlytics Helps You</h3>
+                        <p className="text-white/90 text-xs">Get precise answers in minutes, not months</p>
                       </div>
                     </div>
-                    <div className="space-y-3">
-                      <p className="text-white/95 font-medium">Sunlytics gives you instant clarity:</p>
-                      <div className="bg-white/10 backdrop-blur rounded-lg p-3 space-y-2">
+                    <div className="space-y-2">
+                      <p className="text-white/95 font-medium text-sm">Sunlytics gives you instant clarity:</p>
+                      <div className="bg-white/10 backdrop-blur rounded-lg p-2 space-y-1">
                         <div className="flex items-start gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-300 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm"><strong>Optimal System Size:</strong> Based on your exact usage patterns</span>
+                          <CheckCircle className="h-3 w-3 text-green-300 mt-0.5 flex-shrink-0" />
+                          <span className="text-xs"><strong>Optimal System Size:</strong> Based on your exact usage patterns</span>
                         </div>
                         <div className="flex items-start gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-300 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm"><strong>Real Savings:</strong> Monthly & lifetime financial projections</span>
+                          <CheckCircle className="h-3 w-3 text-green-300 mt-0.5 flex-shrink-0" />
+                          <span className="text-xs"><strong>Real Savings:</strong> Monthly & lifetime financial projections</span>
                         </div>
                         <div className="flex items-start gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-300 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm"><strong>Subsidy Details:</strong> Central + state benefits you qualify for</span>
+                          <CheckCircle className="h-3 w-3 text-green-300 mt-0.5 flex-shrink-0" />
+                          <span className="text-xs"><strong>Subsidy Details:</strong> Central + state benefits you qualify for</span>
                         </div>
                         <div className="flex items-start gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-300 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm"><strong>Payback Timeline:</strong> When your investment pays off</span>
+                          <CheckCircle className="h-3 w-3 text-green-300 mt-0.5 flex-shrink-0" />
+                          <span className="text-xs"><strong>Payback Timeline:</strong> When your investment pays off</span>
                         </div>
                         <div className="flex items-start gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-300 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm"><strong>Location-Specific:</strong> Solar potential for your exact coordinates</span>
+                          <CheckCircle className="h-3 w-3 text-green-300 mt-0.5 flex-shrink-0" />
+                          <span className="text-xs"><strong>Location-Specific:</strong> Solar potential for your exact coordinates</span>
                         </div>
                       </div>
-                      <div className="text-center mt-3">
-                        <div className="text-sm font-bold bg-white/20 rounded-lg py-2">Make Smart Solar Decisions</div>
+                      <div className="text-center mt-2">
+                        <div className="text-xs font-bold bg-white/20 rounded-lg py-1">Make Smart Solar Decisions</div>
                       </div>
                     </div>
                   </CardContent>
@@ -370,18 +369,18 @@ const SolarCalculator: React.FC = () => {
 
             {/* Loading Animation */}
             {loading && phaseIndex >= 0 && (
-              <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl animate-fade-in hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-blue-500/20 transition-all duration-300 h-[450px]" style={{animation: 'floating 40s ease-in-out infinite'}}>
-                <CardContent className="p-6 h-full">
-                  <div className="text-center mb-6">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Analyzing Your Solar Potential</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">Please wait while we process your data</p>
+              <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl animate-fade-in hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-blue-500/20 transition-all duration-300 h-[380px]" style={{animation: 'floating 40s ease-in-out infinite'}}>
+                <CardContent className="p-4 h-full">
+                  <div className="text-center mb-4">
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">Analyzing Your Solar Potential</h3>
+                    <p className="text-xs text-gray-600 dark:text-gray-300">Please wait while we process your data</p>
                   </div>
                   
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     {phases.map((phase, index) => (
                       <div 
                         key={phase.key}
-                        className={`flex items-center gap-3 p-3 rounded-lg transition-all duration-500 backdrop-blur ${
+                        className={`flex items-center gap-2 p-2 rounded-lg transition-all duration-500 backdrop-blur ${
                           index === phaseIndex 
                             ? 'bg-gradient-to-r ' + phase.color + ' bg-opacity-10 scale-105 border border-blue-200/50' 
                             : index < phaseIndex 
@@ -391,21 +390,21 @@ const SolarCalculator: React.FC = () => {
                       >
                         <div className={`${index === phaseIndex ? 'animate-pulse' : ''}`}>
                           {index < phaseIndex ? (
-                            <div className="h-10 w-10 bg-green-500 rounded-full flex items-center justify-center">
-                              <Award className="h-5 w-5 text-white" />
+                            <div className="h-8 w-8 bg-green-500 rounded-full flex items-center justify-center">
+                              <Award className="h-4 w-4 text-white" />
                             </div>
                           ) : (
-                            <div className="h-10 w-10 flex items-center justify-center">
-                              {React.cloneElement(phase.icon, { className: "h-6 w-6 text-orange-500" })}
+                            <div className="h-8 w-8 flex items-center justify-center">
+                              {React.cloneElement(phase.icon, { className: "h-5 w-5 text-orange-500" })}
                             </div>
                           )}
                         </div>
                         <div className="flex-1">
-                          <h4 className="font-semibold text-sm text-gray-900 dark:text-white">{phase.label}</h4>
+                          <h4 className="font-semibold text-xs text-gray-900 dark:text-white">{phase.label}</h4>
                           <p className="text-xs text-gray-600 dark:text-gray-300">{phase.description}</p>
                         </div>
                         {index === phaseIndex && (
-                          <Loader2 className="h-4 w-4 animate-spin text-blue-600" />
+                          <Loader2 className="h-3 w-3 animate-spin text-blue-600" />
                         )}
                       </div>
                     ))}
@@ -418,104 +417,104 @@ const SolarCalculator: React.FC = () => {
         
         {/* Results Cards - Full Width, Side by Side */}
         {!loading && result && (
-          <div className="space-y-6 animate-fade-in max-w-6xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white text-center">Your Solar Analysis</h2>
+          <div className="space-y-4 animate-fade-in max-w-5xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white text-center">Your Solar Analysis</h2>
             
-            <div className="grid md:grid-cols-3 gap-6">
-              {/* Solar Output Card - Fixed grey color coverage */}
+            <div className="grid md:grid-cols-3 gap-4">
+              {/* Solar Output Card */}
               <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-orange-500/25 group overflow-hidden" style={{animation: 'floating 40s ease-in-out infinite'}}>
-                <CardHeader className="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-t-lg group-hover:from-orange-400 group-hover:to-red-400 transition-all duration-300 pb-3">
+                <CardHeader className="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-t-lg group-hover:from-orange-400 group-hover:to-red-400 transition-all duration-300 pb-2">
                   <div className="flex items-center gap-2">
-                    <Zap className="h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
-                    <CardTitle className="text-lg">Solar Output & Potential</CardTitle>
+                    <Zap className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                    <CardTitle className="text-base">Solar Output & Potential</CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent className="p-4 bg-white/50 dark:bg-white/5 backdrop-blur rounded-b-lg group-hover:bg-white/60 dark:group-hover:bg-white/10 transition-all duration-300 h-full">
-                  <div className="space-y-3">
+                <CardContent className="p-3 bg-white/50 dark:bg-white/5 backdrop-blur rounded-b-lg group-hover:bg-white/60 dark:group-hover:bg-white/10 transition-all duration-300 h-full">
+                  <div className="space-y-2">
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-orange-600 dark:text-orange-400 group-hover:scale-110 transition-transform duration-300">{formatNum(result.recommended_kW)} kW</div>
+                      <div className="text-xl font-bold text-orange-600 dark:text-orange-400 group-hover:scale-110 transition-transform duration-300">{formatNum(result.recommended_kW)} kW</div>
                       <p className="text-xs text-gray-600 dark:text-gray-300">Recommended Load</p>
                     </div>
                     <div className="text-center">
-                      <div className="text-lg font-bold text-orange-600 dark:text-orange-400 group-hover:scale-110 transition-transform duration-300">{formatNum(result.solarYield)} kWh/kWp</div>
+                      <div className="text-base font-bold text-orange-600 dark:text-orange-400 group-hover:scale-110 transition-transform duration-300">{formatNum(result.solarYield)} kWh/kWp</div>
                       <p className="text-xs text-gray-600 dark:text-gray-300">Solar Potential at Your Area (per year)</p>
                     </div>
                     <div className="text-center">
-                      <div className="text-lg font-bold text-orange-600 dark:text-orange-400 group-hover:scale-110 transition-transform duration-300">{formatNum(result.annualEnergy)} kWh</div>
+                      <div className="text-base font-bold text-orange-600 dark:text-orange-400 group-hover:scale-110 transition-transform duration-300">{formatNum(result.annualEnergy)} kWh</div>
                       <p className="text-xs text-gray-600 dark:text-gray-300">Total Generation in Your System</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Financial Metrics Card - Fixed grey color coverage */}
+              {/* Financial Metrics Card */}
               <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-green-500/25 group" style={{animation: 'floating 40s ease-in-out infinite 4s'}}>
-                <CardHeader className="bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-t-lg group-hover:from-green-400 group-hover:to-emerald-400 transition-all duration-300 pb-3">
+                <CardHeader className="bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-t-lg group-hover:from-green-400 group-hover:to-emerald-400 transition-all duration-300 pb-2">
                   <div className="flex items-center gap-2">
-                    <DollarSign className="h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
-                    <CardTitle className="text-lg">Financial Metrics</CardTitle>
+                    <DollarSign className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                    <CardTitle className="text-base">Financial Metrics</CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent className="p-4 bg-white/50 dark:bg-white/5 backdrop-blur rounded-b-lg group-hover:bg-white/60 dark:group-hover:bg-white/10 transition-all duration-300 h-full">
-                  <div className="space-y-2">
+                <CardContent className="p-3 bg-white/50 dark:bg-white/5 backdrop-blur rounded-b-lg group-hover:bg-white/60 dark:group-hover:bg-white/10 transition-all duration-300 h-full">
+                  <div className="space-y-1.5">
                     <div className="flex justify-between items-center">
                       <span className="text-xs text-gray-600 dark:text-gray-300">Total System Cost:</span>
-                      <span className="font-semibold text-sm text-gray-900 dark:text-white">{formatCurrency(result.totalCost)}</span>
+                      <span className="font-semibold text-xs text-gray-900 dark:text-white">{formatCurrency(result.totalCost)}</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-xs text-gray-600 dark:text-gray-300">Total Subsidies:</span>
-                      <span className="font-semibold text-sm text-green-600 dark:text-green-400">{formatCurrency(result.subsidy)}</span>
+                      <span className="font-semibold text-xs text-green-600 dark:text-green-400">{formatCurrency(result.subsidy)}</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-xs text-gray-600 dark:text-gray-300">Net Investment:</span>
-                      <span className="font-semibold text-sm text-blue-600 dark:text-blue-400">{formatCurrency(result.netCost)}</span>
+                      <span className="font-semibold text-xs text-blue-600 dark:text-blue-400">{formatCurrency(result.netCost)}</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-xs text-gray-600 dark:text-gray-300">Monthly Savings:</span>
-                      <span className="font-semibold text-sm text-green-600 dark:text-green-400">{formatCurrency(result.monthlySavings)}</span>
+                      <span className="font-semibold text-xs text-green-600 dark:text-green-400">{formatCurrency(result.monthlySavings)}</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-xs text-gray-600 dark:text-gray-300">Annual Savings:</span>
-                      <span className="font-semibold text-sm text-green-600 dark:text-green-400">{formatCurrency(result.annualSavings)}</span>
+                      <span className="font-semibold text-xs text-green-600 dark:text-green-400">{formatCurrency(result.annualSavings)}</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-xs text-gray-600 dark:text-gray-300">Payback Period:</span>
-                      <span className="font-semibold text-sm text-blue-600 dark:text-blue-400">{formatNum(result.paybackYears)} years</span>
+                      <span className="font-semibold text-xs text-blue-600 dark:text-blue-400">{formatNum(result.paybackYears)} years</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-xs text-gray-600 dark:text-gray-300">IRR:</span>
-                      <span className="font-semibold text-sm text-purple-600 dark:text-purple-400">{formatNum(result.irrPercent)}%</span>
+                      <span className="font-semibold text-xs text-purple-600 dark:text-purple-400">{formatNum(result.irrPercent)}%</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-xs text-gray-600 dark:text-gray-300">NPV:</span>
-                      <span className="font-semibold text-sm text-purple-600 dark:text-purple-400">{formatCurrency(result.npv)}</span>
+                      <span className="font-semibold text-xs text-purple-600 dark:text-purple-400">{formatCurrency(result.npv)}</span>
                     </div>
-                    <div className="border-t border-white/20 pt-2 mt-2">
+                    <div className="border-t border-white/20 pt-1.5 mt-1.5">
                       <div className="flex justify-between items-center">
                         <span className="text-xs text-gray-600 dark:text-gray-300 font-medium">25-Year Total Savings:</span>
-                        <span className="text-base font-bold text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">{formatCurrency(result.lifetimeSavings)}</span>
+                        <span className="text-sm font-bold text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">{formatCurrency(result.lifetimeSavings)}</span>
                       </div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Environmental Impact Card - Fixed grey color coverage */}
+              {/* Environmental Impact Card */}
               <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden hover:scale-105 hover:-translate-y-2 hover:brightness-110 hover:shadow-teal-500/25 group" style={{animation: 'floating 40s ease-in-out infinite 8s'}}>
-                <CardHeader className="bg-gradient-to-r from-teal-500 to-green-500 text-white rounded-t-lg group-hover:from-teal-400 group-hover:to-green-400 transition-all duration-300 pb-3">
+                <CardHeader className="bg-gradient-to-r from-teal-500 to-green-500 text-white rounded-t-lg group-hover:from-teal-400 group-hover:to-green-400 transition-all duration-300 pb-2">
                   <div className="flex items-center gap-2">
-                    <Leaf className="h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
-                    <CardTitle className="text-lg">Environmental Impact</CardTitle>
+                    <Leaf className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                    <CardTitle className="text-base">Environmental Impact</CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent className="p-4 bg-white/50 dark:bg-white/5 backdrop-blur rounded-b-lg group-hover:bg-white/60 dark:group-hover:bg-white/10 transition-all duration-300 h-full">
-                  <div className="space-y-4">
+                <CardContent className="p-3 bg-white/50 dark:bg-white/5 backdrop-blur rounded-b-lg group-hover:bg-white/60 dark:group-hover:bg-white/10 transition-all duration-300 h-full">
+                  <div className="space-y-3">
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-teal-600 dark:text-teal-400 group-hover:scale-110 transition-transform duration-300">{formatNum(result.co2Avoided/1000, 1)}</div>
+                      <div className="text-2xl font-bold text-teal-600 dark:text-teal-400 group-hover:scale-110 transition-transform duration-300">{formatNum(result.co2Avoided/1000, 1)}</div>
                       <p className="text-xs text-gray-600 dark:text-gray-300">Metric tons CO₂ avoided over 25 years</p>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">{result.treesSaved}</div>
+                      <div className="text-2xl font-bold text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">{result.treesSaved}</div>
                       <p className="text-xs text-gray-600 dark:text-gray-300">Trees equivalent planted</p>
                     </div>
                   </div>
@@ -524,10 +523,10 @@ const SolarCalculator: React.FC = () => {
             </div>
 
             {/* Calculate Again Button */}
-            <div className="text-center mt-6">
+            <div className="text-center mt-4">
               <Button 
                 onClick={handleCalculateAgain}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-6 py-2 shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-4 py-2 shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <Calculator className="mr-2 h-4 w-4" />
                 Calculate Again
@@ -537,21 +536,21 @@ const SolarCalculator: React.FC = () => {
         )}
 
         {/* India's Rooftop Solar Scenario Section */}
-        <div className="mt-16 max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
+        <div className="mt-12 max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold text-center text-gray-900 dark:text-white mb-8">
             India's Rooftop Solar Scenario and Why Sunlytics Matters
           </h2>
           
-          <div className="grid md:grid-cols-2 gap-6 mb-10">
+          <div className="grid md:grid-cols-2 gap-4 mb-8">
             {/* India's Solar Initiative */}
-            <div className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-lg p-5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-orange-500/20" style={{animation: 'floating 40s ease-in-out infinite'}}>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 bg-orange-100/50 dark:bg-orange-900/50 backdrop-blur rounded-lg flex items-center justify-center">
-                  <Target className="h-5 w-5 text-orange-600 dark:text-orange-400" />
+            <div className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-lg p-4 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-orange-500/20" style={{animation: 'floating 40s ease-in-out infinite'}}>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 bg-orange-100/50 dark:bg-orange-900/50 backdrop-blur rounded-lg flex items-center justify-center">
+                  <Target className="h-4 w-4 text-orange-600 dark:text-orange-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">India's Solar Initiative</h3>
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white">India's Solar Initiative</h3>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
                 The <strong>PM Surya Ghar Muft Bijli Yojana</strong> has set an ambitious goal of installing rooftop solar on <strong>1 crore households by 2027</strong>.
               </p>
               <p className="text-sm text-gray-600 dark:text-gray-300">
@@ -560,14 +559,14 @@ const SolarCalculator: React.FC = () => {
             </div>
 
             {/* Decreasing Cost of Rooftop Solar */}
-            <div className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-lg p-5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-green-500/20" style={{animation: 'floating 40s ease-in-out infinite 4s'}}>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 bg-green-100/50 dark:bg-green-900/50 backdrop-blur rounded-lg flex items-center justify-center">
-                  <TrendingDown className="h-5 w-5 text-green-600 dark:text-green-400" />
+            <div className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-lg p-4 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-green-500/20" style={{animation: 'floating 40s ease-in-out infinite 4s'}}>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 bg-green-100/50 dark:bg-green-900/50 backdrop-blur rounded-lg flex items-center justify-center">
+                  <TrendingDown className="h-4 w-4 text-green-600 dark:text-green-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Decreasing Solar Costs</h3>
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white">Decreasing Solar Costs</h3>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
                 Rapid technological advancements have significantly reduced rooftop solar installation costs, making solar energy <strong>financially accessible</strong> to more households.
               </p>
               <p className="text-sm text-gray-600 dark:text-gray-300">
@@ -576,56 +575,56 @@ const SolarCalculator: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-4">
             {/* Challenges Homeowners Face */}
-            <div className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-lg p-5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-red-500/20" style={{animation: 'floating 40s ease-in-out infinite 8s'}}>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 bg-red-100/50 dark:bg-red-900/50 backdrop-blur rounded-lg flex items-center justify-center">
-                  <AlertCircle className="h-5 w-5 text-red-600 dark:text-red-400" />
+            <div className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-lg p-4 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-red-500/20" style={{animation: 'floating 40s ease-in-out infinite 8s'}}>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 bg-red-100/50 dark:bg-red-900/50 backdrop-blur rounded-lg flex items-center justify-center">
+                  <AlertCircle className="h-4 w-4 text-red-600 dark:text-red-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Challenges Homeowners Face</h3>
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white">Challenges Homeowners Face</h3>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
                 Despite the benefits, homeowners lack accurate information about:
               </p>
-              <ul className="space-y-2">
+              <ul className="space-y-1">
                 <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-1 h-1 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
                   <span className="text-sm text-gray-600 dark:text-gray-300">Optimal rooftop solar capacity for their needs</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-1 h-1 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
                   <span className="text-sm text-gray-600 dark:text-gray-300">Location-specific solar energy generation potential</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-1 h-1 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
                   <span className="text-sm text-gray-600 dark:text-gray-300">Detailed financial insights including costs and subsidy availability</span>
                 </li>
               </ul>
             </div>
 
             {/* Sunlytics as the Solution */}
-            <div className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-lg p-5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-blue-500/20" style={{animation: 'floating 40s ease-in-out infinite 12s'}}>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 bg-blue-100/50 dark:bg-blue-900/50 backdrop-blur rounded-lg flex items-center justify-center">
-                  <Shield className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+            <div className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-lg p-4 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-blue-500/20" style={{animation: 'floating 40s ease-in-out infinite 12s'}}>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 bg-blue-100/50 dark:bg-blue-900/50 backdrop-blur rounded-lg flex items-center justify-center">
+                  <Shield className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Sunlytics as the Solution</h3>
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white">Sunlytics as the Solution</h3>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
                 Sunlytics resolves these challenges by providing:
               </p>
-              <ul className="space-y-2">
+              <ul className="space-y-1">
                 <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-1 h-1 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
                   <span className="text-sm text-gray-600 dark:text-gray-300"><strong>Precise location data</strong> to estimate solar energy production accurately</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-1 h-1 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
                   <span className="text-sm text-gray-600 dark:text-gray-300"><strong>Optimal system sizing</strong> based on your electricity consumption patterns</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-1 h-1 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
                   <span className="text-sm text-gray-600 dark:text-gray-300"><strong>Detailed financial modeling</strong> including costs, subsidies, payback period, and long-term savings</span>
                 </li>
               </ul>
@@ -634,15 +633,15 @@ const SolarCalculator: React.FC = () => {
         </div>
 
         {/* How It Works Section - Always visible */}
-        <div className="mt-12 max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-center text-gray-900 dark:text-white mb-10">How Our Calculator Works</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-lg p-5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-orange-500/20" style={{animation: 'floating 40s ease-in-out infinite'}}>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 bg-orange-100/50 dark:bg-orange-900/50 backdrop-blur rounded-lg flex items-center justify-center">
-                  <Database className="h-5 w-5 text-orange-600 dark:text-orange-400" />
+        <div className="mt-8 max-w-4xl mx-auto">
+          <h2 className="text-xl font-bold text-center text-gray-900 dark:text-white mb-6">How Our Calculator Works</h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-lg p-4 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-orange-500/20" style={{animation: 'floating 40s ease-in-out infinite'}}>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 bg-orange-100/50 dark:bg-orange-900/50 backdrop-blur rounded-lg flex items-center justify-center">
+                  <Database className="h-4 w-4 text-orange-600 dark:text-orange-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Solar Data Collection</h3>
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white">Solar Data Collection</h3>
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-300">
                 We gather precise solar radiation data for your exact location using trusted global sources (NREL). 
@@ -650,12 +649,12 @@ const SolarCalculator: React.FC = () => {
               </p>
             </div>
 
-            <div className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-lg p-5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-yellow-500/20" style={{animation: 'floating 40s ease-in-out infinite 4s'}}>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 bg-yellow-100/50 dark:bg-yellow-900/50 backdrop-blur rounded-lg flex items-center justify-center">
-                  <Zap className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
+            <div className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-lg p-4 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-yellow-500/20" style={{animation: 'floating 40s ease-in-out infinite 4s'}}>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 bg-yellow-100/50 dark:bg-yellow-900/50 backdrop-blur rounded-lg flex items-center justify-center">
+                  <Zap className="h-4 w-4 text-yellow-600 dark:text-yellow-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Solar Energy Calculation</h3>
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white">Solar Energy Calculation</h3>
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-300">
                 Advanced simulations estimate exactly how much solar energy your rooftop system can produce each year, 
@@ -663,12 +662,12 @@ const SolarCalculator: React.FC = () => {
               </p>
             </div>
 
-            <div className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-lg p-5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-green-500/20" style={{animation: 'floating 40s ease-in-out infinite 8s'}}>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 bg-green-100/50 dark:bg-green-900/50 backdrop-blur rounded-lg flex items-center justify-center">
-                  <BarChart3 className="h-5 w-5 text-green-600 dark:text-green-400" />
+            <div className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-lg p-4 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-green-500/20" style={{animation: 'floating 40s ease-in-out infinite 8s'}}>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 bg-green-100/50 dark:bg-green-900/50 backdrop-blur rounded-lg flex items-center justify-center">
+                  <BarChart3 className="h-4 w-4 text-green-600 dark:text-green-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Financial Modelling</h3>
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white">Financial Modelling</h3>
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-300">
                 Detailed financial calculations factor in your state's electricity tariffs, subsidies, and costs, 
@@ -676,12 +675,12 @@ const SolarCalculator: React.FC = () => {
               </p>
             </div>
 
-            <div className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-lg p-5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-blue-500/20" style={{animation: 'floating 40s ease-in-out infinite 12s'}}>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 bg-blue-100/50 dark:bg-blue-900/50 backdrop-blur rounded-lg flex items-center justify-center">
-                  <Award className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+            <div className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-lg p-4 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-blue-500/20" style={{animation: 'floating 40s ease-in-out infinite 12s'}}>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 bg-blue-100/50 dark:bg-blue-900/50 backdrop-blur rounded-lg flex items-center justify-center">
+                  <Award className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Personalized Results</h3>
+                <h3 className="text-base font-semibold text-gray-900 dark:text-white">Personalized Results</h3>
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-300">
                 Receive clear, actionable insights like recommended system size, net installation cost, savings, 
