@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -195,25 +194,25 @@ const SolarCalculator: React.FC = () => {
         </div>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto px-1 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto px-1 items-start">
 
           {/* Left Side - Form (hide when results are shown) */}
           {!result && (
-            <div className="space-y-4 max-w-sm ml-2 lg:ml-8 h-96">
+            <div className="space-y-4 max-w-md ml-2 lg:ml-8 h-[450px]">
 
-              <Card className="h-96 glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-blue-500/20" style={{animation: 'floating 40s ease-in-out infinite'}}>
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-lg text-gray-900 dark:text-white flex items-center gap-2">
-                    <Calculator className="h-5 w-5 text-blue-600" />
+              <Card className="h-[450px] glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-blue-500/20" style={{animation: 'floating 40s ease-in-out infinite'}}>
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-xl text-gray-900 dark:text-white flex items-center gap-2">
+                    <Calculator className="h-6 w-6 text-blue-600" />
                     Calculate Your Solar Potential
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0 flex flex-col h-full">
-                  <form onSubmit={handleSubmit} className="space-y-3 flex-1">
-                    <div className="space-y-1">
+                  <form onSubmit={handleSubmit} className="space-y-4 flex-1">
+                    <div className="space-y-2">
                       <Label className="text-sm text-gray-700 dark:text-gray-300 font-medium">State *</Label>
                       <Select value={formData.state} onValueChange={v=>handleChange('state',v)}>
-                        <SelectTrigger className="h-9 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30">
+                        <SelectTrigger className="h-10 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30">
                           <SelectValue placeholder="Select your state" />
                         </SelectTrigger>
                         <SelectContent>
@@ -223,25 +222,25 @@ const SolarCalculator: React.FC = () => {
                       {errors.state && <p className="text-red-500 text-xs">{errors.state}</p>}
                     </div>
 
-                    <div className="space-y-1">
+                    <div className="space-y-2">
                       <Label className="text-sm text-gray-700 dark:text-gray-300 font-medium">Monthly Electricity Units (kWh) *</Label>
                       <Input 
                         type="number" 
                         placeholder="e.g. 300" 
                         value={formData.monthly} 
                         onChange={e=>handleChange('monthly',e.target.value)}
-                        className="h-9 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30"
+                        className="h-10 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30"
                       />
                       {errors.monthly && <p className="text-red-500 text-xs">{errors.monthly}</p>}
                     </div>
 
-                    <div className="space-y-1">
+                    <div className="space-y-2">
                       <Label className="text-sm text-gray-700 dark:text-gray-300 font-medium">Location Coordinates *</Label>
                       <Input 
                         placeholder="lat,lon (e.g. 28.6139, 77.2090)" 
                         value={formData.latlong} 
                         onChange={e=>handleChange('latlong',e.target.value)}
-                        className="h-9 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30"
+                        className="h-10 bg-white/50 dark:bg-white/10 backdrop-blur border-white/30"
                       />
                       <p className="text-gray-500 dark:text-gray-400 text-xs">Right click on your location in Google Maps</p>
                       {errors.latlong && <p className="text-red-500 text-xs">{errors.latlong}</p>}
@@ -250,7 +249,7 @@ const SolarCalculator: React.FC = () => {
                     <div className="flex-1 flex items-end">
                       <Button 
                         type="submit" 
-                        className="w-full h-10 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300" 
+                        className="w-full h-11 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300" 
                         disabled={loading}
                       >
                         {loading ? (
@@ -273,49 +272,48 @@ const SolarCalculator: React.FC = () => {
           )}
 
           {/* Right Side - Problem and Solution */}
-         <div className="grid grid-rows-2 gap-4 h-96 max-w-sm ml-2 lg:ml-8">
+         <div className="flex flex-col gap-6 h-[450px] max-w-md ml-2 lg:ml-8">
             {/* Show problem and solution when form is visible and not loading */}
             {!result && !loading && (
-              <div className="flex flex-col justify-between h-96">
-
+              <>
                 {/* Problem Card - Refined */}
                 <Card className="relative overflow-hidden bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 group flex-1">
                   <div className="absolute inset-0 bg-black/10"></div>
                   <div className="absolute top-3 right-3 opacity-20">
                     <AlertCircle className="h-8 w-8 text-white" />
                   </div>
-                  <CardContent className="relative z-10 p-3 text-white text-sm leading-tight h-full overflow-hidden">
+                  <CardContent className="relative z-10 p-4 text-white leading-relaxed h-full overflow-hidden">
 
-                    <div className="flex items-start gap-3 mb-3">
-                      <div className="w-8 h-8 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <AlertCircle className="h-4 w-4 text-white" />
+                    <div className="flex items-start gap-3 mb-4">
+                      <div className="w-10 h-10 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <AlertCircle className="h-5 w-5 text-white" />
                       </div>
                       <div>
                         <h3 className="text-lg font-bold mb-1">The Solar Confusion</h3>
-                        <p className="text-white/90 text-xs">Why most homeowners struggle with solar decisions</p>
+                        <p className="text-white/90 text-sm">Why most homeowners struggle with solar decisions</p>
                       </div>
                     </div>
-                    <div className="space-y-2 text-sm">
+                    <div className="space-y-3">
                       <p className="text-white/95 font-medium">Most people want solar but don't know:</p>
                       <div className="bg-white/10 backdrop-blur rounded-lg p-3 space-y-2">
                         <div className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 bg-white rounded-full mt-1.5 flex-shrink-0"></div>
-                          <span className="text-xs">How much solar capacity they actually need</span>
+                          <div className="w-2 h-2 bg-white rounded-full mt-1.5 flex-shrink-0"></div>
+                          <span className="text-sm">How much solar capacity they actually need</span>
                         </div>
                         <div className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 bg-white rounded-full mt-1.5 flex-shrink-0"></div>
-                          <span className="text-xs">If solar will really save them money</span>
+                          <div className="w-2 h-2 bg-white rounded-full mt-1.5 flex-shrink-0"></div>
+                          <span className="text-sm">If solar will really save them money</span>
                         </div>
                         <div className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 bg-white rounded-full mt-1.5 flex-shrink-0"></div>
-                          <span className="text-xs">How much they'll get in government subsidies</span>
+                          <div className="w-2 h-2 bg-white rounded-full mt-1.5 flex-shrink-0"></div>
+                          <span className="text-sm">How much they'll get in government subsidies</span>
                         </div>
                         <div className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 bg-white rounded-full mt-1.5 flex-shrink-0"></div>
-                          <span className="text-xs">The true payback period for their location</span>
+                          <div className="w-2 h-2 bg-white rounded-full mt-1.5 flex-shrink-0"></div>
+                          <span className="text-sm">The true payback period for their location</span>
                         </div>
                       </div>
-                      <p className="text-white/80 text-xs font-medium">Result: Expensive mistakes or no action at all</p>
+                      <p className="text-white/80 text-sm font-medium">Result: Expensive mistakes or no action at all</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -326,53 +324,53 @@ const SolarCalculator: React.FC = () => {
                   <div className="absolute top-3 right-3 opacity-20">
                     <Sparkles className="h-8 w-8 text-white" />
                   </div>
-                  <CardContent className="relative z-10 p-3 text-white text-sm leading-tight h-full overflow-hidden">
+                  <CardContent className="relative z-10 p-4 text-white leading-relaxed h-full overflow-hidden">
 
-                    <div className="flex items-start gap-3 mb-3">
-                      <div className="w-8 h-8 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <Target className="h-4 w-4 text-white" />
+                    <div className="flex items-start gap-3 mb-4">
+                      <div className="w-10 h-10 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <Target className="h-5 w-5 text-white" />
                       </div>
                       <div>
                         <h3 className="text-lg font-bold mb-1">How Sunlytics Helps You</h3>
-                        <p className="text-white/90 text-xs">Get precise answers in minutes, not months</p>
+                        <p className="text-white/90 text-sm">Get precise answers in minutes, not months</p>
                       </div>
                     </div>
-                    <div className="space-y-2 text-sm">
+                    <div className="space-y-3">
                       <p className="text-white/95 font-medium">Sunlytics gives you instant clarity:</p>
                       <div className="bg-white/10 backdrop-blur rounded-lg p-3 space-y-2">
                         <div className="flex items-start gap-2">
-                          <CheckCircle className="h-3 w-3 text-green-300 mt-0.5 flex-shrink-0" />
-                          <span className="text-xs"><strong>Optimal System Size:</strong> Based on your exact usage patterns</span>
+                          <CheckCircle className="h-4 w-4 text-green-300 mt-0.5 flex-shrink-0" />
+                          <span className="text-sm"><strong>Optimal System Size:</strong> Based on your exact usage patterns</span>
                         </div>
                         <div className="flex items-start gap-2">
-                          <CheckCircle className="h-3 w-3 text-green-300 mt-0.5 flex-shrink-0" />
-                          <span className="text-xs"><strong>Real Savings:</strong> Monthly & lifetime financial projections</span>
+                          <CheckCircle className="h-4 w-4 text-green-300 mt-0.5 flex-shrink-0" />
+                          <span className="text-sm"><strong>Real Savings:</strong> Monthly & lifetime financial projections</span>
                         </div>
                         <div className="flex items-start gap-2">
-                          <CheckCircle className="h-3 w-3 text-green-300 mt-0.5 flex-shrink-0" />
-                          <span className="text-xs"><strong>Subsidy Details:</strong> Central + state benefits you qualify for</span>
+                          <CheckCircle className="h-4 w-4 text-green-300 mt-0.5 flex-shrink-0" />
+                          <span className="text-sm"><strong>Subsidy Details:</strong> Central + state benefits you qualify for</span>
                         </div>
                         <div className="flex items-start gap-2">
-                          <CheckCircle className="h-3 w-3 text-green-300 mt-0.5 flex-shrink-0" />
-                          <span className="text-xs"><strong>Payback Timeline:</strong> When your investment pays off</span>
+                          <CheckCircle className="h-4 w-4 text-green-300 mt-0.5 flex-shrink-0" />
+                          <span className="text-sm"><strong>Payback Timeline:</strong> When your investment pays off</span>
                         </div>
                         <div className="flex items-start gap-2">
-                          <CheckCircle className="h-3 w-3 text-green-300 mt-0.5 flex-shrink-0" />
-                          <span className="text-xs"><strong>Location-Specific:</strong> Solar potential for your exact coordinates</span>
+                          <CheckCircle className="h-4 w-4 text-green-300 mt-0.5 flex-shrink-0" />
+                          <span className="text-sm"><strong>Location-Specific:</strong> Solar potential for your exact coordinates</span>
                         </div>
                       </div>
-                      <div className="text-center mt-2">
-                        <div className="text-sm font-bold bg-white/20 rounded-lg py-1">Make Smart Solar Decisions</div>
+                      <div className="text-center mt-3">
+                        <div className="text-sm font-bold bg-white/20 rounded-lg py-2">Make Smart Solar Decisions</div>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
-              </div>
+              </>
             )}
 
             {/* Loading Animation */}
             {loading && phaseIndex >= 0 && (
-              <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl animate-fade-in hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-blue-500/20 transition-all duration-300 h-96" style={{animation: 'floating 40s ease-in-out infinite'}}>
+              <Card className="glass backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl animate-fade-in hover:scale-105 hover:-translate-y-1 hover:brightness-110 hover:shadow-blue-500/20 transition-all duration-300 h-[450px]" style={{animation: 'floating 40s ease-in-out infinite'}}>
                 <CardContent className="p-6 h-full">
                   <div className="text-center mb-6">
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Analyzing Your Solar Potential</h3>
@@ -418,7 +416,6 @@ const SolarCalculator: React.FC = () => {
           </div>
         </div>
         
-
         {/* Results Cards - Full Width, Side by Side */}
         {!loading && result && (
           <div className="space-y-6 animate-fade-in max-w-6xl mx-auto">
