@@ -512,8 +512,8 @@ const SolarCalculator: React.FC = () => {
                       <p className="text-xs text-gray-600 dark:text-gray-300">Metric tons CO₂ avoided over 25 years</p>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">{result.treesSaved}</div>
-                      <p className="text-xs text-gray-600 dark:text-gray-300">Trees equivalent planted/2.2</p>
+                      <div className="text-2xl font-bold text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">{result.treesSaved/2.2}</div>
+                      <p className="text-xs text-gray-600 dark:text-gray-300">Trees equivalent planted</p>
                     </div>
                   </div>
                 </CardContent>
