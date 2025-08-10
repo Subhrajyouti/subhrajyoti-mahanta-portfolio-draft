@@ -55,7 +55,7 @@ const AboutSection = () => {
                   company="Happy Fares"
                   period="July 2025 - Present"
                   description="Building AI-powered automation solutions with LangChain, OpenAI, Python, and n8n to streamline travel workflows and enhance customer experiences."
-                  tags={["GenAI", "Langchain", "Python", "LLM", "n8n"]}
+                  tags={["GenAI", "Langchain", "Python", "LLM"]}
                 />
 
                  <ExperienceCard 
