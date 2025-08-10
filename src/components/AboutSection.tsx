@@ -25,6 +25,7 @@ const AboutSection = () => {
           <div className="prose prose-lg dark:prose-invert max-w-none">
             <p className="text-lg text-muted-foreground leading-relaxed">
             As a Gen AI & Automation Engineer at Happy Fares, I design intelligent systems that optimize workflows and elevate customer experiences. An alumnus of IIEST Shibpur (NIT), I specialize in building AI-powered solutions—ranging from autonomous agents to RAG pipelines—using LangChain, OpenAI, Python, and n8n. 
+            </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
              I love crafting end-to-end AI workflows that merge cutting-edge automation with practical, impactful results. From chatbot orchestration to hyperautomation, my work transforms complex problems into seamless digital solutions. Passionate about innovation, I continuously explore new ways to make AI more responsive, scalable, and human-centric.
             </p>
