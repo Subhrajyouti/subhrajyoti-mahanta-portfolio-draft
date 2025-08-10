@@ -69,7 +69,7 @@ const HeroSection = () => {
             >
               <div className="inline-block">
                 <span className="text-sm font-medium px-3 py-1 rounded-full bg-primary/10 text-primary">
-                 Analyst
+                 Gen AI & Automation Engineer
                 </span>
               </div>
               
@@ -78,7 +78,7 @@ const HeroSection = () => {
               </h1>
               
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-               Turning Complex Datasets Into Actionable Insights
+              Orchestrating Agentic Workflows & LLM-Powered Innovation
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
