@@ -24,10 +24,9 @@ const AboutSection = () => {
         <div className="lg:col-span-2 space-y-10">
           <div className="prose prose-lg dark:prose-invert max-w-none">
             <p className="text-lg text-muted-foreground leading-relaxed">
-            I am Subhrajyoti Mahanta, a Data Analyst with expertise in SQL, Python, R, Power BI, Tableau, and Excel. Currently pursuing a B.Tech at IIEST Shibpur, I have worked on LIDAR-based traffic analysis at IIT Guwahati and EV impact studies at DST-SERB, where I processed large-scale sensor data and developed insightful visualizations.
-            </p>
+            As a Gen AI & Automation Engineer at Happy Fares, I design intelligent systems that optimize workflows and elevate customer experiences. An alumnus of IIEST Shibpur (NIT), I specialize in building AI-powered solutions—ranging from autonomous agents to RAG pipelines—using LangChain, OpenAI, Python, and n8n. 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              With a background in both technical implementation and data storytelling, I bridge the gap between raw data and strategic insights. I'm experienced in working with various stakeholders to understand their needs and deliver data-driven solutions that address real-world challenges.
+             I love crafting end-to-end AI workflows that merge cutting-edge automation with practical, impactful results. From chatbot orchestration to hyperautomation, my work transforms complex problems into seamless digital solutions. Passionate about innovation, I continuously explore new ways to make AI more responsive, scalable, and human-centric.
             </p>
           </div>
           
@@ -52,10 +51,18 @@ const AboutSection = () => {
               </h3>
               <div className="space-y-5">
                 <ExperienceCard 
+                  position="Gen AI & Automation Engineer"
+                  company="Happy Fares"
+                  period="July 2025 - Present"
+                  description="Building AI-powered automation solutions with LangChain, OpenAI, Python, and n8n to streamline travel workflows and enhance customer experiences."
+                  tags={["GenAI", "Langchain", "Python", "LLM", "n8n"]}
+                />
+
+                 <ExperienceCard 
                   position="Research Intern"
                   company="DST-SERB, Govt. of India (IIEST Shibpur)"
-                  period="August 2023 - Present"
-                  description="Working on LIDAR sensor validation and EV traffic analysis using OpenCV & Tableau."
+                  period="August 2023 - June 2025"
+                  description="Worked on LIDAR sensor validation and EV traffic analysis using OpenCV & Tableau."
                   tags={["OpenCV", "Tableau", "LIDAR", "Traffic Analysis"]}
                 />
                 
