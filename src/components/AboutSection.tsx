@@ -40,7 +40,7 @@ const AboutSection = () => {
               <div className="rounded-xl border border-border/50 p-5 bg-card/50 relative overflow-hidden hover:shadow-lg transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 shadow-md">
                 <div className="absolute top-0 left-0 w-1 h-full bg-primary/30"></div>
                 <h4 className="text-lg font-medium">B.Tech, Indian Institute of Engineering Science and Technology, Shibpur</h4>
-                <p className="text-muted-foreground mt-1">Dec 2021 - Present</p>
+                <p className="text-muted-foreground mt-1">Dec 2021 - June 2025</p>
                 <Badge variant="secondary" className="mt-3">Engineering</Badge>
               </div>
             </div>
